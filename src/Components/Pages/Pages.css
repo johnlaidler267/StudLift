@@ -1,0 +1,22 @@
+.product {
+  padding: 0px;
+}
+
+.dropdown-btn {
+  background-color: white !important;
+  color: black !important;
+  padding: 5px;
+  border: "none";
+}
+
+.spaced-tabs {
+  color: black;
+  font-weight: 600;
+}
+
+.product {
+  color: black;
+}
+product:hover + div {
+  width: 100em;
+}

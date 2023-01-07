@@ -1,7 +1,10 @@
 body {
   background-color: #393f4d;
+  margin: 0;
+  padding: 0;
+  background-image: url(/Users/johnnylaidler/studentlifter/src/Photos/equipment.png);
 }
 
 .bg-image {
-  background-image: url(/Users/johnnylaidler/studentlifter/src/equipment.png);
+  background-image: url(/Users/johnnylaidler/studentlifter/src/Photos/equipment.png);
 }

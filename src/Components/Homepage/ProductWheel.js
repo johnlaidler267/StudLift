@@ -1,7 +1,8 @@
+//React components
 import React from 'react';
 import { Card, Container, Row, Col, Carousel } from 'react-bootstrap';
 
-function ProductWheel(props) {
+function ProductWheel() {
     return (
 
         <Container fluid style={{

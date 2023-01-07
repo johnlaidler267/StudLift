@@ -1,11 +1,13 @@
+//React components
 import React from 'react';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
-import intro from '/Users/johnnylaidler/studentlifter/src/intro.png';
 
-// import react images
-import { AiFillInstagram, AiFillMail, AiFillTwitterCircle, AiOutlineStar, AiOutlineMail } from 'react-icons/ai'
+// Icons
+import { AiFillInstagram, AiFillMail, AiFillTwitterCircle, AiOutlineStar } from 'react-icons/ai'
 import { GiConverseShoe, GiTankTop, GiTShirt } from 'react-icons/gi'
-import { flexbox } from '@mui/system';
+
+//Photos
+import intro from '/Users/johnnylaidler/studentlifter/src/Photos/intro.png';
 
 function IntroCard(props) {
     return (

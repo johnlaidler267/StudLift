@@ -1,7 +1,8 @@
+//React components
 import React from 'react';
 import { Card, Container, Row, Col, Accordion } from 'react-bootstrap';
 
-// import react icons
+// Icons
 import { FaCcVisa, FaCcMastercard, FaCcPaypal } from 'react-icons/fa'
 import { SiAmericanexpress } from 'react-icons/si'
 
@@ -16,7 +17,6 @@ function AboutUs(props) {
                 <Card.Header ><h4>Who Are We?</h4></Card.Header>
                 <Card.Body>
                     <p>Student Lifter is a brand dedicated to providing high-quality fitness apparel and accessories for students and young professionals. Our products are designed to be both stylish and functional, so you can look and feel your best while working towards your fitness goals. We believe that everyone should have access to affordable, high-quality fitness gear, and that's why we offer a wide range of products at competitive prices. Whether you're just starting out on your fitness journey or you're a seasoned athlete, Student Lifter has something for everyone. We hope you'll join us on our mission to help you reach your full potential.</p>
-
                     <h5>Frequently Asked Questions</h5>
                     <Accordion defaultActiveKey="0">
                         <Accordion.Item eventKey="0">
@@ -51,29 +51,6 @@ function AboutUs(props) {
                         </Accordion.Item>
                     </Accordion>
                 </Card.Body>
-                <Card.Footer>
-                    <Row>
-                        <Col xs={9}>
-                            Copyright 2022 Student Lifter. All rights reserved.
-                        </Col>
-                        <Col xs={3}>
-                            <Row>
-                                <Col style={{ height: "20%", width: "20%" }} xs={1}>
-                                    <FaCcVisa style={{ height: "100%", width: "100%" }} />
-                                </Col>
-                                <Col style={{ height: "20%", width: "20%" }} xs={1}>
-                                    <FaCcPaypal style={{ height: "100%", width: "100%" }} />
-                                </Col>
-                                <Col style={{ height: "20%", width: "20%" }} xs={1}>
-                                    <FaCcMastercard style={{ height: "100%", width: "100%" }} />
-                                </Col>
-                                <Col style={{ height: "19%", width: "19%" }} xs={1}>
-                                    <SiAmericanexpress style={{ height: "100%", width: "100%" }} />
-                                </Col>
-                            </Row>
-                        </Col>
-                    </Row>
-                </Card.Footer>
             </Card>
         </Container >
     );

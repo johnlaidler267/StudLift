@@ -1,10 +1,10 @@
-// Import Icons
+// Icons
 import { FaBars } from "react-icons/fa";
 
 // Import React Router (for navigation)
 import { NavLink as Link } from "react-router-dom";
 
-// Import styled components (CSS in JS
+// Import custom styling
 import styled from "styled-components";
 
 export const Nav = styled.nav`
