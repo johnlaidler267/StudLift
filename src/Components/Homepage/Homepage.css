@@ -1,0 +1,68 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro-card-bg {
+  width: 90%;
+  height: 100%;
+  background-color: #5a6873;
+  border: none;
+  border-radius: 0px;
+}
+
+.intro-card {
+  border: none;
+  padding: 5px;
+  margin: 5px;
+  background-color: transparent;
+  color: white;
+}
+
+.social-links {
+  margin-bottom: 2vw;
+}
+
+.about-us-btn {
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.header-text {
+  margin: 2vw;
+}
+
+.featured-products {
+  margin: 2vw;
+}
+
+.view-products-btn {
+  background-color: #32393f;
+  border: none;
+  margin-top: 1vw;
+}
+
+.featured-product-card {
+  padding: 1vw;
+  border: none;
+  width: 120%;
+  color: #32393f;
+}
+
+.featured-prod-col {
+  padding: 3vw;
+}
+
+.essentials {
+  display: flex;
+  justify-content: center;
+}
+
+.background-card-hp {
+  background-color: rgba(224, 221, 225, 0.9);
+  height: 100%;
+  border: none;
+  border-radius: 0px;
+}

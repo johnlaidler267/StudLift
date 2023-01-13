@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { Card, Container, Button } from 'react-bootstrap';
 
 function LoginForm() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -12,8 +10,8 @@ function LoginForm() {
     };
 
     return (
-        <Container style={{ width: "800px", height: "500px" }}>
-            <Card style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div>
+            <Card style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: '70px', border: 'none' }}>
                 <h5><b>LOG INTO MY STUDENTLIFTER</b></h5>
                 <br></br>
                 <form onSubmit={handleSubmit}>
@@ -47,10 +45,19 @@ function LoginForm() {
                 <br />
                 <div style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <h9 style={{ fontSize: "12px", margin: '1em' }}><a href="url" style={{ color: 'black', textDecoration: 'none' }}>I've forgotton my password.</a></h9>
-                    <h9 style={{ fontSize: "12px" }}>New to StudentLifter? <a href="url">Create an Account.</a></h9>
+                    <h9 style={{ fontSize: "12px" }}>New to StudentLifter? <a href="/register">Create an Account.</a></h9>
                 </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </Card>
-        </Container >
+        </div>
     );
 }
 

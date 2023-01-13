@@ -9,7 +9,7 @@ function ProductWheel() {
             width: "85%",
             margin: "0 auto"
         }}>
-            <Card style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
+            <Card style={{ backgroundColor: "#CED5DF", width: "100%", height: "100%", border: 'none', color: 'white' }}>
                 <Carousel variant="dark">
                     <Carousel.Item>
                         <Container>

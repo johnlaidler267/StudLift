@@ -269,12 +269,12 @@ export default function Shipping() {
                         <Container style={{ width: "90%" }}>
                             <Row>
                                 <Col xs={8}>
-                                    <Button type="submit" style={{ color: "black", backgroundColor: "white", border: "none", fontSize: "12px", padding: "10px" }}>
+                                    <Button href='/information' type="submit" style={{ color: "black", backgroundColor: "white", border: "none", fontSize: "12px", padding: "10px" }}>
                                         ⇐ Return to information
                                     </Button>
                                 </Col>
                                 <Col xs={4}>
-                                    <Button variant="dark" type="submit" style={{ borderRadius: "20px", fontSize: "12px", padding: "10px" }}>
+                                    <Button href='payment' variant="dark" type="submit" style={{ borderRadius: "20px", fontSize: "12px", padding: "10px" }}>
                                         <b>CONTINUE TO PAYMENT ⇒</b>
                                     </Button>
                                 </Col>

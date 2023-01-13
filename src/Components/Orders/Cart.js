@@ -3,7 +3,7 @@ import './Orders.css'
 
 //React components
 import React, { useState } from 'react';
-import { Card, Row, Col, Button, Form } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 import QuantityPicker from "../Purchase/QuantityPicker/QuantityPicker";
 
@@ -86,7 +86,7 @@ function Cart() {
                     <Card.Footer style={{ backgroundColor: 'white' }}>
                         <Row>
                             <Col xs={10}>
-                                <Button variant='dark'>Continue Shopping</Button>
+                                <Button href='mens-all' variant='dark'>Continue Shopping</Button>
                             </Col>
                             <Col xs={2}>
                                 <p><b>TOTAL <span style={{ marginLeft: '20px' }}>$94.00 USD</span></b></p>
@@ -96,7 +96,7 @@ function Cart() {
                 </Card>
                 <div style={{ width: '80%', display: 'flex', justifyContent: 'end', padding: '10px' }}>
                     <img src={Cards} style={{ width: '15%', marginRight: '70%' }}></img>
-                    <Button style={{ width: '15em' }}>CHECKOUT</Button>
+                    <Button href='information' style={{ width: '15em' }}>CHECKOUT</Button>
                 </div>
                 <br />
                 <br />

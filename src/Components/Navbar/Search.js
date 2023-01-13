@@ -59,17 +59,19 @@ function Search() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-                <input
-                    type="text"
-                    value={query}
-                    onChange={handleChange}
-                    placeholder="Search By Typing Keywords..."
-                    style={{ width: '100%', padding: "30px", border: "none", fontSize: "1.5rem" }}
-                />
-                <Divider></Divider>
-            </form>
-            <SearchResults />
+            <Card style={{ border: 'none' }}>
+                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+                    <input
+                        type="text"
+                        value={query}
+                        onChange={handleChange}
+                        placeholder="Search By Typing Keywords..."
+                        style={{ width: '100%', padding: "30px", border: "none", fontSize: "1.5rem" }}
+                    />
+                    <Divider />
+                </form>
+                <SearchResults />
+            </Card>
         </div>
     );
 }

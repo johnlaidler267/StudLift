@@ -10,6 +10,7 @@ import { TbCircle1, TbCircle2, TbCircle3, TbCircleCheck, TbCirclePlus } from 're
 import { BsArrowRightSquareFill } from 'react-icons/bs'
 import { AiFillLock, AiFillQuestionCircle } from 'react-icons/ai'
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io'
 
 
 
@@ -234,7 +235,7 @@ export default function Payment() {
 
     return (
         <Container style={{
-            maxWidth: "none", width: "101%", height: "900px"
+            maxWidth: "none", width: "101%", height: "100%"
         }}>
             <Card style={{ width: "100%", height: "100%", border: "none", display: "flex", alignItems: "center" }}>
                 <Row style={{ padding: "5px", width: "100%", height: "100%" }}>
@@ -403,6 +404,17 @@ export default function Payment() {
                                     </Accordion.Item>
                                 </Accordion>
                             </Card>
+                        </div>
+                        <br />
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <div className='button-row' style={{ width: '90%' }}>
+                                <Button className='direction-btn' href=' /shipping' type="submit" style={{ color: "black", backgroundColor: "white" }} >
+                                    <IoIosArrowDropleft className='arrow' /> Return to shipping
+                                </Button>
+                                <Button className='direction-btn' href='/confirmation' variant="dark" type="submit" style={{ borderRadius: "20px" }}>
+                                    <b>PAY NOW <IoIosArrowDroprightCircle className='arrow' /></b>
+                                </Button>
+                            </div>
                         </div>
                         <br />
                         <Container style={{ display: "flex", justifyContent: "center" }}>

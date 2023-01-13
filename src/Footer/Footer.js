@@ -1,21 +1,30 @@
+import './Footer.css'
 import React from 'react';
-import { Button, Card, Row, Col, Container } from 'react-bootstrap'
+import { Card, Row, Col } from 'react-bootstrap'
+import { Link, Router } from 'react-router-dom';
+
+import { FAQ } from './FAQ'
+
 
 const Footer = () => {
     return (
         <footer>
-            <Card style={{ padding: '30px 30px 10px 30px', borderLeft: 'none', borderRight: 'none', borderBottom: 'none' }}>
+
+            <Card className='footer-card'>
+
                 <Row>
+
                     <Col xs={2}>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                             <h5 className='footer-header'>HELP</h5>
-                            <a href='' className='footer-link'>FAQ</a>
-                            <a href='' className='footer-link'>Delivery Information</a>
-                            <a href='' className='footer-link'>Returns Policy</a>
-                            <a href='' className='footer-link'>Make A Return</a>
-                            <a href='' className='footer-link'>Orders</a>
+                            <a href='/FAQ' className='footer-link'>FAQ</a>
+                            <a href='/FAQ' className='footer-link'>Delivery Information</a>
+                            <a href='/FAQ' className='footer-link'>Returns Policy</a>
+                            <a href='/FAQ' className='footer-link'>Make A Return</a>
+                            <a href='/FAQ' className='footer-link'>Orders</a>
                         </div>
                     </Col>
+
                     <Col xs={2}>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                             <h5 className='footer-header'>MY ACCOUNT</h5>
@@ -23,6 +32,7 @@ const Footer = () => {
                             <a href='' className='footer-link'>Register</a>
                         </div>
                     </Col >
+
                     <Col xs={2}>
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                             <h5 className='footer-header'>PAGES</h5>
@@ -35,8 +45,11 @@ const Footer = () => {
                             <a href='' className='footer-link'>Factory List</a>
                         </div>
                     </Col>
+
                 </Row>
+
             </Card>
+
         </footer>
     );
 }

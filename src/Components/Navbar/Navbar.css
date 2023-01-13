@@ -16,9 +16,9 @@ html {
   position: fixed;
   bottom: -150vh;
   background-color: #fff;
-  color: black;
+  color: #100c0c;
   width: 30%;
-  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 10px 0px #5a6873;
   left: 70%;
   padding: 0 12px 12px;
   transition: all 0.3s ease-out;
@@ -45,6 +45,26 @@ html {
 
 .footer-link {
   font-size: 0.9em;
-  color: gray;
+  color: #5a6873;
   text-decoration: none;
+}
+
+.logo {
+  width: 4vw;
+}
+
+/* NAVBAR */
+.navbar-cstm {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100vw !important;
+  justify-content: space-between !important;
+  background-color: #a9c5db !important;
+}
+
+.nav-menu {
+  padding-left: 5%;
+  background-color: transparent;
+  width: 50%;
+  margin-right: 50%;
 }

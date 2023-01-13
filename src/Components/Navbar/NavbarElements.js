@@ -1,19 +1,16 @@
-// Icons
+// Import Icons
 import { FaBars } from "react-icons/fa";
 
 // Import React Router (for navigation)
 import { NavLink as Link } from "react-router-dom";
 
-// Import custom styling
+// Import styled components (CSS in JS
 import styled from "styled-components";
 
 export const Nav = styled.nav`
   color: white;
   background:  black;
   height: 85px;
-  display: flex;
-  justify-content: left;
-  padding: 0.2rem calc((100vw - 1000px) / 2);
   z-index: 12; 
 `;
 
@@ -56,7 +53,6 @@ export const NavMenu = styled.div`
   display: flex;
   align-items: center;
   font-family: "Roboto", sans-serif;
-  margin-right: -24px;
   /* Second Nav */
   /* margin-right: 24px; */
   /* Third Nav */

@@ -1,3 +1,4 @@
+import './Checkout.css'
 import '../QuantityPicker/QuantityPicker.css';
 import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -7,8 +8,9 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
 import { TbCircle1, TbCircle2, TbCircle3, TbCircleCheck, TbCirclePlus } from 'react-icons/tb'
-import { BsArrowRightSquareFill } from 'react-icons/bs'
+import { BsArrowReturnLeft, BsArrowRightSquareFill } from 'react-icons/bs'
 import { FaCcPaypal, FaGooglePay } from 'react-icons/fa'
+import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io'
 
 
 function handleClick(event) {
@@ -178,20 +180,16 @@ export default function Information() {
                         <Form.Control placeholder="Phone" />
                     </Form.Group>
 
-                    <Row>
-                        <Col xs={8}>
-                            <Button type="submit" style={{ color: "black", backgroundColor: "white", border: "none", fontSize: "12px", padding: "10px" }}>
-                                ⇐ Return to cart
-                            </Button>
-                        </Col>
-                        <Col xs={4}>
-                            <Button variant="dark" type="submit" style={{ borderRadius: "20px", fontSize: "12px", padding: "10px" }}>
-                                <b>CONTINUE TO SHIPPING ⇒</b>
-                            </Button>
-                        </Col>
-                    </Row>
-                </Form>
-            </div>
+                    <div className='button-row'>
+                        <Button className='direction-btn' href=' /cart' type="submit" style={{ color: "black", backgroundColor: "white" }} >
+                            <IoIosArrowDropleft className='arrow' /> Return to cart
+                        </Button>
+                        <Button className='direction-btn' href='/shipping' variant="dark" type="submit" style={{ borderRadius: "20px" }}>
+                            <b>CONTINUE TO SHIPPING <IoIosArrowDroprightCircle className='arrow' /></b>
+                        </Button>
+                    </div>
+                </Form >
+            </div >
         )
     }
 

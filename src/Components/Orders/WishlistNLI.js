@@ -15,17 +15,29 @@ function LoginForm() {
     };
 
     return (
-        <Container style={{ width: "800px", height: "500px" }}>
-            <Card style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div>
+            <Card style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: 'center', padding: '70px', border: 'none' }}>
                 <h5><b><FcLock /> SAVE TO WISHLIST</b></h5>
                 <br />
-                <p style={{ width: "58%", color: "darkgray" }}> Login or create an account to view to your wishlist. We'll drop you back at your wishlist after you have entered your details.</p>
+                <p style={{ width: "20%", color: "darkgray" }}> Login or create an account to view to your wishlist. We'll drop you back at your wishlist after you have entered your details.</p>
                 <br />
-                <Button variant="secondary" style={{ width: "30%" }}>LOG IN</Button>
+                <Button href='login' variant="light" style={{ width: "30%", border: '1px solid black' }}>LOG IN</Button>
                 <br />
-                <Button variant="dark" style={{ width: "30%" }}>CREATE ACCOUNT</Button>
+                <Button href='/register' variant="dark" style={{ width: "30%" }}>CREATE ACCOUNT</Button>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </Card>
-        </Container >
+        </div>
     );
 }
 

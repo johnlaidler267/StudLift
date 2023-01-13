@@ -189,8 +189,8 @@ const PrettoSlider = styled(Slider)({
 
 function ViewItem() {
     return (
-        <Container style={{ width: "100%", height: "85%" }}>
-            <Card style={{ width: "100%", height: "100%", padding: "50px" }}>
+        <div>
+            <Card style={{ width: "100%", height: "100%", padding: "50px", border: 'none' }}>
                 <p>Home / Legacy Ruched Tight Shorts</p>
 
                 <Row>
@@ -421,7 +421,7 @@ function ViewItem() {
                 </Container>
 
             </Card >
-        </Container >
+        </div>
     );
 }
 

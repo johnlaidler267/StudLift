@@ -1,3 +1,5 @@
+import './Account.css'
+
 //React Components
 import React from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
@@ -5,6 +7,7 @@ import Divider from '@mui/material/Divider';
 
 //Photos
 import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
+import header from '/Users/johnnylaidler/studentlifter/src/Photos/accountdetails.png';
 
 function Main() {
     const ProductCard = () => {
@@ -60,8 +63,8 @@ function Main() {
     }
 
     return (
-        <div>
-            <Card style={{ width: '100%', padding: '20px', border: 'none' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'white' }}>
+            <Card style={{ width: '85%', padding: '20px', border: 'none' }}>
                 <Row>
                     <Col xs={3}>
                         <Card style={{ backgroundColor: '#ECECEC', padding: '20px', margin: '5px' }}>
@@ -101,7 +104,7 @@ function Main() {
                     <Col xs={9} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <div>
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '5px' }}>
-                                <h4> <b>ACCOUNT DETAILS AND HISTORY </b></h4>
+                                <Card.Img src={header} className='account-details-header'></Card.Img>
                             </div>
                             <Divider light={false} variant="fullWidth" />
                             <div>

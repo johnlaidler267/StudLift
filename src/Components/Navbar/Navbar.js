@@ -18,6 +18,7 @@ import { CgProfile } from 'react-icons/cg'
 
 //Photos
 import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Photos/searchItem.webp';
+import logo from '/Users/johnnylaidler/studentlifter/src/Photos/logo1.png';
 
 const Navbar = () => {
     /*
@@ -111,8 +112,8 @@ const Navbar = () => {
 
                     <Card style={{ width: "100%", padding: "5px", border: "none" }}>
                         <Col style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                            <Button variant="primary" style={{ width: "100%", margin: "2px" }}>CHECKOUT</Button>
-                            <Button variant="secondary" style={{ width: "100%", margin: "2px" }}>YOUR BAG</Button>
+                            <Button href='/information' variant="primary" style={{ width: "100%", margin: "2px" }}>CHECKOUT</Button>
+                            <Button href='/cart' variant="secondary" style={{ width: "100%", margin: "2px" }}>YOUR BAG</Button>
                         </Col>
                     </Card>
 
@@ -123,11 +124,11 @@ const Navbar = () => {
 
     return (
         <>
-            <Nav style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-evenly" }}>
+            <Nav className='navbar-cstm'>
 
-                <NavMenu style={{ width: "100%", marginRight: '40%' }}>
+                <NavMenu className='nav-menu'>
                     <NavLink to="/" activeStyle>
-                        <h1>SL</h1>
+                        <img src={logo} className='logo'></img>
                     </NavLink>
                     <br></br>
                     <NavLink to="/women" activeStyle>
@@ -136,16 +137,14 @@ const Navbar = () => {
                     <NavLink to="/men" activeStyle>
                         Men
                     </NavLink>
-                    <NavLink to="/mens-all" activeStyle>
-                        MA
-                    </NavLink>
                     <NavLink to="/accessories" activeStyle>
                         Accessories
                     </NavLink>
                 </NavMenu>
 
                 <NavMenu style={{
-                    width: "100% "
+                    width: "100% ",
+                    backgroundColor: 'transparent'
                 }}>
                     < NavLink to="/search" activeStyle>
                         <BsSearch />
@@ -155,33 +154,6 @@ const Navbar = () => {
                     </NavLink>
                     <NavLink to="/login" activeStyle>
                         <CgProfile />
-                    </NavLink>
-                    <NavLink to="/edit-profile" activeStyle>
-                        <CgProfile />
-                    </NavLink>
-                    <NavLink to="/register" activeStyle>
-                        Register
-                    </NavLink>
-                    <NavLink to="/viewitem" activeStyle>
-                        View Item
-                    </NavLink>
-                    <NavLink to="/information" activeStyle>
-                        I
-                    </NavLink>
-                    <NavLink to="/shipping" activeStyle>
-                        S
-                    </NavLink>
-                    <NavLink to="/payment" activeStyle>
-                        P
-                    </NavLink>
-                    <NavLink to="/confirmation" activeStyle>
-                        C
-                    </NavLink>
-                    <NavLink to="/cart" activeStyle>
-                        ca
-                    </NavLink>
-                    <NavLink to="/wishlist-li" activeStyle>
-                        W
                     </NavLink>
                     <NavLink onClick={() => setDisplayModal(!displayModal)} activeStyle>
                         <AiOutlineShoppingCart />

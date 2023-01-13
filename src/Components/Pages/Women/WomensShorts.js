@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, Container, Row, Col, Button, Dropdown, DropdownButton, Tabs, Tab } from 'react-bootstrap';
 import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
 
-function MensShorts() {
+function WomensShorts() {
     const FilterBar = () => {
         return (
             <div className="filter-bar" style={{ display: 'flex', alignItems: 'center', width: '100%', marginLeft: '1.5em' }}>
