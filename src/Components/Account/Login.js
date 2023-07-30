@@ -1,27 +1,41 @@
 //React components
 import React, { useState } from 'react';
-import { Card, Container, Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+
+// Firebase components
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../firebase/firebase';
 
 function LoginForm() {
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Perform login logic here
-    };
+    const googleProvider = new GoogleAuthProvider();
+    const GoogleLogin = async () => {
+        try {
+            //takes 2 parameters, the provider and auth
+            const result = await signInWithPopup(auth, googleProvider);
+            console.log(result.user);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div>
             <Card style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: '70px', border: 'none' }}>
                 <h5><b>LOG INTO MY STUDENTLIFTER</b></h5>
                 <br></br>
-                <form onSubmit={handleSubmit}>
+                <form >
+                    <Button onClick={GoogleLogin} variant="dark" style={{ width: "300px" }}>Sign in with Google</Button>
+                    <br />
+                    <br />
                     <label>
                         <h9 style={{ fontSize: "10px" }}>EMAIL ADDRESS:</h9>
                         <br></br>
                         <input
                             type="text"
-                            value={username}
-                            onChange={(event) => setUsername(event.target.value)}
+                            // value={username}
+                            // onChange={(event) => setUsername(event.target.value)}
                             style={{ width: "300px", padding: "5px" }}
                         />
                     </label>
@@ -31,8 +45,8 @@ function LoginForm() {
                         <br></br>
                         <input
                             type="password"
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)}
+                            // value={password}
+                            // onChange={(event) => setPassword(event.target.value)}
                             style={{ width: "300px", padding: "5px" }}
                         />
                     </label>

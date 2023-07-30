@@ -11,6 +11,10 @@ import { Button, Card, Row, Col, Container } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
 import QuantityPicker from "../Purchase/QuantityPicker/QuantityPicker";
 
+//Firebase
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase/firebase';
+
 // React Icons
 import { BsSearch } from 'react-icons/bs';
 import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
@@ -21,16 +25,8 @@ import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Photos/searchIte
 import logo from '/Users/johnnylaidler/studentlifter/src/Photos/logo1.png';
 
 const Navbar = () => {
-    /*
-    const logoutRef = useRef();
+    const [user, loading] = useAuthState(auth);
 
-    const HandleLogout = () => {
-        userloggedIn = false;
-        localStorage.clear();
-        sessionStorage.clear();
-        window.location.reload();
-    }
-    */
     const [alert, setAlert] = useState("");
     const [displayModal, setDisplayModal] = useState(false);
 
@@ -149,12 +145,29 @@ const Navbar = () => {
                     < NavLink to="/search" activeStyle>
                         <BsSearch />
                     </NavLink>
-                    <NavLink to="/wishlist-nli" activeStyle>
-                        <AiOutlineHeart />
-                    </NavLink>
-                    <NavLink to="/login" activeStyle>
-                        <CgProfile />
-                    </NavLink>
+
+                    {!user && (
+                        <NavLink to="/wishlist-nli" activeStyle>
+                            <AiOutlineHeart />
+                        </NavLink>
+                    )}
+                    {user && (
+                        <NavLink to="/wishlist-li" activeStyle>
+                            <AiOutlineHeart />
+                        </NavLink>
+                    )}
+
+                    {!user && (
+                        <NavLink to="/login" activeStyle>
+                            <CgProfile />
+                        </NavLink>
+                    )}
+                    {user && (
+                        <NavLink to="/edit-profile" activeStyle>
+                            <img src={user.photoURL} className='profile-pic'></img>
+                        </NavLink>
+                    )}
+
                     <NavLink onClick={() => setDisplayModal(!displayModal)} activeStyle>
                         <AiOutlineShoppingCart />
                     </NavLink>

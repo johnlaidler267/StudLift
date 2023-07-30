@@ -75,9 +75,7 @@
   border-right: none;
 }
 
-.account-details-header {
-  width: 20vw;
-}
+/* REGISTER */
 
 .h9 {
   font-size: 10px;
@@ -85,4 +83,107 @@
 
 .p {
   font-size: 10px;
+}
+
+.create-account-btn {
+  width: 300px;
+  font-size: 15px;
+}
+
+.register-background-div {
+  width: 80%;
+  height: 85%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.register-card {
+  width: 90%;
+  height: 100%;
+  padding: 50px;
+  border: none;
+}
+
+/* EDIT PROFILE */
+.editp-background-div {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.editp-background-card {
+  width: 85%;
+  padding: 20px;
+  border: none;
+}
+
+.sidebar-card {
+  background-color: #ececec;
+  padding: 20px;
+  margin: 5px;
+}
+
+.change-btn {
+  font-size: 0.5em;
+  width: 25%;
+}
+
+.order-history-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-details-header-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.account-details-header {
+  width: 20vw;
+}
+
+.subheader {
+  font-size: 0.8em;
+}
+
+/* RETURNS */
+.return-header-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.return-card-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.return-card {
+  width: 50%;
+  padding: 30px;
+}
+
+.return-img {
+  width: 100%;
+  height: 100%;
+}
+
+.return-details-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.return-check {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

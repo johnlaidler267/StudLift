@@ -1,7 +1,6 @@
 import './Footer.css'
 import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap'
-import { Link, Router } from 'react-router-dom';
 
 import { FAQ } from './FAQ'
 

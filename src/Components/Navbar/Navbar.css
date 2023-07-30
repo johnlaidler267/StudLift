@@ -68,3 +68,9 @@ html {
   width: 50%;
   margin-right: 50%;
 }
+
+.profile-pic {
+  width: 1.5vw;
+  border-radius: 100px;
+  border: 1px solid white;
+}

@@ -26,3 +26,44 @@
   text-decoration: none;
   font-size: 0.7em;
 }
+
+.back-arrow {
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+
+.background-div {
+  width: 100%;
+}
+
+.header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 4.5em;
+  background-color: #ececec;
+  border: none;
+}
+
+.product-display-card {
+  border: none;
+  height: 100%;
+  padding: 30px;
+}
+
+.remove-all-btn {
+  background-color: transparent;
+  color: black;
+  border: none;
+  margin-left: 20px;
+}
+
+.card-grid-div {
+  display: "flex";
+  flex-direction: "row";
+}
+
+.header-div {
+  margin-left: 20px;
+}
