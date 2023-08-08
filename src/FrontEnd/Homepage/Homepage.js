@@ -6,8 +6,8 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap'
 
 //Custom components
-import IntroCard from './IntroCard';
-import ProductWheel from './ProductWheel.js';
+import IntroCard from './Components/IntroCard';
+import ProductWheel from './Components/ProductWheel.js';
 
 //Photos
 import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Photos/smilingGuy.png'

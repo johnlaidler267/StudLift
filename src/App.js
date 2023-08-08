@@ -5,11 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Import custom components
 import Navbar from './FrontEnd/Navbar/Navbar.js';
 import Main from './FrontEnd/Homepage/Homepage.js';
-import LoginForm from './FrontEnd/Account/Login.js'
+import LoginForm from './FrontEnd/EditAccount/Login.js.js'
 import Search from './FrontEnd/Navbar/Search.js'
 import WishlistNLI from './FrontEnd/Cart/WishList/WishlistNLI.js.js'
 import WishlistLI from './FrontEnd/Cart/WishlistLI';
-import Register from './FrontEnd/Account/Register'
+import Register from './FrontEnd/EditAccount/Register'
 import ViewItem from './FrontEnd/Purchase/ViewItem';
 
 import Women from './FrontEnd/Men+Women/Mens+Womens/Women/Women';
@@ -32,12 +32,12 @@ import OrderConfirmation from './FrontEnd/Purchase/Checkout/OrderConfirmation';
 
 import AboutUs from './FrontEnd/Footer/Footer_Links/AboutUs'
 import FAQ from './FrontEnd/Footer/Footer_Links/FAQ'
-import EditProfile from './FrontEnd/Account/EditProfile'
-import ReviseBilling from './FrontEnd/Account/Revise_Info/ReviseBilling';
-import ReviseShipping from './FrontEnd/Account/Revise_Info/ReviseShipping';
-import RevisePayment from './FrontEnd/Account/Revise_Info/RevisePayment';
+import EditProfile from './FrontEnd/EditAccount/EditProfile'
+import ReviseBilling from './FrontEnd/EditAccount/Revise_Info/ReviseBilling';
+import ReviseShipping from './FrontEnd/EditAccount/Revise_Info/ReviseShipping';
+import RevisePayment from './FrontEnd/EditAccount/Revise_Info/RevisePayment';
 
-import Returns from './FrontEnd/Account/Returns';
+import Returns from './FrontEnd/EditAccount/Returns';
 
 import Cart from './FrontEnd/Cart/Cart'
 
