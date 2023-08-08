@@ -1,17 +1,23 @@
 {
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "public": true,
-        "**/public": true,
-        "**/node_modules": true,
-        "node_modules": true,
-        "**/.vscode": true,
-        ".vscode": true
-    },
-    "explorerExclude.backup": {}
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "public": true,
+    "**/public": true,
+    "**/node_modules": true,
+    "node_modules": true,
+    "**/.vscode": true,
+    ".vscode": true,
+    "**/package-lock.json": true,
+    "*.json": true,
+    "package-lock.json": true,
+    "**/*.json": true,
+    "README.md": true,
+    "package.json": true
+  },
+  "explorerExclude.backup": {}
 }

@@ -1,4 +1,4 @@
-import '../QuantityPicker/QuantityPicker.css';
+import '../Components/QuantityPicker/QuantityPicker.css';
 import * as React from 'react';
 import { Card, Container, Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { AiFillPrinter } from 'react-icons/ai'

@@ -5,7 +5,7 @@ import './Orders.css'
 import React, { useState } from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
-import QuantityPicker from "../Purchase/QuantityPicker/QuantityPicker";
+import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker";
 
 //Icons
 

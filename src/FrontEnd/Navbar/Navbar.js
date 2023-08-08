@@ -9,7 +9,7 @@ import { Nav, NavLink, NavMenu }
 import { useEffect, useState } from "react";
 import { Button, Card, Row, Col, Container } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
-import QuantityPicker from "../Purchase/QuantityPicker/QuantityPicker";
+import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker";
 
 //Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';

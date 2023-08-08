@@ -10,7 +10,7 @@ import { IoIosArrowBack } from 'react-icons/io'
 import { FaTrashAlt } from 'react-icons/fa'
 
 //Custom components
-import { CardGrid, Filter } from './Components/wl-components'
+import { CardGrid, Filter } from './WishList/Wishlist-Components'
 
 
 function WishlistLI() {

@@ -2,7 +2,7 @@ import './Footer.css'
 import React from 'react';
 import { Card, Row, Col } from 'react-bootstrap'
 
-import { FAQ } from './FAQ'
+import { FAQ } from './Footer_Links/FAQ'
 
 
 const Footer = () => {

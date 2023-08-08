@@ -1,4 +1,4 @@
-import '../QuantityPicker/QuantityPicker.css';
+import '../Components/QuantityPicker/QuantityPicker.css';
 import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
