@@ -1,7 +1,7 @@
-import '../Pages.css'
+import '../../Pages.css'
 import React from 'react';
 import { Card, Container, Row, Col, Button, Dropdown, DropdownButton, Tabs, Tab } from 'react-bootstrap';
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
+import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 
 function WomensTops() {
     const FilterBar = () => {

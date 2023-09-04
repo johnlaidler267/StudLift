@@ -1,5 +1,5 @@
 //Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
+import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 
 //React Components
 import React from 'react';

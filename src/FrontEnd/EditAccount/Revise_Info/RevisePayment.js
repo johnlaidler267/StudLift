@@ -1,5 +1,5 @@
 //custom styling
-import './Account.css';
+import '../EditAccount.css';
 
 //react components
 import react from 'react';

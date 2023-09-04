@@ -3,7 +3,7 @@ import react from 'react'
 import { Card, Row, Col, Form } from 'react-bootstrap';
 
 //Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
+import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 
 //Icons
 import { BsSortDownAlt, BsSortDown } from 'react-icons/bs'

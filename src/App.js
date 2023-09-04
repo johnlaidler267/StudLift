@@ -3,20 +3,21 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Import custom components
-import Navbar from './FrontEnd/Navbar/Navbar.js';
-import Main from './FrontEnd/Homepage/Homepage.js';
-import LoginForm from './FrontEnd/EditAccount/Login.js.js'
+import Navbar from './FrontEnd/Navbar/Navbar';
+import Main from './FrontEnd/Homepage/Homepage';
+import LoginForm from './FrontEnd/Login+Register/Login'
 import Search from './FrontEnd/Navbar/Search.js'
-import WishlistNLI from './FrontEnd/Cart/WishList/WishlistNLI.js.js'
-import WishlistLI from './FrontEnd/Cart/WishlistLI';
-import Register from './FrontEnd/EditAccount/Register'
+import WishlistNLI from './FrontEnd/Wish_Lists/WishlistNLI'
+import WishlistLI from './FrontEnd/Wish_Lists/WishlistLI';
+import Register from './FrontEnd/Login+Register/Register'
 import ViewItem from './FrontEnd/Purchase/ViewItem';
 
-import Women from './FrontEnd/Men+Women/Mens+Womens/Women/Women';
-import WomensAll from './FrontEnd/Men+Women/Mens+Womens/Women/Womens_Items/WomensAll';
-import WomensPants from './FrontEnd/Men+Women/Mens+Womens/Women/Womens_Items/WomensPants'
-import WomensShorts from './FrontEnd/Men+Women/Mens+Womens/Women/Womens_Items/WomensShorts'
-import WomensTops from './FrontEnd/Men+Women/Mens+Womens/Women/Womens_Items/WomensTops'
+// Product pages
+import Women from './FrontEnd/Mens+Womens/Women/Women';
+import WomensAll from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensAll';
+import WomensPants from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensPants'
+import WomensShorts from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensShorts'
+import WomensTops from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensTops'
 
 import Men from './FrontEnd/Mens+Womens/Men/Men'
 import MensAll from './FrontEnd/Mens+Womens/Men/Mens_Items/MensAll';
@@ -24,15 +25,20 @@ import MensPants from './FrontEnd/Mens+Womens/Men/Mens_Items/MensPants'
 import MensShorts from './FrontEnd/Mens+Womens/Men/Mens_Items/MensShorts'
 import MensTops from './FrontEnd/Mens+Womens/Men/Mens_Items/MensTops'
 
-import Accessories from './FrontEnd/Men+Women/Mens+Womens/Accessories';
+import Accessories from './FrontEnd/Mens+Womens/Accessories';
+
+// Checkout pages
 import Information from './FrontEnd/Purchase/Checkout/Information'
 import Shipping from './FrontEnd/Purchase/Checkout/Shipping'
 import Payment from './FrontEnd/Purchase/Checkout/Payment'
 import OrderConfirmation from './FrontEnd/Purchase/Checkout/OrderConfirmation';
 
+//Footer pages
 import AboutUs from './FrontEnd/Footer/Footer_Links/AboutUs'
 import FAQ from './FrontEnd/Footer/Footer_Links/FAQ'
-import EditProfile from './FrontEnd/EditAccount/EditProfile'
+
+//Edit profile pages
+import EditProfile from './FrontEnd/EditAccount/EditPF_Column/EditPFColumn'
 import ReviseBilling from './FrontEnd/EditAccount/Revise_Info/ReviseBilling';
 import ReviseShipping from './FrontEnd/EditAccount/Revise_Info/ReviseShipping';
 import RevisePayment from './FrontEnd/EditAccount/Revise_Info/RevisePayment';

@@ -1,5 +1,5 @@
 //Custom styling
-import './Orders.css'
+import '../Cart/Orders.css'
 
 //React components
 import React, { useState } from 'react';
@@ -10,7 +10,7 @@ import { IoIosArrowBack } from 'react-icons/io'
 import { FaTrashAlt } from 'react-icons/fa'
 
 //Custom components
-import { CardGrid, Filter } from './WishList/Wishlist-Components'
+import { CardGrid, Filter } from './WL-Components'
 
 
 function WishlistLI() {

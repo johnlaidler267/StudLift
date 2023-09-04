@@ -10,8 +10,8 @@ import IntroCard from './Components/IntroCard';
 import ProductWheel from './Components/ProductWheel.js';
 
 //Photos
-import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Photos/smilingGuy.png'
-import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Photos/smilingWoman.png'
+import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingGuy.png'
+import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingWoman.png'
 
 function EssentialsMen() {
     return (

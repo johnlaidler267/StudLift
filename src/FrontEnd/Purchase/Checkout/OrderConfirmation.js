@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Card, Container, Row, Col, ListGroup, Button } from 'react-bootstrap'
 import { AiFillPrinter } from 'react-icons/ai'
 import { MdAttachEmail } from 'react-icons/md'
-import one from '/Users/johnnylaidler/studentlifter/src/Photos/one.webp'
+import one from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/one.webp'
 
 
 

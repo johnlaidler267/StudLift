@@ -5,12 +5,12 @@ code {
 
 @font-face {
   font-family: "Sunset Gothic";
-  src: url("./Uploaded-Fonts/SunsetGothic.ttf"); /* For TTF fonts */
+  src: url("/Users/johnnylaidler/studentlifter/src/Resources/Uploaded_Fonts/SunsetGothic.ttf"); /* For TTF fonts */
   /* Add additional font formats as necessary */
 }
 
 * {
-  margin: 0;
+  margin: 0; 
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif !important;
   -webkit-font-smoothing: antialiased;

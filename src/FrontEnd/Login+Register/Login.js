@@ -4,10 +4,9 @@ import { Card, Button } from 'react-bootstrap';
 
 // Firebase components
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '../../firebase/firebase';
+import { auth } from '../../BackEnd/firebase/firebase';
 
 function LoginForm() {
-
     const googleProvider = new GoogleAuthProvider();
     const GoogleLogin = async () => {
         try {

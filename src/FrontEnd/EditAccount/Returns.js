@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 //Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
+import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 
 
 export default function Returns() {

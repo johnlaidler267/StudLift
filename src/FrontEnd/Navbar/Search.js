@@ -4,7 +4,7 @@ import { Card, Col, Row } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 
 //Photos
-import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Photos/searchItem.webp';
+import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/searchItem.webp';
 
 function Search() {
     const [query, setQuery] = useState('');

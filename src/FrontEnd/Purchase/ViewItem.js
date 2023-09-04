@@ -15,10 +15,10 @@ import { GiReturnArrow, GiDeliveryDrone } from 'react-icons/gi'
 import { TbTruckDelivery } from 'react-icons/tb'
 
 // - Main Images (LEFT)
-import one from '/Users/johnnylaidler/studentlifter/src/Photos/one.webp'
-import two from '/Users/johnnylaidler/studentlifter/src/Photos/two.webp'
-import three from '/Users/johnnylaidler/studentlifter/src/Photos/three.webp'
-import four from '/Users/johnnylaidler/studentlifter/src/Photos/four.webp'
+import one from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/one.webp'
+import two from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/two.webp'
+import three from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/three.webp'
+import four from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/four.webp'
 
 // - Color Variations
 let black = 'https://cdn.shopify.com/s/files/1/0156/6146/products/LegacyRuchedTightShortBlackBlackB4A3Y-BBBB-1199.255_d8bde972-24c6-427a-a90e-d00ccfb3a1dd_150x.jpg?v=1670368902'

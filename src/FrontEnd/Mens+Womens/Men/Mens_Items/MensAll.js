@@ -1,5 +1,5 @@
 //Custom styling
-import '../Pages.css'
+import '../../Pages.css'
 
 //React components
 import React from 'react';
@@ -10,7 +10,7 @@ import { BiBookAdd } from 'react-icons/bi';
 import { MdFavorite } from 'react-icons/md'
 
 //Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
+import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 
 function MensAll() {
     const FilterBar = () => {

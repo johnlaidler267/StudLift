@@ -1,5 +1,5 @@
 //custom styling
-import './Homepage.css';
+import '../Homepage.css';
 
 //React components
 import React from 'react';
@@ -10,7 +10,7 @@ import { AiFillInstagram, AiFillMail, AiFillTwitterCircle, AiOutlineStar } from 
 import { GiConverseShoe, GiTankTop, GiTShirt } from 'react-icons/gi'
 
 //Photos
-import intro from '/Users/johnnylaidler/studentlifter/src/Photos/intro.png';
+import intro from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/intro.png';
 
 function IntroCard(props) {
     return (

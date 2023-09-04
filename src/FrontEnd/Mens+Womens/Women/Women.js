@@ -6,8 +6,8 @@ import React from 'react';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 
 //images
-import illustrationWoman from '/Users/johnnylaidler/studentlifter/src/Photos/illustrationWoman.png'
-import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Photos/smilingWoman.png'
+import illustrationWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/illustrationWoman.png'
+import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingWoman.png'
 
 function Women(props) {
     return (

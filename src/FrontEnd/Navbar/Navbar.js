@@ -13,7 +13,7 @@ import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker
 
 //Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase/firebase';
+import { auth } from '../../BackEnd/firebase/firebase';
 
 // React Icons
 import { BsSearch } from 'react-icons/bs';
@@ -21,8 +21,8 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
 
 //Photos
-import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Photos/searchItem.webp';
-import logo from '/Users/johnnylaidler/studentlifter/src/Photos/logo1.png';
+import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/searchItem.webp';
+import logo from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/logo1.png';
 
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);

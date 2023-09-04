@@ -1,6 +1,6 @@
 //React components
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebase';
+import { auth } from '../../BackEnd/firebase/firebase';
 import React, { useState, useRef } from 'react';
 import { Card, Container, Button, Form, FloatingLabel, Alert } from 'react-bootstrap';
 

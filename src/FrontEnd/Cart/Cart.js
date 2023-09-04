@@ -10,8 +10,8 @@ import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker
 //Icons
 
 //Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Photos/beanie.webp'
-import Cards from '/Users/johnnylaidler/studentlifter/src/Photos/cards.png'
+import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
+import Cards from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/cards.png'
 
 function Cart() {
 

@@ -1,4 +1,4 @@
-import './Account.css'
+import '../EditAccount.css'
 
 //React Components
 import React from 'react';
@@ -7,14 +7,14 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 
 //Photos
-import header from '/Users/johnnylaidler/studentlifter/src/Photos/accountdetails.png';
+import header from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/accountdetails.png';
 
 //Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, firebasedb } from '../../firebase/firebase';
+import { auth, firebasedb } from '../../../BackEnd/firebase/firebase';
 
 // Custom Components
-import { CardGrid } from './Components/edit-profile-components';
+import { CardGrid } from './Ep-Components';
 import { signOut } from 'firebase/auth';
 
 

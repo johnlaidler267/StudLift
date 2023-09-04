@@ -7,8 +7,8 @@ import Divider from '@mui/material/Divider';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 
 //Photos
-import illustrationMan from '/Users/johnnylaidler/studentlifter/src/Photos/illustrationMan.png'
-import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Photos/smilingGuy.png'
+import illustrationMan from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/illustrationMan.png'
+import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingGuy.png'
 
 
 import { AiFillStar } from 'react-icons/ai'
