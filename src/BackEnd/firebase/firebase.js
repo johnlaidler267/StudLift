@@ -1,6 +1,7 @@
-import { initializeApp } from 'firebase/app'
-import { getAuth, updateProfile } from 'firebase/auth'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+// Import necessary Firebase modules
+import { initializeApp } from 'firebase/app';
+import { getAuth, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 console.log("INSIDE firebase.js")
 console.log(process.env.REACT_APP_FIREBASE_API_KEY)
@@ -19,42 +20,51 @@ const app = initializeApp({
     appId: "1:303307842721:web:fce2da0f37d521afa8fce0",
 })
 
-export const auth = getAuth(app)
+// Get the Firebase authentication object
+export const auth = getAuth(app);
 
+// Function to register a new user
 async function register(email, password, confirmPassword, firstName, lastName, gender, dateOfBirth) {
     if (password != confirmPassword) {
-        alert("Passwords do not match")
-        return
+        alert("Passwords do not match");
+        return;
     }
     try {
+        // Create a new user with the provided email and password
         const resp = await createUserWithEmailAndPassword(auth, email, password);
 
-        await updateProfile(resp.user, { displayName: `${firstName} ${lastName}` })
+        // Update the user's display name with first name and last name
+        await updateProfile(resp.user, { displayName: `${firstName} ${lastName}` });
     }
     catch (error) {
-        alert(error.message)
+        alert(error.message);
     }
 }
 
+// Function to log in a user
 async function login(email, password) {
     try {
-        const resp = await signInWithEmailAndPassword(auth, email, password)
+        // Sign in the user with the provided email and password
+        const resp = await signInWithEmailAndPassword(auth, email, password);
         return resp.user;
     }
     catch (error) {
-        alert(error.message)
+        alert(error.message);
     }
 }
 
+// Function to log out a user
 async function logout() {
     try {
-        await signOut(auth)
+        // Sign out the currently authenticated user
+        await signOut(auth);
     }
     catch (error) {
-        alert(error.message)
+        alert(error.message);
     }
 }
 
+// Export an object with functions for registration, login, and logout
 export const firebasedb = {
     register: register,
     login: login,

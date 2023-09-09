@@ -3,7 +3,14 @@ import React from 'react';
 import { Card, Container, Row, Col, Button, Dropdown, DropdownButton, Tabs, Tab } from 'react-bootstrap';
 import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 
+import { getProductCards } from '../../HelperFunctions/ProductDBReqs'
+
 function WomensShorts() {
+    const [ProductCards, setProductCards] = React.useState([]);
+    React.useEffect(() => {
+        getProductCards('WomensProducts', 'Shorts').then((result) => setProductCards(result));
+    }, []);
+
     const FilterBar = () => {
         return (
             <div className="filter-bar" style={{ display: 'flex', alignItems: 'center', width: '100%', marginLeft: '1.5em' }}>
@@ -62,40 +69,13 @@ function WomensShorts() {
         );
     };
 
-    const ProductCard = () => {
-        return (
-            <Card style={{ border: 'none', margin: 'none' }}>
-                <Card.Body>
-                    <Card.Img src={Beanie}></Card.Img>
-                    <div style={{ display: 'flex', flexDirection: 'row', paddingTop: '8px' }}>
-                        <Card.Title style={{ paddingTop: '5px', fontSize: '0.98em', marginRight: '10px' }}>Sharkhead Beanie  </Card.Title>
-                        <Card.Text style={{ fontSize: '1em', whiteSpace: 'nowrap' }}><b>$20.00 USD</b></Card.Text>
-                    </div>
-                    <Card.Text style={{ color: 'gray', fontSize: '0.8em' }}>Navy</Card.Text>
-                </Card.Body>
-            </Card >
-        )
-    }
-
     const CardGrid = () => {
         return (
-            <div style={{ width: '100%', padding: '20px' }}>
+            <div style={{ width: '50%', padding: '20px' }}>
                 <Row>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
+                    <Row>
+                        {ProductCards.map(Card => (<Col>{Card}</Col>))}
+                    </Row>
                 </Row>
             </div>
         )
@@ -113,10 +93,6 @@ function WomensShorts() {
             <Card style={{ border: 'none' }}>
                 <CardGrid />
             </Card>
-            <Card style={{ border: 'none' }}>
-                <CardGrid />
-            </Card>
-
         </div>
 
     )

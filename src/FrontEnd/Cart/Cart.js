@@ -7,8 +7,6 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker";
 
-//Icons
-
 //Photos
 import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 import Cards from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/cards.png'

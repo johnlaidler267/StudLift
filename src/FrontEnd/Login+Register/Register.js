@@ -1,12 +1,24 @@
 //React components
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../BackEnd/firebase/firebase';
-import React, { useState, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { Card, Container, Button, Form, FloatingLabel, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
+import { LoginContext } from '../../App'
+
+/**
+ * This component represents the registration form for creating a new user account.
+ */
 export default function Register() {
+    const [login, setLogin] = useContext(LoginContext);
 
-    // initialize state variables for form fields
+    // initialize the navigate function to redirect to other pages
+    const navigate = useNavigate();
+
+    // =================================================================
+    // -> Initialize state variables for form fields
+
     const [form, setForm] = useState({
         email: '',
         password: '',
@@ -18,14 +30,70 @@ export default function Register() {
         emailMarketing: false
     });
 
+    // .................................................................
+
+    /**
+     * Handle form field changes and update the form state accordingly.
+     * @param {string} value - The new value of the field.
+     * @param {string} field - The field name to update.
+     */
     const handleFormChange = (value, field) => {
         setForm({ ...form, [field]: value });
     }
 
-    const handleRegister = (event) => {
-        event.preventDefault();
-    }
+    // =================================================================
 
+    /**
+     * Handle the registration form submission.
+     * @param {object} event - The form submission event.
+     */
+    const handleRegister = async (event) => {
+
+        console.log('Trying to register')
+        event.preventDefault();
+
+        try {
+            //................................................................
+            // -> Firebase authentication
+
+            const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);
+            const firebaseId = userCredential.user.uid;
+
+            //................................................................
+            // -> Add to MongoDB database
+
+            //Create a data object containing user info
+            const userData = {
+                firebase: firebaseId,
+                email: form.email,
+                password: form.password,
+                firstName: form.firstName,
+                lastName: form.lastName,
+                gender: form.gender
+            };
+
+            // Make a POST request to your backend API endpoint
+            const response = await fetch('http://localhost:3000/record/register', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData),
+            }).catch(err => {
+                window.alert(err)
+                return;
+            });
+            console.log("In Register.js, the registration was sent OK. ", response);
+
+            // ...............................................................
+            // -> Redirect to the home page
+            navigate("/");
+        } catch (error) {
+            // Handle registration errors, e.g., display an error message to the user.
+            console.log(error);
+        }
+    }
+    //================================================================
     return (
         <Card style={{ border: 'none' }}>
             <Container className='register-background-div'>
@@ -61,9 +129,9 @@ export default function Register() {
                         >
                             <Form.Select value={form.gender} onChange={(event) => handleFormChange(event.target.value, 'gender')}>
                                 <option>Choose Gender</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                                <option value="3">Prefer Not To Say</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Prefer Not To Say</option>
                             </Form.Select>
 
                         </FloatingLabel>
@@ -103,7 +171,7 @@ export default function Register() {
                         <br />
                         <p>By creating your account, you agree to our Terms and Conditions. For full details of how and why Gymshark uses your personal information, please see our Privacy Notice.</p>
                         <br />
-                        <Button variant="dark" className='create-account-btn'>CREATE ACCOUNT</Button>
+                        <Button onClick={handleRegister} variant="dark" className='create-account-btn'>CREATE ACCOUNT</Button>
                         <br></br>
                         <br></br>
                     </form>

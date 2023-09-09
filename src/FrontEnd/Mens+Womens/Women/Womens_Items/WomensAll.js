@@ -5,7 +5,14 @@ import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/bean
 import { BiBookAdd } from 'react-icons/bi';
 import { MdFavorite } from 'react-icons/md'
 
+import { getProductCards } from '../../HelperFunctions/ProductDBReqs'
+
 function WomensAll() {
+    const [ProductCards, setProductCards] = React.useState([]);
+    React.useEffect(() => {
+        getProductCards('WomensProducts', 'All').then((result) => setProductCards(result));
+    }, []);
+
     const FilterBar = () => {
         return (
             <div className="filter-bar" style={{ display: 'flex', alignItems: 'center', width: '100%', marginLeft: '1.5em' }}>
@@ -64,59 +71,13 @@ function WomensAll() {
         );
     };
 
-    const ProductCard = () => {
-        const [showCardText, setShowCardText] = React.useState(false);
-        return (
-            <Card style={{ border: 'none', margin: 'none' }}
-                onMouseEnter={() => setShowCardText(true)}
-                onMouseLeave={() => setShowCardText(false)}
-            >
-                <Card.Body>
-                    <Button variant='light' style={{ position: 'absolute', margin: '10px', border: 'none', borderRadius: '20px' }}><MdFavorite /></Button>
-                    <Card.Img src={Beanie} className="product"></Card.Img>
-                    {showCardText && (
-                        <div style={{ position: 'absolute', opacity: '0.9', top: '55%', left: '18%', width: '15em', backgroundColor: 'white', borderRadius: '25px', padding: '10px' }}>
-                            <Card.Body style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-                                <Card.Title style={{ fontSize: '1em' }}><b><BiBookAdd /> QUICK ADD</b></Card.Title>
-                                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                    <Button variant='light' style={{ margin: '5px', border: '1px solid gray' }}>S</Button>
-                                    <Button variant='light' style={{ margin: '5px', border: '1px solid gray' }}>M</Button>
-                                    <Button variant='light' style={{ margin: '5px', border: '1px solid gray' }}>L</Button>
-                                    <Button variant='light' style={{ margin: '5px', border: '1px solid gray' }}>XL</Button>
-                                </div>
-
-                            </Card.Body>
-                        </div>
-                    )}
-                    <div style={{ display: 'flex', flexDirection: 'row', paddingTop: '8px' }}>
-                        <Card.Title style={{ paddingTop: '5px', fontSize: '0.98em', marginRight: '10px' }}>Sharkhead Beanie  </Card.Title>
-                        <Card.Text style={{ fontSize: '1em', whiteSpace: 'nowrap' }}><b>$20.00 USD</b></Card.Text>
-                    </div>
-                    <Card.Text style={{ color: 'gray', fontSize: '0.8em' }}>Navy</Card.Text>
-                </Card.Body>
-            </Card >
-        )
-    }
-
     const CardGrid = () => {
         return (
             <div style={{ width: '100%', padding: '20px' }}>
                 <Row>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
-                    <Col>
-                        <ProductCard />
-                    </Col>
+                    <Row>
+                        {ProductCards.map(Card => (<Col>{Card}</Col>))}
+                    </Row>
                 </Row>
             </div>
         )
@@ -134,10 +95,6 @@ function WomensAll() {
             <Card style={{ border: 'none' }}>
                 <CardGrid />
             </Card>
-            <Card style={{ border: 'none' }}>
-                <CardGrid />
-            </Card>
-
         </div>
 
     )

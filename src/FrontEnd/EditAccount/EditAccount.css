@@ -1,189 +1,189 @@
 .background-card {
-  width: 100%;
-  height: 38vw;
-  border: none;
+	width: 100%;
+	height: 38vw;
+	border: none;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-  padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	padding: 30px;
 }
 
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 1vw;
 }
 
 .sub-header {
-  color: gray;
+	color: gray;
 }
 
 .form-div {
-  display: "flex";
+	display: 'flex';
 }
 
 .save-button {
-  border-radius: 20px;
-  font-size: 12px;
-  padding: 10px;
+	border-radius: 20px;
+	font-size: 12px;
+	padding: 10px;
 }
 
 /* PAYMENT */
 
 .accordion-item {
-  border: none;
+	border: none;
 }
 
 .accordion-button::after {
-  width: 0px !important;
+	width: 0px !important;
 }
 
 .accordion-button:not(.collapsed) {
-  color: black;
-  background-color: rgba(119, 136, 153, 0.09);
-  border: none;
-  box-shadow: none;
+	color: black;
+	background-color: rgba(119, 136, 153, 0.09);
+	border: none;
+	box-shadow: none;
 }
 
 .add-card-div {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .save-button-div {
-  margin-top: 1vw;
-  display: flex;
-  justify-content: center;
+	margin-top: 1vw;
+	display: flex;
+	justify-content: center;
 }
 
 .card-select {
-  width: 25%;
+	width: 50%;
 }
 
 .form-row {
-  width: 50vw;
+	width: 50vw;
 }
 
 .input-icon {
-  background-color: transparent;
-  border-right: none;
+	background-color: transparent;
+	border-right: none;
 }
 
 /* REGISTER */
 
 .h9 {
-  font-size: 10px;
+	font-size: 10px;
 }
 
 .p {
-  font-size: 10px;
+	font-size: 10px;
 }
 
 .create-account-btn {
-  width: 300px;
-  font-size: 15px;
+	width: 300px;
+	font-size: 15px;
 }
 
 .register-background-div {
-  width: 80%;
-  height: 85%;
-  background-color: white;
-  display: flex;
-  justify-content: center;
+	width: 80%;
+	height: 85%;
+	background-color: white;
+	display: flex;
+	justify-content: center;
 }
 
 .register-card {
-  width: 90%;
-  height: 100%;
-  padding: 50px;
-  border: none;
+	width: 90%;
+	height: 100%;
+	padding: 50px;
+	border: none;
 }
 
 /* EDIT PROFILE */
 .editp-background-div {
-  display: flex;
-  justify-content: center;
-  background-color: white;
+	display: flex;
+	justify-content: center;
+	background-color: white;
 }
 
 .editp-background-card {
-  width: 85%;
-  padding: 20px;
-  border: none;
+	width: 85%;
+	padding: 20px;
+	border: none;
 }
 
 .sidebar-card {
-  background-color: #ececec;
-  padding: 20px;
-  margin: 5px;
+	background-color: #ececec;
+	padding: 20px;
+	margin: 5px;
 }
 
 .change-btn {
-  font-size: 0.5em;
-  width: 25%;
+	font-size: 0.5em;
+	width: 30%;
 }
 
 .order-history-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .account-details-header-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
 }
 
 .account-details-header {
-  width: 20vw;
+	width: 20vw;
 }
 
 .subheader {
-  font-size: 0.8em;
+	font-size: 0.8em;
 }
 
 /* RETURNS */
 .return-header-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
 }
 
 .return-card-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .return-card {
-  width: 50%;
-  padding: 30px;
+	width: 50%;
+	padding: 30px;
 }
 
 .return-img {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .return-details-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .return-check {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }

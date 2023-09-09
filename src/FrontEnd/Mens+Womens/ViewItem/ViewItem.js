@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+//Import React Stuff
+import React, { useState, useEffect } from 'react';
+import { Card, Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { useParams, Link } from 'react-router-dom';
+
+//Import MUI Material
 import Rating from '@mui/material/Rating';
 import Divider from '@mui/material/Divider';
 import Slider from '@mui/material/Slider';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ButtonG from '@mui/material/Button';
-
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -20,12 +23,22 @@ import two from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/two.web
 import three from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/three.webp'
 import four from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/four.webp'
 
+//DB functions
+import { fetchProductById, updateUserCart } from './ViewItemDB'
+
+//Import Styling
+import './ViewItemStyling.css'
+
+//Firebase
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, firebasedb } from '../../../BackEnd/firebase/firebase';
+
+
 // - Color Variations
 let black = 'https://cdn.shopify.com/s/files/1/0156/6146/products/LegacyRuchedTightShortBlackBlackB4A3Y-BBBB-1199.255_d8bde972-24c6-427a-a90e-d00ccfb3a1dd_150x.jpg?v=1670368902'
 let green = 'https://cdn.shopify.com/s/files/1/0156/6146/products/LegacyRuchedTightShortHoyaGreenHoyaGreenB4A3Y-EBRF-1661.295_7bcc00d4-ac9e-42d5-aac0-ba53f1c591e2_150x.jpg?v=1670368902'
 let blue = 'https://cdn.shopify.com/s/files/1/0156/6146/products/LegacyRuchedTightShortLakesideBlueLakesideBlueB4A3Y-UBPF-0349.192_37cda382-9a19-4486-8a32-427e9b0e23c4_150x.jpg?v=1670368902'
 let pink = 'https://cdn.shopify.com/s/files/1/0156/6146/products/LegacyRuchedTightShortDeepPinkDeepPinkB4A3Y-KBHP-0995.238_97b0bf7a-8667-486a-a506-cdafceeaca7b_150x.jpg?v=1670368902'
-
 
 const iOSBoxShadow =
     '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
@@ -188,10 +201,62 @@ const PrettoSlider = styled(Slider)({
 });
 
 function ViewItem() {
+    const [user, loading] = useAuthState(auth);
+
+    // Get the productId, dbName from the URL parameter
+    const { productId, dbName } = useParams();
+
+    const [product, setProduct] = useState({}); // State for product object
+
+    const [gender, setGender] = useState("");
+
+    const [uppercaseName, setUppercaseName] = useState("")
+
+    const [color, setColor] = useState("")
+    const [size, setSize] = useState(''); // Initialize the size state as an empty string
+
+    //================================================================
+    const handleColorClick = (selectedColor) => {
+        console.log(`The color was set to ${selectedColor}`)
+        // When the image is clicked, set the imageValue state
+        setColor(selectedColor);
+    };
+
+    const handleSizeClick = (selectedSize) => {
+        setSize(selectedSize); // Update the size state when a size is clicked
+    };
+
+    const handleAddToBag = () => {
+        updateUserCart(product, color, size, user.uid);
+    };
+    //================================================================
+
+    // Fetch product details based on the productId
+    useEffect(() => {
+        fetchProductById(dbName, productId)
+            .then((data) => {
+                setUppercaseName(data.name.toUpperCase());
+                setProduct(data); // Set the product object in state
+
+                if (dbName.startsWith("Mens")) setGender("Mens")
+                else if (dbName.startsWith("Womens")) setGender("Womens")
+                else setGender("Accessories")
+            })
+            .catch((error) => {
+                console.error('Error fetching product details:', error);
+            });
+    }, [productId]);
+
+    useEffect(() => {
+        
+    })
+
+    //================================================================
+
     return (
         <div>
-            <Card style={{ width: "100%", height: "100%", padding: "50px", border: 'none' }}>
-                <p>Home / Legacy Ruched Tight Shorts</p>
+            <Card id='view-item-card'>
+                <p>{<Link to={`/`}>Home</Link>} / {<Link to={`/${gender}`}>{gender}</Link>} / {product.name}</p>
 
                 <Row>
 
@@ -199,17 +264,17 @@ function ViewItem() {
                         <Card style={{ border: "none", width: "100%", border: "none" }}>
                             <Row style={{ padding: "6px" }}>
                                 <Col xs={4} >
-                                    <Card.Img variant="right" src={one} alt="My Image" style={{ width: "100%", height: "100%", overflow: "visible" }} />
+                                    <Card.Img variant="right" src={one} className='product-img' />
                                 </Col>
                                 <Col xs={4}>
-                                    <Card.Img variant="right" src={two} alt="My Image" style={{ width: "100%", height: "100%", overflow: "visible" }} />
+                                    <Card.Img variant="right" src={two} className='product-img' />
                                 </Col>
                                 <Col xs={4}>
-                                    <Card.Img variant="right" src={three} alt="My Image" style={{ width: "100%", height: "100%", overflow: "visible" }} />
+                                    <Card.Img variant="right" src={three} className='product-img' />
                                 </Col>
                             </Row>
                             <Row>
-                                <Card.Img variant="right" src={four} alt="My Image" style={{ width: "100%", height: "100%", overflow: "visible" }} />
+                                <Card.Img variant="right" src={product.imageURL} className='product-img' />
                             </Row>
 
                         </Card>
@@ -232,45 +297,63 @@ function ViewItem() {
                             </Row>
                             <Row>
                                 <Col>
-                                    <h5><b>LEGACY RUCHED TIGHT SHORTS</b></h5>
+                                    <h5><b>{uppercaseName}</b></h5>
                                 </Col>
                                 <Col>
-                                    <h5 style={{ fontSize: "15px" }}><b>$ 40.00 USD</b></h5>
+                                    <h5 style={{ fontSize: "15px" }}><b>{product.price} USD</b></h5>
                                 </Col>
                             </Row>
                             <Row>
-                                <p style={{ fontSize: "12px" }}>StudentLifter Womens</p>
+                                <p style={{ fontSize: "12px" }}>StudentLifter {gender}</p>
                             </Row>
                             <Divider />
 
                             <Card style={{ border: "none", padding: "5px" }}>
                                 <Row>
-                                    <p style={{ fontSize: "12px" }}><b>COLOR:</b></p>
+                                    <p className='selection-label'><b>COLOR:</b></p>
                                 </Row>
                                 <Row>
-                                    <Card.Img style={{ width: "17%", height: "15%", marginLeft: "5px", marginBottom: "10px" }} src={black} alt="Legacy Ruched Tight Shorts in Black" />
-                                    <Card.Img style={{ width: "17%", height: "15%", marginBottom: "10px" }} src={green} alt="Legacy Ruched Tight Shorts in Black" />
-                                    <Card.Img style={{ width: "17%", height: "15%", marginBottom: "10px" }} src={blue} alt="Legacy Ruched Tight Shorts in Black" />
-                                    <Card.Img style={{ width: "17%", height: "15%", marginRight: "10px", marginBottom: "10px" }} src={pink} alt="Legacy Ruched Tight Shorts in Black" />
+                                    <ButtonGroup size="large" color="primary" id='color-selection-btn-group'>
+                                        <Button onClick={() => handleColorClick('Black')} id='color-btn'>
+                                            {<Card.Img
+                                                src={product.imageURL}
+                                                className='color-image' />}
+                                        </Button>
+                                        <Button onClick={() => handleColorClick('Red')} id='color-btn'>
+                                            {<Card.Img
+                                                src={product.imageURL}
+                                                className='color-image' />}
+                                        </Button>
+                                        <Button onClick={() => handleColorClick('Green')} id='color-btn'>
+                                            {<Card.Img
+                                                src={product.imageURL}
+                                                className='color-image' />}
+                                        </Button>
+
+                                    </ButtonGroup>
+                                    <p>Selected Color: {color}</p> {/* Display the selected size */}
                                 </Row>
                             </Card>
 
-                            <Card style={{ border: "none", padding: "5px" }}>
-                                <p style={{ fontSize: "12px" }}><b>SELECT SIZE</b></p>
-                                <ButtonGroup size="large" aria-label="large button group" color="secondary" style={{ marginLeft: "5px" }}>
-                                    <ButtonG>XS</ButtonG>
-                                    <ButtonG>S</ButtonG>
-                                    <ButtonG>M</ButtonG>
-                                    <ButtonG>L</ButtonG>
-                                    <ButtonG>XL</ButtonG>
+
+
+                            <Card id='size-card'>
+                                <p className='selection-label'><b>SELECT SIZE</b></p>
+                                <ButtonGroup size="large" color="primary">
+                                    <ButtonG onClick={() => handleSizeClick('XS')}>XS</ButtonG>
+                                    <ButtonG onClick={() => handleSizeClick('S')}>S</ButtonG>
+                                    <ButtonG onClick={() => handleSizeClick('M')}>M</ButtonG>
+                                    <ButtonG onClick={() => handleSizeClick('L')}>L</ButtonG>
+                                    <ButtonG onClick={() => handleSizeClick('XL')}>XL</ButtonG>
                                 </ButtonGroup>
+                                <p>Selected Size: {size}</p> {/* Display the selected size */}
                             </Card>
 
                             <br />
 
-                            <Card style={{ display: "flex", alignItems: "center", border: "none" }}>
-                                <Button class="btn btn-primary" style={{ width: "80%", margin: "10px" }}>Add to Bag</Button>
-                                <Button variant="dark" style={{ width: "80%", margin: "10px" }}>Add to Wishlist</Button>
+                            <Card id='add-card'>
+                                <Button class="btn btn-primary" className='add-btn' onClick={() => handleAddToBag()}>Add to Bag</Button>
+                                <Button variant="dark" className='add-btn'>Add to Wishlist</Button>
                             </Card>
 
                             <br></br>
@@ -305,7 +388,7 @@ function ViewItem() {
 
                         </Card>
                     </Col>
-                </Row>
+                </Row >
                 <br />
 
                 <Card style={{ border: "none", display: "flex", textAlign: "center", padding: "30px" }}>
@@ -421,7 +504,7 @@ function ViewItem() {
                 </Container>
 
             </Card >
-        </div>
+        </div >
     );
 }
 

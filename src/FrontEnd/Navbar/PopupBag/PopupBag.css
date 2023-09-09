@@ -1,0 +1,10 @@
+#bag-item-card {
+	border: none;
+	padding: 5px;
+	margin: 5px;
+	width: 100%;
+	justify-content: center;
+	max-height: 30rem;
+	overflow-y: auto;
+	display: block;
+}

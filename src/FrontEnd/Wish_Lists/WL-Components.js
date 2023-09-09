@@ -1,12 +1,13 @@
 //react components
-import react from 'react'
-import { Card, Row, Col, Form } from 'react-bootstrap';
+import React from 'react'
+import { Card, Row, Col, Form, Button } from 'react-bootstrap';
 
 //Photos
 import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 
 //Icons
 import { BsSortDownAlt, BsSortDown } from 'react-icons/bs'
+import { FaTrashAlt } from 'react-icons/fa'
 
 export const ProductCard = () => {
     return (
@@ -15,7 +16,11 @@ export const ProductCard = () => {
                 <Card.Img src={Beanie} style={{ width: '100%' }}></Card.Img>
                 <div style={{ display: 'flex', flexDirection: 'row', paddingTop: '8px' }}>
                     <Card.Title style={{ paddingTop: '5px', fontSize: '0.98em', marginRight: '1em' }}>Sharkhead Beanie  </Card.Title>
-                    <Card.Text style={{ fontSize: '1em', whiteSpace: 'nowrap' }}><b>$20.00 USD</b></Card.Text>
+                    <Card.Text style={{ fontSize: '1em', whiteSpace: 'nowrap' }}><b>$20.00 USD</b> {/* Button to remove all items from the wishlist */}
+                        <Button className='remove-all-btn'>
+                            <FaTrashAlt />
+                        </Button>
+                    </Card.Text>
                 </div>
                 <Card.Text style={{ color: 'gray', fontSize: '0.8em' }}>Navy</Card.Text>
             </Card.Body>

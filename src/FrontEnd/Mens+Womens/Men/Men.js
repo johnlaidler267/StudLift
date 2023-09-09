@@ -3,6 +3,7 @@ import '../Pages.css'
 
 //React components
 import React from 'react';
+import { useNavigate, createContext } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
 import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 
@@ -14,6 +15,12 @@ import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/
 import { AiFillStar } from 'react-icons/ai'
 
 function Men() {
+    // =================================================================
+    // -> initialize the navigate function to redirect to other pages
+
+    const navigate = useNavigate();
+
+    //=================================================================
     return (
         <div className='div-header'>
 
@@ -83,7 +90,7 @@ function Men() {
                                 <p>From training to rest day</p>
                                 <br />
                                 <Card.Img src={smilingGuy} style={{ width: "20em", height: "20em", zIndex: '3', position: 'absolute', left: '25em', top: '0em' }} />
-                                <Button href='/mens-all' variant='dark' style={{ borderRadius: '20px', padding: '1em' }}>Shop Essentials</Button>
+                                <Button onClick={() => navigate('/mens-all')} variant='dark' style={{ borderRadius: '20px', padding: '1em' }}>Shop Essentials</Button>
                             </Card>
                         </Row>
 
@@ -124,7 +131,7 @@ function Men() {
                     <br />
                 </Card>
 
-            </div>
+            </div >
 
         </div >
     );

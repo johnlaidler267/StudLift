@@ -36,7 +36,7 @@ function IntroCard(props) {
                             </Row>
 
                             <div className='header-text'>
-                                <h7>StudentLifter Alex Pictured</h7>
+                                <h5>StudentLifter Alex Pictured</h5>
                                 <h1><b>Become a Student Lifter.</b></h1>
                                 <p> Welcome to Student Lifter, where you'll find high-quality fitness apparel and accessories for students and young professionals. Our products are designed to be both functional and stylish, so you can look and feel your best while working towards your fitness goals. We offer a wide range of products for both men and women, including workout clothes, shoes, and gym bags. Our commitment to providing affordable, high-quality products means you can focus on reaching your full potential, without breaking the bank. We hope you'll take a look at our selection and find something that fits your style and needs. </p>
                                 <Button className='about-us-btn'>ABOUT US</Button>
@@ -54,7 +54,7 @@ function IntroCard(props) {
                                             <GiConverseShoe style={{ height: "90%", width: "90%" }} />
                                             <br></br>
                                             <br></br>
-                                            <h9>SL Converse</h9>
+                                            <h5>SL Converse</h5>
                                             <h8 style={{ display: "flex", justifyContent: "center" }}>$19.99</h8>
                                         </Card>
                                     </Col>
@@ -65,7 +65,7 @@ function IntroCard(props) {
                                             <GiTankTop style={{ height: "90%", width: "90%" }} />
                                             <br></br>
                                             <br></br>
-                                            <h9>SL Tank</h9>
+                                            <h5>SL Tank</h5>
                                             <h8 style={{ display: "flex", justifyContent: "center" }}>$49.99</h8>
                                         </Card>
                                     </Col>
@@ -76,7 +76,7 @@ function IntroCard(props) {
                                             <GiTShirt style={{ height: "90%", width: "90%" }} />
                                             <br></br>
                                             <br></br>
-                                            <h9>SL Tee</h9>
+                                            <h5>SL Tee</h5>
                                             <h8 style={{ display: "flex", justifyContent: "center" }}>$29.99</h8>
                                         </Card>
                                     </Col>

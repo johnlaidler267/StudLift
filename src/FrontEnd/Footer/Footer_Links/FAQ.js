@@ -1,5 +1,5 @@
 //react components
-import react from 'react'
+import React from 'react'
 import { Card, Form, FormControl, InputGroup, Row, Col, Accordion } from 'react-bootstrap';
 
 //icons
