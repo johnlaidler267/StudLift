@@ -2,6 +2,7 @@
 import express from "express"; // Import Express.js for building the router
 import db from "../db/conn.mjs"; // Import the database connection
 import UserCart from '../../../FrontEnd/Cart/Classes/UserCart.js'
+import CartItem from '../../../FrontEnd/Cart/Classes/CartItem.js'
 import { ObjectId } from "mongodb"; // Import ObjectId for working with MongoDB IDs
 
 //================================================================

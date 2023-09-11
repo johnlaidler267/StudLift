@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Row, Col, Container } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
 import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker";
-
+import { useNavigate } from 'react-router-dom'
 //Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../BackEnd/firebase/firebase';
@@ -28,14 +28,23 @@ import logo from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/logo1.
 import { PopupBag } from './PopupBag/PopupBag'
 
 const Navbar = () => {
-    console.log('================================')
+    // =================================================================
+    // -> Initialize the navigate function to redirect to other pages
+
+    const navigate = useNavigate();
+
+    //=================================================================
+
+    //Sets the current user
     const [user, loading] = useAuthState(auth);
+
+    //Sets whether the pop-up cart modal is showing
+    const [showPopupBag, setShowPopupBag] = useState(false);
 
     const [alert, setAlert] = useState("");
 
-    const [showPopupBag, setShowPopupBag] = useState(false);
 
-
+    // Idk what this does
     useEffect(() => {
         const clearMessage = setTimeout(() => {
             setAlert("");
@@ -68,7 +77,7 @@ const Navbar = () => {
                     width: "100% ",
                     backgroundColor: 'transparent'
                 }}>
-                    < NavLink to="/search" activeStyle>
+                    < NavLink to='/search' onClick={() => navigate('/search')} activeStyle>
                         <BsSearch />
                     </NavLink>
 

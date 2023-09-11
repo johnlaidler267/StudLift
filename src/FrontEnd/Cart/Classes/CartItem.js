@@ -1,9 +1,12 @@
 class CartItem {
-    constructor(product, color, size) {
+    constructor(product, color, size, itemID, quantity, subtotal) {
+        console.log(`New CartItem created with ${product._name}`)
         this.product = product; // Assuming product is an object
         this.color = color;
         this.size = size;
-        this.itemID = this.generateRandomId(10);
+        this.itemID = itemID || this.generateRandomId(10);
+        this.quantity = quantity || 1;
+        this.subtotal = subtotal || product._price;
     }
 
     // Getter method for the product field
@@ -16,9 +19,36 @@ class CartItem {
         return this.color;
     }
 
-    // Getter method for the size field
+    getItemID() {
+        return this.itemID;
+    }
+
     getSize() {
         return this.size;
+    }
+
+    getQuantity() {
+        return this.quantity;
+    }
+
+    increaseQuantity() {
+        this.quantity += 1;
+        this.setSubtotal();
+    }
+
+    decreaseQuantity() {
+        this.quantity -= 1;
+        this.setSubtotal();
+    }
+
+    setSubtotal() {
+        let subtotal = parseFloat(this.product._price) * parseInt(this.quantity);
+        this.subtotal = parseFloat(subtotal).toFixed(2);
+    }
+
+    getSubtotal() {
+        console.log(`Subtotal should be ${this.subtotal}`)
+        return this.subtotal;
     }
 
     generateRandomId(length) {

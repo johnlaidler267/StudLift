@@ -1,8 +1,8 @@
 import './Checkout.css'
 import '../Components/QuantityPicker/QuantityPicker.css';
-import * as React from 'react';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+
 import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -12,178 +12,177 @@ import { BsArrowReturnLeft, BsArrowRightSquareFill } from 'react-icons/bs'
 import { FaCcPaypal, FaGooglePay } from 'react-icons/fa'
 import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io'
 
+//Firebase
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../BackEnd/firebase/firebase';
 
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
+import { getUserDetails } from '../../../BackEnd/commonFunctions';
+
+import { CartReviewSidebar } from '../Components/CartReviewSidebar/CartReviewSidebar.js'
+import CheckoutTimeline from '../Components/CheckoutTimeline/CheckoutTimeline.js'
+
+import { fetchUserCart } from '../../Mens+Womens/ViewItem/ViewItemDB'
+
 
 export default function Information() {
-    const CheckoutTimeline = () => {
-        return (
-            <div role="presentation" onClick={handleClick} >
-                <Breadcrumbs separator={<BsArrowRightSquareFill />} aria-label="breadcrumb" >
+    // =================================================================
+    // -> initialize the navigate function to redirect to other pages
 
-                    <Link underline="hover" color="inherit" href="/" className='breadcrumb-link'>
-                        <Container style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            width: "100px",
-                        }}>
-                            <TbCirclePlus style={{ width: "100%", height: "90px", color: "#EEEEEE" }} />
-                            <Typography style={{
-                                width: "90%",
-                                fontSize: "10px",
-                                textAlign: "center"
-                            }}>CART</Typography>
-                        </Container>
-                    </Link>
+    const navigate = useNavigate();
 
-                    <Link
-                        underline="hover"
-                        color="inherit"
-                        href="/material-ui/getting-started/installation/"
-                    >
-                        <Container style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            width: "100px",
-                        }}>
-                            <TbCircle1 style={{ width: "100%", height: "90px" }} />
-                            <Typography style={{
-                                width: "100%",
-                                fontSize: "10px",
-                                textAlign: "center"
-                            }}>INFORMATION</Typography>
-                        </Container>
-                    </Link>
+    //=================================================================
+    // -> store the user logged in in the user variable
+    const [user, loading] = useAuthState(auth);
 
-                    <Link
-                        underline="hover"
-                        color="inherit"
-                        href="/material-ui/getting-started/installation/"
-                    >
-                        <Container style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            width: "100px"
-                        }}>
-                            <TbCircle2 style={{ width: "100%", height: "90px", color: "#EEEEEE" }} />
-                            <Typography style={{
-                                width: "100%",
-                                fontSize: "10px",
-                                textAlign: "center"
-                            }}>SHIPPING</Typography>
-                        </Container>
-                    </Link>
+    //Stores the form fields (email, name, shippinh)
+    const [form, setForm] = useState({});
 
-                    <Link
-                        underline="hover"
-                        color="inherit"
-                        href="/material-ui/getting-started/installation/"
-                    >
-                        <Container style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            width: "100px"
-                        }}>
-                            <TbCircle3 style={{ width: "100%", height: "90px", color: "#EEEEEE" }} />
-                            <Typography style={{
-                                width: "100%",
-                                fontSize: "10px",
-                                textAlign: "center"
-                            }}>PAYMENT</Typography>
-                        </Container>
-                    </Link>
-                    <Link
-                        underline="hover"
-                        color="inherit"
-                        href="/material-ui/getting-started/installation/"
-                    >
-                        <Container style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            width: "100px"
-                        }}>
-                            <TbCircleCheck style={{ width: "100%", height: "90px", color: "#EEEEEE" }} />
-                            <Typography style={{
-                                width: "100%",
-                                fontSize: "10px",
-                                textAlign: "center"
-                            }}>COMPLETE</Typography>
-                        </Container>
-                    </Link>
-                </Breadcrumbs>
-            </div >
-        )
+    //Stores the cart items
+    const [bagItems, setBagItems] = useState([])
+
+    // Stores the actual cart
+    const [cart, setCart] = useState({})
+
+    // =================================================================
+    useEffect(() => {
+        try {
+            getUserDetails(user.uid).then((data) => {
+
+                //-> Initialize ls state
+                // Attempt to retrieve values from local storage
+                const emailLS = localStorage.getItem("Email");
+                const shippingFirstLS = localStorage.getItem("shippingFirst");
+                const shippingLastLS = localStorage.getItem("shippingLast");
+                const shippingAddLine1LS = localStorage.getItem("shippingAddLine1");
+                const shippingAddLine2LS = localStorage.getItem("shippingAddLine2");
+                const shippingCityLS = localStorage.getItem("shippingCity");
+                const shippingStateLS = localStorage.getItem("shippingState");
+                const shippingZipLS = localStorage.getItem("shippingZip");
+
+                // Set values or default values if not found
+                const email = emailLS || data.Email;
+                const first = shippingFirstLS || data.First;
+                const last = shippingLastLS || data.Last;
+                const addLine1 = shippingAddLine1LS || data.Shipping.AddLine1;
+                const addLine2 = shippingAddLine2LS || data.Shipping.AddLine2;
+                const city = shippingCityLS || data.Shipping.City;
+                const state = shippingStateLS || data.Shipping.State;
+                const zip = shippingZipLS || data.Shipping.Zip;
+
+                // -> Initialize state variables for form fields
+                setForm({
+                    Email: email,
+                    First: first,
+                    Last: last,
+                    AddLine1: addLine1,
+                    AddLine2: addLine2,
+                    City: city,
+                    State: state,
+                    Zip: zip,
+                });
+
+                // Store values in local storage
+                localStorage.setItem("Email", email);
+                localStorage.setItem("shippingFirst", first);
+                localStorage.setItem("shippingLast", last);
+                localStorage.setItem("shippingAddLine1", addLine1);
+                localStorage.setItem("shippingAddLine2", addLine2);
+                localStorage.setItem("shippingCity", city);
+                localStorage.setItem("shippingState", state);
+                localStorage.setItem("shippingZip", zip);
+            });
+        }
+        catch {
+            //TODO: Handle error
+        }
+    }, []);
+
+    //Fetches the cart on page load
+    useEffect(() => {
+        fetchUserCart(user.uid).then((cart) => {
+            setBagItems(cart.cartItems);
+            setCart(cart);
+            console.log(`The current cart is ${JSON.stringify(cart)}`)
+        });
+    }, []);
+
+    // =================================================================
+    /**
+     * Handle form field changes and update the form state accordingly.
+     * @param {string} value - The new value of the field.
+     * @param {string} field - The field name to update.
+     */
+    const handleFormChange = (value, field) => {
+        setForm(form => ({
+            ...form,
+            [field]: value
+        }));
+
+        // Append 'shipping' to the field for LS purposes
+        const LSField = 'shipping' + field;
+
+        // Store values in local storage
+        localStorage.setItem(LSField, value);
     }
+    //================================================================
 
     const CheckoutForm = () => {
         return (
             <div style={{ padding: "12px" }}>
-                <Row>
-                    <Col xs={7}>
-                        <h5>Contact information</h5>
-                    </Col>
-                    <Col xs={5}>
-                        <p style={{ fontSize: "12px" }}>Already have an account? <b>Sign in.</b></p>
-                    </Col>
-                </Row>
-                <Form.Group className="mb-3" controlId="formGridAddress1">
-                    <Form.Control placeholder="Email" />
-                </Form.Group>
-                <br />
-                <h5>Shipping address</h5>
                 <Form style={{ padding: "10px" }}>
+                    <Row>
+                        <Col xs={7}>
+                            <h5>Contact information</h5>
+                        </Col>
+                        <Col xs={5}>
+                            {!user && <p style={{ fontSize: "12px" }}>Already have an account? <b>Sign in.</b></p>}
+                        </Col>
+                    </Row>
+                    <Form.Group className="mb-3" controlId="formGridAddress1">
+                        <Form.Control placeholder="Email" value={form.Email} onChange={(event) => handleFormChange(event.target.value, 'Email')} />
+                    </Form.Group>
+                    <br />
+                    <h5>Shipping address</h5>
                     <Row className="mb-3">
                         <Form.Group as={Col}>
-                            <Form.Control placeholder="First Name" />
+                            <Form.Control placeholder="First Name" value={form.First} onChange={(event) => handleFormChange(event.target.value, 'First')} />
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                            <Form.Control placeholder="Last Name" />
+                            <Form.Control placeholder="Last Name" value={form.Last} onChange={(event) => handleFormChange(event.target.value, 'Last')} />
                         </Form.Group>
                     </Row>
 
-                    <Form.Group className="mb-3" controlId="formGridAddress1">
-                        <Form.Control placeholder="Address Line 1" />
+                    <Form.Group className="mb-3" controlId="AddLine1">
+                        <Form.Control placeholder="Address Line 1" value={form.AddLine1} onChange={(event) => handleFormChange(event.target.value, 'AddLine1')} />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formGridAddress2">
-                        <Form.Control placeholder="Apartment, studio, or floor" />
+                    <Form.Group className="mb-3" controlId="AddLine2">
+                        <Form.Control placeholder="Apartment, studio, or floor" value={form.AddLine2} onChange={(event) => handleFormChange(event.target.value, 'AddLine2')} />
                     </Form.Group>
 
                     <Row className="mb-3">
-                        <Form.Group as={Col} controlId="formGridCity">
-                            <Form.Control placeholder="City" />
+                        <Form.Group as={Col} controlId="City">
+                            <Form.Control placeholder="City" value={form.City} onChange={(event) => handleFormChange(event.target.value, 'City')} />
                         </Form.Group>
 
-                        <Form.Group as={Col} controlId="formGridState">
-                            <Form.Select defaultValue="State">
+                        <Form.Group as={Col} controlId="State">
+                            <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
                                 <option>State</option>
                                 <option>...</option>
                             </Form.Select>
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridZip">
-                            <Form.Control placeholder="Zip" />
+                            <Form.Control placeholder="Zip" value={form.Zip} onChange={(event) => handleFormChange(event.target.value, 'Zip')} />
                         </Form.Group>
                     </Row>
 
-                    <Form.Group className="mb-3" controlId="formGridAddress1">
-                        <Form.Control placeholder="Phone" />
-                    </Form.Group>
-
                     <div className='button-row'>
-                        <Button className='direction-btn' href=' /cart' type="submit" style={{ color: "black", backgroundColor: "white" }} >
+                        <Button className='direction-btn' onClick={() => navigate('/cart')} type="submit" style={{ color: "black", backgroundColor: "white" }} >
                             <IoIosArrowDropleft className='arrow' /> Return to cart
                         </Button>
-                        <Button className='direction-btn' href='/shipping' variant="dark" type="submit" style={{ borderRadius: "20px" }}>
+                        <Button className='direction-btn' onClick={() => navigate('/shipping')} variant="dark" type="submit" style={{ borderRadius: "20px" }}>
                             <b>CONTINUE TO SHIPPING <IoIosArrowDroprightCircle className='arrow' /></b>
                         </Button>
                     </div>
@@ -192,76 +191,6 @@ export default function Information() {
         )
     }
 
-    const DiscountCode = () => {
-        return (
-            <Form style={{ width: "100%", padding: "5px", display: "flex", justifyContent: "center", border: "none" }}>
-                <div style={{ width: "90%" }}>
-                    <Row style={{ width: "100%", alignItems: 'center' }}>
-                        <Col xs={10} >
-                            <Form.Group style={{ display: "flex", justifyContent: "right" }}>
-                                <Form.Control style={{ padding: "15px" }} placeholder="Gift card or discount code" />
-                            </Form.Group>
-                        </Col>
-                        <Col xs={2}>
-                            <Button variant="secondary" style={{ padding: "12px", borderRadius: "20px" }}><b>APPLY</b></Button>
-                        </Col>
-                    </Row>
-                </div>
-            </Form>
-        )
-    }
-
-    const SubtotalShipping = () => {
-        return (
-            <div>
-                <Row style={{ padding: "10px" }}>
-                    <Col xs={10}>
-                        <h6>Subtotal</h6>
-                    </Col>
-                    <Col xs={2}>
-                        $94.00
-                    </Col>
-                </Row>
-                <Row style={{ padding: "10px" }}>
-                    <Col xs={8}>
-                        <h6>Shipping</h6>
-                    </Col>
-                    <Col xs={4} style={{ fontSize: "12px" }}>
-                        Calculated at next step...
-                    </Col>
-                </Row>
-            </div>
-        )
-    }
-
-    const Total = () => {
-        return (
-            <div>
-                <Row style={{ padding: "10px" }}>
-                    <Col xs={2}>
-                        <h5>Total</h5>
-                    </Col>
-                    <Col xs={{ span: 4, offset: 6 }}>
-                        <p>USD <span style={{ fontSize: "25px" }}><b>$95.00</b></span></p>
-                    </Col>
-                </Row>
-            </div >
-        )
-
-    }
-
-    const CartItem = () => {
-        return (
-            <div></div>
-        )
-
-    }
-
-    const Cart = () => {
-        return (
-            <div></div>
-        )
-    }
 
     const ExpressCheckout = () => {
         return (
@@ -288,7 +217,7 @@ export default function Information() {
                     <Col xs={7}>
                         <br />
                         <Container style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                            <CheckoutTimeline />
+                            <CheckoutTimeline url={window.location.pathname} />
 
                         </Container>
                         <br />
@@ -301,18 +230,7 @@ export default function Information() {
                             <p style={{ fontSize: "12px" }}>By placing your order you agree to StudentLifter's <u>Terms and Conditions</u>, <u>Privacy Notice</u> and <u>Cookie Policy.</u></p>
                         </Container>
                     </Col>
-                    <Col style={{ backgroundColor: "#EEEEEE", padding: "20px" }} xs={5}>
-                        <Cart />
-                        <br />
-                        <Divider />
-                        <br />
-                        <DiscountCode />
-                        <br />
-                        <Divider />
-                        <SubtotalShipping />
-                        <Divider />
-                        <Total />
-                    </Col>
+                    <CartReviewSidebar bagItems={bagItems} cart={cart} />
                 </Row>
                 <Divider />
                 <Row></Row>

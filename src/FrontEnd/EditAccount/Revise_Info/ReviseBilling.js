@@ -59,12 +59,10 @@ const ReviseBilling = () => {
      * @param {string} field - The field name to update.
      */
     const handleFormChange = (value, field) => {
-        console.log("Form before change " + JSON.stringify(form));
         setForm(form => ({
             ...form,
             [field]: value
         }));
-        console.log("Form changed " + JSON.stringify(form));
     }
     //================================================================
     // -> Save the form changes to MongoDB
@@ -126,6 +124,7 @@ const ReviseBilling = () => {
                                 <Form.Group as={Col} controlId="State" >
                                     <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
                                         <option>State</option>
+                                        <option>MA</option>
                                         <option>...</option>
                                     </Form.Select>
                                 </Form.Group>

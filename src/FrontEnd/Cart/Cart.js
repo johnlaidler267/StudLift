@@ -2,63 +2,44 @@
 import './Orders.css'
 
 //React components
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Card, Row, Col, Button } from 'react-bootstrap';
-import Divider from '@mui/material/Divider';
-import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker";
 
 //Photos
 import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
 import Cards from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/cards.png'
 
+//Firebase
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../BackEnd/firebase/firebase';
+
+//Import the list of product cards
+import { ProductList } from './CartComponents'
+
+//Import the fnction that fetches the user's cart
+import { fetchUserCart } from '../Mens+Womens/ViewItem/ViewItemDB'
+
 function Cart() {
+    const navigate = useNavigate();
 
-    const ProductCard = () => {
-        return (
-            <Card style={{ border: 'none' }}>
-                <Card.Body className='flex'>
-                    <Card.Img src={Beanie} style={{ width: '15%' }}></Card.Img>
-                    <div style={{ margin: '40px' }}>
-                        <Card.Title style={{ paddingTop: '5px', fontSize: '0.98em', marginRight: '1em' }}>Sharkhead Beanie - Navy </Card.Title>
-                        <Card.Text style={{ fontSize: '0.9em', whiteSpace: 'nowrap', color: 'gray' }}>Size: M</Card.Text>
-                        <Card.Text style={{ fontSize: '0.9em', whiteSpace: 'nowrap', color: 'gray' }}>$54.00 USD</Card.Text>
-                    </div>
-                </Card.Body>
-            </Card >
-        )
-    }
+    //Sets the current user
+    const [user, loading] = useAuthState(auth);
 
-    const ProductList = () => {
-        return (
-            <div style={{ width: '100%' }}>
-                <Row style={{ display: 'flex', alignItems: 'center' }}>
-                    <Col xs={8}>
-                        <ProductCard />
-                    </Col>
-                    <Col xs={2} className='center-column'>
-                        <QuantityPicker min={0} max={4} />
-                        <a href='' style={{ color: 'gray', textDecoration: 'none', fontSize: '0.7em' }}>Remove</a>
-                    </Col>
-                    <Col xs={2} className='center-column'>
-                        $54.00
-                    </Col>
-                </Row>
-                <Divider />
-                <Row style={{ display: 'flex', alignItems: 'center' }}>
-                    <Col xs={8}>
-                        <ProductCard />
-                    </Col>
-                    <Col xs={2} className='center-column'>
-                        <QuantityPicker min={0} max={4} />
-                        <a href='' className='remove'>Remove</a>
-                    </Col>
-                    <Col xs={2} className='center-column'>
-                        $54.00
-                    </Col>
-                </Row>
-            </div>
-        )
-    }
+    //Stores the cart items
+    const [bagItems, setBagItems] = useState([])
+
+    //Stores the actual cart
+    const [cart, setCart] = useState({})
+
+    //Fetches the cart on page load
+    useEffect(() => {
+        fetchUserCart(user.uid).then((cart) => {
+            setBagItems(cart.cartItems);
+            setCart(cart);
+            console.log(`The current cart is ${JSON.stringify(cart)}`)
+        });
+    });
 
     return (
         <div style={{ width: '100%' }}>
@@ -79,7 +60,7 @@ function Cart() {
                         </Row>
                     </Card.Header>
                     <Card.Body>
-                        <ProductList />
+                        <ProductList bagItems={bagItems} cart={cart} />
                     </Card.Body>
                     <Card.Footer style={{ backgroundColor: 'white' }}>
                         <Row>
@@ -87,14 +68,14 @@ function Cart() {
                                 <Button href='mens-all' variant='dark'>Continue Shopping</Button>
                             </Col>
                             <Col xs={2}>
-                                <p><b>TOTAL <span style={{ marginLeft: '20px' }}>$94.00 USD</span></b></p>
+                                <p><b>TOTAL <span style={{ marginLeft: '20px' }}>${cart.total} USD</span></b></p>
                             </Col>
                         </Row>
                     </Card.Footer>
                 </Card>
                 <div style={{ width: '80%', display: 'flex', justifyContent: 'end', padding: '10px' }}>
                     <img src={Cards} style={{ width: '15%', marginRight: '70%' }}></img>
-                    <Button href='information' style={{ width: '15em' }}>CHECKOUT</Button>
+                    <Button onClick={() => navigate('/information')} style={{ width: '15em' }}>CHECKOUT</Button >
                 </div>
                 <br />
                 <br />

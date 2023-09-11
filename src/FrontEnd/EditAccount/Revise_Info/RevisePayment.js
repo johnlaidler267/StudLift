@@ -51,12 +51,8 @@ const RevisePayment = () => {
                 //-> Set the account userDetails 
                 setUserDetails(data);
 
-                console.log("User details retreived: " + JSON.stringify(data));
-
                 //-> Set the exisiting card information
                 setCardList(data.Cards);
-
-                console.log("Card list retreived: " + JSON.stringify(data.Cards));
 
                 //-> Get a list of card names E.g. "DiscoverIt ending in •••• 1234"
                 const nameList = getCardNameList(data.Cards, data.DefaultCardIdx);
@@ -64,16 +60,11 @@ const RevisePayment = () => {
                 // Set the card names
                 setCardNameList(nameList);
 
-                console.log("The name list retreived: " + JSON.stringify(nameList));
-
-                console.log("The index of the default card is: " + data.DefaultCardIdx)
                 const defaultCardName = nameList[data.DefaultCardIdx];
-                console.log("The cards are: " + JSON.stringify(data.Cards));
                 const defaultCard = data.Cards[data.DefaultCardIdx];
 
                 //Set the active card to the first by default
                 setActiveCard(defaultCardName);
-                console.log("The active card name is: " + defaultCardName.name);
 
                 //Set the info for the active card to the first by default
                 setActiveCardInfo({
@@ -113,7 +104,6 @@ const RevisePayment = () => {
     const handleActiveCardChange = (event) => {
         //The active card = card with index # of the selected card option
         const activeCardId = JSON.parse(event.target.value).id;
-        console.log("The active card id is: " + activeCardId);
 
         setActiveCard(cardNameList[activeCardId]);
         setActiveCardInfo(cardList[activeCardId]);

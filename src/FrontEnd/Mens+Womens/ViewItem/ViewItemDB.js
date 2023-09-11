@@ -20,8 +20,7 @@ export const fetchProductById = async (dbName, productID) => {
     return convertJSONToProductObj(productObj);
 }
 //================================================================
-//Update a user cart
-
+//-> Update a user cart
 export const updateUserCart = async (product, color, size, firebaseID) => {
     // Declare a new cart item object
     const cartItem = new CartItem(product, color, size);
@@ -31,7 +30,7 @@ export const updateUserCart = async (product, color, size, firebaseID) => {
 
     userCart.addProduct(cartItem);
 }
-//................................................................
+//================================================================
 export const fetchUserCart = async (firebaseID) => {
     const userCart = await getUserDetails(firebaseID).then(userDetails => userDetails.Cart);
     return new UserCart(userCart.cartItems, firebaseID, userCart.total);

@@ -3,6 +3,7 @@ import '../Navbar.css'
 
 //React components
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Button, Card, Row, Col, Container } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
 import QuantityPicker from "../../Purchase/Components/QuantityPicker/QuantityPicker";
@@ -15,14 +16,16 @@ import { fetchUserCart } from '../../Mens+Womens/ViewItem/ViewItemDB'
 
 import './PopupBag.css'
 import { CarCrashTwoTone } from '@mui/icons-material';
+import { Navigate } from 'react-router-dom';
 
 export const PopupBag = ({ onClose, firebaseID }) => {
+    const navigate = useNavigate();
     const [bagItems, setBagItems] = useState([])
     const [cart, setCart] = useState({})
 
     useEffect(() => {
         fetchUserCart(firebaseID).then((cart) => {
-            setBagItems(cart.cartItems);
+            setBagItems(cart.getCartItems());
             setCart(cart);
             console.log(`The current cart is ${JSON.stringify(cart)}`)
         });
@@ -60,8 +63,8 @@ export const PopupBag = ({ onClose, firebaseID }) => {
 
                 <Card style={{ width: "100%", padding: "5px", border: "none" }}>
                     <Col style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                        <Button href='/information' variant="primary" style={{ width: "100%", margin: "2px" }}>CHECKOUT</Button>
-                        <Button href='/cart' variant="secondary" style={{ width: "100%", margin: "2px" }}>YOUR BAG</Button>
+                        <Button onClick={() => navigate('/information')} variant="primary" style={{ width: "100%", margin: "2px" }}>CHECKOUT</Button>
+                        <Button onClick={() => navigate('/cart')} variant="secondary" style={{ width: "100%", margin: "2px" }}>YOUR BAG</Button>
                     </Col>
                 </Card>
 
@@ -92,7 +95,7 @@ const BagItem = ({ cartItem, cart }) => {
                                 <h7>{cartItem.product._name}</h7>
                                 <h9 style={{ fontSize: "12px" }}>{cartItem.color}</h9>
                                 <br />
-                                <QuantityPicker min={0} max={4} />
+                                <QuantityPicker current={cartItem.getQuantity()} min={1} max={100} cart={cart} cartItem={cartItem.getItemID()} />
                                 <br />
                                 <a onClick={() => cart.deleteProduct(cartItem.itemID)} style={{ color: "gray", textDecoration: "none", fontSize: "12px" }}>Remove</a>
                             </Row>

@@ -216,16 +216,18 @@ function ViewItem() {
     const [size, setSize] = useState(''); // Initialize the size state as an empty string
 
     //================================================================
+    //-> Handles changing the state of the selected color
     const handleColorClick = (selectedColor) => {
         console.log(`The color was set to ${selectedColor}`)
-        // When the image is clicked, set the imageValue state
         setColor(selectedColor);
     };
 
+    //-> Handles changing the state of the selected size
     const handleSizeClick = (selectedSize) => {
         setSize(selectedSize); // Update the size state when a size is clicked
     };
 
+    //-> Handles adding the selected product to the user's cart
     const handleAddToBag = () => {
         updateUserCart(product, color, size, user.uid);
     };

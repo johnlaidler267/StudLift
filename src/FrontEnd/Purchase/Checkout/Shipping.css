@@ -1,0 +1,96 @@
+.shipping-radio {
+	font-size: 0.9em;
+	color: lightslategray;
+}
+
+#shipping-container {
+    max-width: none;
+    width: 100%;
+    height: 900px;
+}
+
+#shipping-card {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+#shipping-row {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+#timeline-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* E.g. "Contact", "Ship to" */
+.info-label {
+    font-size: 0.9em;
+    color: lightslategray;
+}
+
+#info-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#info-card {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 15px;
+    width: 90%;
+}
+
+.info-field {
+    font-size: 0.9em;
+}
+
+#select-shipping-bg-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#select-shipping-div {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+#select-shipping-card {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+}
+
+#navigation-container {
+    width: 90%;
+}
+
+#proceed-btn {
+    color: black;
+    background-color: white;
+    border: none;
+    font-size: 12px;
+    padding: 10px;
+}
+
+#back-btn {
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 10px;
+}
+
+#terms-and-conditions-container {
+    display: flex;
+    justify-content: center;
+}
