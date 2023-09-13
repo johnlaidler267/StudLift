@@ -35,7 +35,6 @@
 }
 
 #product-img {
-	width: 30%;
 	object-fit: contain;
 }
 
@@ -46,18 +45,39 @@
 
 #product-card {
 	border: none;
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #product-title {
-	padding-top: 5px;
+	margin-top: 5px;
 	font-size: 1em;
-	margin-right: 1em;
 }
 
 .product-desc {
 	font-size: 0.9em;
 	white-space: nowrap;
 	color: gray;
-    padding: none !important;
+	padding: none !important;
+}
+
+.badge {
+	padding-right: 15px;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+	background-color: #c67605;
+}
+#lblCartCount {
+	position: absolute;
+  top: -5px; /* Adjust the top position as needed */
+  right: -10px; /* Adjust the right position as needed */
+  padding: 5px 10px; /* Adjust padding as needed */
+  border-radius: 9px;
+  background-color: #c67605;
+  color: #fff;
+  font-size: 1rem;
 }

@@ -2,16 +2,15 @@
 import express from "express"; // Import Express.js for building the router
 import db from "../db/conn.mjs"; // Import the database connection
 import UserCart from '../../../FrontEnd/Cart/Classes/UserCart.js'
-import CartItem from '../../../FrontEnd/Cart/Classes/CartItem.js'
 import { ObjectId } from "mongodb"; // Import ObjectId for working with MongoDB IDs
 
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Create an Express router instance
 
 const router = express.Router();
 console.log("router set up");
 
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to handle user registration
 
 router.post('/register', async (req, res) => {
@@ -66,7 +65,7 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-//===============================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to return user details
 
 router.get('/:id', async (req, res) => {
@@ -83,7 +82,7 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-//===============================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to update shipping addr.
 
 router.patch('/updateShipping/:id', async (req, res) => {
@@ -99,7 +98,7 @@ router.patch('/updateShipping/:id', async (req, res) => {
     let result = await collection.updateOne(query, updates);
     res.send(result).status(200);
 });
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to update billing addr.
 
 router.patch('/updateBilling/:id', async (req, res) => {
@@ -114,7 +113,7 @@ router.patch('/updateBilling/:id', async (req, res) => {
     let result = await collection.updateOne(query, updates);
     res.send(result).status(200);
 });
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to update CC.
 
 router.patch('/updateCard/:id', async (req, res) => {
@@ -143,7 +142,7 @@ router.patch('/updateCard/:id', async (req, res) => {
     let result = await collection.updateOne(query, updates);
     res.send(result).status(200);
 });
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to add new CC.
 
 router.patch('/addCard/:id', async (req, res) => {
@@ -159,7 +158,7 @@ router.patch('/addCard/:id', async (req, res) => {
     let result = await collection.updateOne(query, updates);
     res.send(result).status(200);
 });
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to retrieve all Products by Type
 
 router.get('/:dbName/:type', async (req, res) => {
@@ -190,7 +189,7 @@ router.get('/:dbName/:type', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to get a singular project by ID
 
 router.get('/getProductByID/:dbName/:productID', async (req, res) => {
@@ -214,7 +213,7 @@ router.get('/getProductByID/:dbName/:productID', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //-> Route to update a user's cart
 
 router.patch('/updateCart/:id', async (req, res) => {
@@ -225,13 +224,27 @@ router.patch('/updateCart/:id', async (req, res) => {
         $set: {
             Cart: req.body
         }
+    };    let collection = await db.collection("Test");
+    let result = await collection.updateOne(query, updates);
+    res.send(result).status(200);
+});
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//-> Route to update a user's orders
+
+router.patch('/updateOrders/:id', async (req, res) => {
+    let firebaseId = req.params.id;
+    console.log(`The request to update user ${firebaseId}'s orders was recieved`);
+    const query = { Firebase: firebaseId };
+    const updates = {
+        $set: {
+            Orders: req.body
+        }
     };
-    console.log("The cart update is: " + JSON.stringify(req.body))
     let collection = await db.collection("Test");
     let result = await collection.updateOne(query, updates);
     res.send(result).status(200);
 });
-//================================================================
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
 // Export the router to use it in other parts of your application
 export default router;

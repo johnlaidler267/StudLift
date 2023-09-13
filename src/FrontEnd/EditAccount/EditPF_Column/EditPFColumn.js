@@ -14,7 +14,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, firebasedb } from '../../../BackEnd/firebase/firebase';
 
 // Custom Components
-import { CardGrid } from './Ep-Components';
+import { OrderGrid } from './Ep-Components';
 import { signOut } from 'firebase/auth';
 import { LoginContext } from '../../../App';
 
@@ -32,6 +32,7 @@ function Main() {
     const [user, loading] = useAuthState(auth);
     const [userDetails, setUserDetails] = useState({});
     const [defaultCard, setDefaultCard] = useState({});
+    const [orders, setOrders] = useState([]);
 
     // =================================================================
     // -> Handle the logout function
@@ -48,6 +49,7 @@ function Main() {
     }
     // =================================================================
     useEffect(() => {
+        console.log(`Value of user is ${user}`)
         if (!user) {
             navigate("/login")
         }
@@ -55,6 +57,8 @@ function Main() {
             getUserDetails(user.uid).then((data) => {
                 setUserDetails(data);
                 setDefaultCard(data.Cards[data.DefaultCardIdx])
+                setOrders(data.Orders)
+                console.log(`The orders retrieved in the parent ${data.Orders}`)
             });
         }
     }, []);
@@ -97,10 +101,10 @@ function Main() {
 
                             <br />
                             <Divider />
-                            <br /> 
+                            <br />
 
                             <h5 className='subheader'>SHIPPING ADDRESS</h5>
- 
+
                             {(userDetails.Shipping && userDetails.Shipping.AddLine1 != '') && (
                                 <div>
                                     <p>
@@ -148,8 +152,8 @@ function Main() {
                                 <Card.Img src={header} className='account-details-header'></Card.Img>
                             </div>
                             <Divider light={false} variant="fullWidth" />
-                            < div >
-                                <CardGrid />
+                            <div>
+                                <OrderGrid orders={orders} />
                             </div >
                         </div >
                     </Col >

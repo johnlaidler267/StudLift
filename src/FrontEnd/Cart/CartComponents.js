@@ -1,15 +1,13 @@
 //* Stores all sub-components for the Shopping Bag component
 
-//Import React stuff
-import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Button } from 'react-bootstrap';
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ⤵️ Import React stuff
+import React from 'react';
+import { Card, Row, Col } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 import QuantityPicker from "../Purchase/Components/QuantityPicker/QuantityPicker";
 
-//Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
-import Cards from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/cards.png'
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const ProductRow = ({ cartItem, cart }) => {
     console.log(`The cart item is ${JSON.stringify(cartItem)}`)
     console.log(`The cart is ${JSON.stringify(cart)}`)
@@ -38,15 +36,14 @@ const ProductRow = ({ cartItem, cart }) => {
             </Row>
             <Divider />
         </div>
-
     )
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export const ProductList = ({ bagItems, cart }) => {
-
     return (
         <div style={{ width: '100%' }}>
             {bagItems.map(item => (<ProductRow cartItem={item} cart={cart} />))}
         </div>
     )
 }
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,27 +1,21 @@
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap'
-import Divider from '@mui/material/Divider';
+import { Card, Container } from 'react-bootstrap'
 import Typography from '@mui/material/Typography';
 
 import { TbCircle1, TbCircle2, TbCircle3, TbCircleCheck, TbCirclePlus } from 'react-icons/tb'
-import { BsArrowReturnLeft, BsArrowRightSquareFill } from 'react-icons/bs'
-import { FaCcPaypal, FaGooglePay } from 'react-icons/fa'
-import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io'
-
+import { BsArrowRightSquareFill } from 'react-icons/bs'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-
-function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const CheckoutTimeline = ({ url }) => {
 
-    console.log(`The recieved URL for the current page is ${url}`)
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //-> Highlights the color of the current page's breadcrumb
 
     const customStyles = (breadCrumbLink) => {
         return (breadCrumbLink !== url
@@ -35,9 +29,10 @@ const CheckoutTimeline = ({ url }) => {
                 height: '90px'
             });
     }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     return (
-        <div role="presentation" onClick={handleClick} >
+        <div role="presentation" >
             <Breadcrumbs separator={<BsArrowRightSquareFill />} aria-label="breadcrumb" >
 
                 <Link underline="hover" color="inherit" href="/" className='breadcrumb-link'>

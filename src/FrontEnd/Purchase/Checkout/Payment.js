@@ -27,12 +27,10 @@ import { fetchUserCart } from '../../Mens+Womens/ViewItem/ViewItemDB'
 import { getCardNameList } from '../../EditAccount/Revise_Info/RevisePaymentFunctions'
 
 export default function Payment() {
-    // =================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // -> initialize the navigate function to redirect to other pages
-
     const navigate = useNavigate();
-
-    //=================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // -> Initialize the shippingState variables
 
     const [user, loading] = useAuthState(auth); // store the user logged in in the user variable
@@ -49,7 +47,8 @@ export default function Payment() {
     const [bagItems, setBagItems] = useState([]) //Stores the cart items
     const [cart, setCart] = useState({}) // Stores the actual cart
     //................................................................
-    // =================================================================
+    const [sameAsShipping, setSameAsShipping] = useState(true);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     useEffect(() => {
         try {
             getUserDetails(user.uid).then((data) => {
@@ -114,7 +113,70 @@ export default function Payment() {
         });
     }, []);
 
-    // =================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    const handlePayNow = () => {
+
+        // Function to perform form validation
+        const validateForm = () => {
+            const {
+                Country,
+                First,
+                Last,
+                AddLine1,
+                AddLine2,
+                City,
+                State,
+                Zip,
+            } = billingForm;
+
+            // Check if any required fields are empty
+            if (
+                !Country ||
+                !First ||
+                !Last ||
+                !AddLine1 ||
+                !AddLine2 ||
+                !City ||
+                !State ||
+                !Zip
+            ) {
+                return false;
+            }
+
+            return true;
+        };
+
+        //If sameAsShipping is true, then set the billing address to the shipping address from LS
+        if (sameAsShipping) {
+            localStorage.setItem("billingFirst", localStorage.getItem("shippingFirst"));
+            localStorage.setItem("billingLast", localStorage.getItem("shippingLast"));
+            localStorage.setItem("billingAddLine1", localStorage.getItem("shippingAddLine1"));
+            localStorage.setItem("billingAddLine2", localStorage.getItem("shippingAddLine2"));
+            localStorage.setItem("billingCity", localStorage.getItem("shippingCity"));
+            localStorage.setItem("billingState", localStorage.getItem("shippingState"));
+            localStorage.setItem("billingCountry", localStorage.getItem("shippingCountry"));
+            localStorage.setItem("billingZip", localStorage.getItem("shippingZip"));
+        }
+        //Else, set the billing address to the result of the form
+        else {
+            localStorage.setItem("billingFirst", billingForm.First);
+            localStorage.setItem("billingLast", billingForm.Last);
+            localStorage.setItem("billingAddLine1", billingForm.AddLine1);
+            localStorage.setItem("billingAddLine2", billingForm.AddLine2);
+            localStorage.setItem("billingCity", billingForm.City);
+            localStorage.setItem("billingState", billingForm.State);
+            localStorage.setItem("billingCountry", billingForm.Country);
+            localStorage.setItem("billingZip", billingForm.Zip);
+
+            if (!validateForm()) {
+                alert('Please fill in all required fields before proceeding.');
+                return;
+            }
+        }
+
+        navigate('/confirmation');
+    };
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     return (
         <Container style={{
@@ -171,14 +233,14 @@ export default function Payment() {
                         <br />
                         {user ? <UserLICreditCardForm cards={cardNameList} /> : <UserNLICreditCardForm />}
                         <br />
-                        <BillingForm form={billingForm} setForm={setBillingForm} />
+                        <BillingForm form={billingForm} setForm={setBillingForm} setSameAsShipping={setSameAsShipping} />
                         <br />
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <div className='button-row' style={{ width: '90%' }}>
                                 <Button className='direction-btn' onClick={() => navigate('/shipping')} type="submit" style={{ color: "black", backgroundColor: "white" }} >
-                                    <IoIosArrowDropleft className='arrow'/> Return to shipping
+                                    <IoIosArrowDropleft className='arrow' /> Return to shipping
                                 </Button>
-                                <Button className='direction-btn' onClick={() => navigate('/confirmation')} variant="dark" type="submit" style={{ borderRadius: "20px" }}>
+                                <Button className='direction-btn' onClick={() => handlePayNow()} variant="dark" type="submit" style={{ borderRadius: "20px" }}>
                                     <b>PAY NOW <IoIosArrowDroprightCircle className='arrow' /></b>
                                 </Button>
                             </div>

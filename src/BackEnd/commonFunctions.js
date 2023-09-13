@@ -1,4 +1,4 @@
-// =================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // -> Fetch the user details from MongoDB
 
 export const getUserDetails = async (firebaseId) => {
@@ -8,7 +8,6 @@ export const getUserDetails = async (firebaseId) => {
         window.alert(err)
         return;
     });
-    console.log(response);
 
     if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -23,7 +22,7 @@ export const getUserDetails = async (firebaseId) => {
     return userData;
 }
 
-// ================================================================= 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // -> Update Shipping Address  
 
 export const updateShippingAddress = async (updatedAddress, userDetails, firebaseId) => {
@@ -39,11 +38,10 @@ export const updateShippingAddress = async (updatedAddress, userDetails, firebas
         return;
     });
 }
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // -> Update Billing Address  
 
 export const updateBillingAddress = async (updatedAddress, userDetails, firebaseId) => {
-    console.log("The updated billing address being sent is: " + JSON.stringify(updatedAddress));
     userDetails.Billing = updatedAddress;
     const response = await fetch(`http://localhost:3000/record/updateBilling/${firebaseId}`, {
         method: "PATCH",
@@ -56,4 +54,4 @@ export const updateBillingAddress = async (updatedAddress, userDetails, firebase
         return;
     });
 }
-//================================================================
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

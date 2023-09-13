@@ -1,15 +1,16 @@
 class Address {
-    constructor() {
-        this.first = "";
-        this.last = "";
-        this.country = "";
-        this.addline1 = "";
-        this.addline2 = "";
-        this.state = "";
-        this.city = "";
-        this.zip = "";
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    constructor(first, last, addLine1, addLine2, country, state, city, zip) {
+        this.first = first || "";
+        this.last = last || "";
+        this.country = country || "";
+        this.addline1 = addLine1 || "";
+        this.addline2 = addLine2 || "";
+        this.state = state || "";
+        this.city = city || "";
+        this.zip = zip || "";
     }
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Setters
     setFirst(firstName) {
         this.first = firstName;
@@ -42,7 +43,7 @@ class Address {
     setZip(zip) {
         this.zip = zip;
     }
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Getters
     getFirst() {
         return this.first;
@@ -75,4 +76,7 @@ class Address {
     getZip() {
         return this.zip;
     }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
+
+export default Address;

@@ -1,4 +1,12 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//Import classes (card, address, usercart)
+import Card from './Card.js';
+import Address from './Address.js';
+import UserCart from '../../Cart/Classes/UserCart.js';
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 class User {
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     constructor(firebase, email, password, firstName, lastName, gender) {
         this.Firebase = firebase;
         this.Email = email;
@@ -15,7 +23,7 @@ class User {
         this.Cart = new UserCart([], firebase, 0);
         this.Orders = [];
     }
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Setters
     setFirebase(firebase) {
         this.Firebase = firebase;
@@ -42,20 +50,12 @@ class User {
         this.Gender = gender;
     }
 
-    addToWishlist(item) {
-        this.Wishlist.push(item);
-    }
-
     setBillingAddress(address) {
         this.Billing = address;
     }
 
     setShippingAddress(address) {
         this.Shipping = address;
-    }
-
-    addCard(card) {
-        this.Cards.push(card);
     }
 
     setDefaultCardIndex(index) {
@@ -65,11 +65,19 @@ class User {
     setCart(cart) {
         this.Cart = cart;
     }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    addToWishlist(item) {
+        this.Wishlist.push(item);
+    }
+
+    addCard(card) {
+        this.Cards.push(card);
+    }
 
     addOrder(order) {
         this.Orders.push(order);
     }
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Getters
     getFirebase() {
         return this.Firebase;
@@ -123,6 +131,6 @@ class User {
     getOrders() {
         return this.Orders;
     }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    // Add methods for the User class as needed
 }

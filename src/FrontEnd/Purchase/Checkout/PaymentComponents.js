@@ -29,11 +29,6 @@ export const UserLICreditCardForm = ({ cards }) => {
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>
-                            <Form.Check
-                                type='radio'
-                                id={`disabled-default-radio`}
-                                style={{ marginRight: "10px" }}
-                            />
                             <b>Select Credit/Debit Card</b>
                         </Accordion.Header>
                         <Accordion.Body>
@@ -54,12 +49,7 @@ export const UserLICreditCardForm = ({ cards }) => {
 
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>
-                            <Form.Check
-                                type='radio'
-                                label={(<b>Use Different Card</b>)}
-                                id={`disabled-default-radio`}
-                                style={{ marginRight: "10px" }}
-                            />
+                            <b>Use a Different Card</b>
                         </Accordion.Header>
                         <Accordion.Body>
                             <Form style={{ padding: "10px" }}>
@@ -88,11 +78,7 @@ export const UserLICreditCardForm = ({ cards }) => {
 
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
-                        <Accordion.Header> <Form.Check
-                            type='radio'
-                            id={`disabled-default-radio`}
-                            style={{ marginRight: "10px" }}
-                        /><b>PayPal</b>
+                        <Accordion.Header> <b>PayPal</b>
                         </Accordion.Header>
                         <Accordion.Body>
                             //TODO: PayPal Integration
@@ -109,21 +95,15 @@ export const UserNLICreditCardForm = () => {
     return (<div>User NLI Form</div>);
 }
 
-export const BillingForm = ({ form, setForm }) => {
-    // =================================================================
+export const BillingForm = ({ form, setForm, setSameAsShipping }) => {
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const handleFormChange = (value, field) => {
         setForm(form => ({
             ...form,
             [field]: value
         }));
-
-        // Append 'billing' to the field for LS purposes
-        const LSField = 'billing' + field;
-
-        // Store values in local storage
-        localStorage.setItem(LSField, value);
     }
-    //================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)
     return (
         <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
             <Card style={{ border: "none", borderRadius: "10px", padding: "15px", width: "90%" }}>
@@ -133,31 +113,25 @@ export const BillingForm = ({ form, setForm }) => {
                 <p style={{ fontSize: "0.9em", color: "lightslategray" }}>Select the address that matches your card or payment method.</p>
 
                 {/* Billing-Address Accordion */}
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="true" onSelect={(eventKey) => setSameAsShipping(JSON.parse(eventKey))}>
 
                     {/* Same as Shipping Address */}
-                    <Accordion.Item eventKey="0">
-                        <Accordion.Header> <Form.Check
-                            type='radio'
-                            id={`disabled-default-radio`}
-                            style={{ marginRight: "10px" }}
-                        /><b>Same as Shipping Addresss</b>
+                    <Accordion.Item eventKey="true">
+                        <Accordion.Header>
+                            <b>Same as shipping addresss</b>
                         </Accordion.Header>
                     </Accordion.Item>
 
                     {/* Use a Different Address */}
-                    <Accordion.Item eventKey="1">
-                        <Accordion.Header> <Form.Check
-                            type='radio'
-                            id={`disabled-default-radio`}
-                            style={{ marginRight: "10px" }}
-                        /><b>Use a Different Billing Addresss</b>
+                    <Accordion.Item eventKey="false">
+                        <Accordion.Header>
+                            <b>Use a different billing addresss</b>
                         </Accordion.Header>
                         <Accordion.Body>
                             <Form style={{ padding: "10px" }}>
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="Country" >
-                                        <Form.Select value={form.Country} onChange={(event) => handleFormChange(event.target.value, 'Country')}>
+                                        <Form.Select required value={form.Country} onChange={(event) => handleFormChange(event.target.value, 'Country')}>
                                             <option>Country</option>
                                             <option>United States</option>
                                             <option>...</option>
@@ -165,29 +139,29 @@ export const BillingForm = ({ form, setForm }) => {
                                     </Form.Group>
 
                                     <Form.Group as={Col}>
-                                        <Form.Control placeholder="First Name" value={form.First} onChange={(event) => handleFormChange(event.target.value, 'First')} />
+                                        <Form.Control required placeholder="First Name" value={form.First} onChange={(event) => handleFormChange(event.target.value, 'First')} />
                                     </Form.Group>
 
                                     <Form.Group as={Col}>
-                                        <Form.Control placeholder="Last Name" value={form.Last} onChange={(event) => handleFormChange(event.target.value, 'Last')} />
+                                        <Form.Control required placeholder="Last Name" value={form.Last} onChange={(event) => handleFormChange(event.target.value, 'Last')} />
                                     </Form.Group>
                                 </Row>
 
                                 <Form.Group className="mb-3" controlId="AddLine1">
-                                    <Form.Control placeholder="Address Line 1" value={form.AddLine1} onChange={(event) => handleFormChange(event.target.value, 'AddLine1')} />
+                                    <Form.Control required placeholder="Address Line 1" value={form.AddLine1} onChange={(event) => handleFormChange(event.target.value, 'AddLine1')} />
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="AddLine2">
-                                    <Form.Control placeholder="Apartment, studio, or floor" value={form.AddLine2} onChange={(event) => handleFormChange(event.target.value, 'AddLine2')} />
+                                    <Form.Control required placeholder="Apartment, studio, or floor" value={form.AddLine2} onChange={(event) => handleFormChange(event.target.value, 'AddLine2')} />
                                 </Form.Group>
 
                                 <Row className="mb-3">
                                     <Form.Group as={Col} controlId="City">
-                                        <Form.Control placeholder="City" value={form.City} onChange={(event) => handleFormChange(event.target.value, 'City')} />
+                                        <Form.Control required placeholder="City" value={form.City} onChange={(event) => handleFormChange(event.target.value, 'City')} />
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="State" >
-                                        <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
+                                        <Form.Select required defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
                                             <option>State</option>
                                             <option>MA</option>
                                             <option>...</option>
@@ -195,7 +169,7 @@ export const BillingForm = ({ form, setForm }) => {
                                     </Form.Group>
 
                                     <Form.Group as={Col} controlId="Zip" >
-                                        <Form.Control placeholder="Zip" value={form.Zip} onChange={(event) => handleFormChange(event.target.value, 'Zip')} />
+                                        <Form.Control required placeholder="Zip" value={form.Zip} onChange={(event) => handleFormChange(event.target.value, 'Zip')} />
                                     </Form.Group>
                                 </Row>
                             </Form>

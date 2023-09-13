@@ -69,8 +69,8 @@ const SubtotalShipping = ({ cart, shippingMethod }) => {
 const Total = ({ cart, shippingMethod }) => {
     let total = parseFloat(cart.total);
     if (shippingMethod)
-        total = shippingMethod == "$15.00" ? total + parseFloat(15) : total;
-    
+        total = shippingMethod == "$15.00" ? parseFloat(total + 15).toFixed(2) : total;
+
     return (
         <div>
             <Row className='total-row'>
@@ -93,8 +93,11 @@ const ProductRow = ({ cartItem, cart }) => {
                 <Col xs={10}>
                     <Card id='product-card'>
                         <Card.Body className='flex'>
-                            <Card.Img src={cartItem.product._imageURL} id='product-img' ></Card.Img>
-                            <div style={{ margin: '40px' }}>
+                            <div style={{ width: '30%', position: 'relative', marginRight: '15px' }}>
+                                <Card.Img src={cartItem.product._imageURL} id='product-img' />
+                                <span class='badge badge-warning' id='lblCartCount'> {cartItem.quantity}</span>
+                            </div>
+                            <div style={{ marginTop: '40px', marginRight: '40px' }}>
                                 <Card.Title id='product-title'>{cartItem.product._name} </Card.Title>
                                 <Card.Text className='product-desc'>{cartItem.color}</Card.Text>
                                 <Card.Text className='product-desc'>Size: {cartItem.size}</Card.Text>

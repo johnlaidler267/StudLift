@@ -5,7 +5,7 @@ import { MdAttachEmail } from 'react-icons/md'
 import one from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/one.webp'
 
 const SummaryItem = ({ cartItem }) => {
-    
+
     const [sizeFullName, setSizeFullName] = useState('');
 
     useEffect(() => {
@@ -46,8 +46,8 @@ export const Summary = ({ cart, items, email }) => {
     )
 }
 
-export const SubtotalShipping = ({ cart }) => {
-    let shippingCost = localStorage.getItem('shippingMethod') === 'Standard' ? 'FREE' : '$15.00';
+export const SubtotalShipping = ({ cart, shippingMethod }) => {
+    let shippingCost = shippingMethod === 'Standard' ? 'FREE' : '$15.00';
     console.log(`${shippingCost} shipping cost`)
     return (
         <div style={{ width: "80%" }}>
@@ -71,9 +71,9 @@ export const SubtotalShipping = ({ cart }) => {
     )
 }
 
-export const Total = ({ cart }) => {
-    let shippingCost = localStorage.getItem('shippingMethod') === 'Standard' ? 0.00 : 15.00;
-    const total = parseFloat(cart.total) + parseFloat(shippingCost);
+export const Total = ({ cart, shippingMethod }) => {
+    let shippingCost = shippingMethod === 'Standard' ? 0 : 15;
+    const total = parseFloat(parseFloat(cart.total) + shippingCost).toFixed(2);
     return (
         <div style={{ width: "80%", height: "6%" }} >
             <Row style={{ padding: "10px" }}>

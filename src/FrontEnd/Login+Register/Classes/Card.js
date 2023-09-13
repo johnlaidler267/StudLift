@@ -1,12 +1,13 @@
 class Card {
-    constructor() {
-        this.first = "";
-        this.last = "";
-        this.cardNumber = "";
-        this.expirationDate = "";
-        this.cvv = "";
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    constructor(first, last, cardNumber, expirationDate, cvv) {
+        this.first = first || "";
+        this.last = last || "";
+        this.cardNumber = cardNumber || "";
+        this.expirationDate = expirationDate || "";
+        this.cvv = cvv || "";
     }
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Setters
     setFirst(firstName) {
         this.first = firstName;
@@ -27,7 +28,7 @@ class Card {
     setCVV(cvv) {
         this.cvv = cvv;
     }
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Getters
     getFirst() {
         return this.first;
@@ -48,4 +49,7 @@ class Card {
     getCVV() {
         return this.cvv;
     }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
+
+export default Card;
