@@ -1,13 +1,13 @@
-import '../../Checkout/Checkout.css'
+//IMPORT Custom styling
+import '../../Styling/Checkout.css'
 import './CartReviewSidebar.css'
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
-import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap'
+
+//IMPORT React elements
+import React from 'react';
+import { Card, Row, Col, Form, Button } from 'react-bootstrap'
+
+//IMPORT MUI elements
 import Divider from '@mui/material/Divider';
-import QuantityPicker from '../QuantityPicker/QuantityPicker';
-import Typography from '@mui/material/Typography';
 
 export const CartReviewSidebar = ({ bagItems, cart, shippingMethod }) => {
     return (

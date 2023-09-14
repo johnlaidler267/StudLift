@@ -4,57 +4,58 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { createContext, useState } from 'react';
 
 // Import custom components
-import Navbar from './FrontEnd/Navbar/Navbar';
-import Main from './FrontEnd/Homepage/Homepage';
-import LoginForm from './FrontEnd/Login+Register/Login'
-import Search from './FrontEnd/Navbar/Search.js'
-import WishlistNLI from './FrontEnd/Wish_Lists/WishlistNLI'
-import WishlistLI from './FrontEnd/Wish_Lists/WishlistLI';
-import Register from './FrontEnd/Login+Register/Register'
-import ViewItem from './FrontEnd/Mens+Womens/ViewItem/ViewItem';
+import Navbar from './FrontEnd/Navbar/Pages/Navbar';
+import Footer from './FrontEnd/Footer/Pages/Footer'
+
+import Main from './FrontEnd/Homepage/Pages/Homepage';
+
+import Login from './FrontEnd/Login+Register/Pages/Login'
+import Register from './FrontEnd/Login+Register/Pages/Register'
+
+import Search from './FrontEnd/Search/Pages/Search.js'
+import WishlistNLI from './FrontEnd/Wishlist/Pages/WishlistNLI'
+import WishlistLI from './FrontEnd/Wishlist/Pages/WishlistLI';
 
 // Product pages
-import Women from './FrontEnd/Mens+Womens/Women/Women';
-import WomensAll from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensAll';
-import WomensPants from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensPants'
-import WomensShorts from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensShorts'
-import WomensTops from './FrontEnd/Mens+Womens/Women/Womens_Items/WomensTops'
+import ViewItem from './FrontEnd/ProductPages/Pages/ViewItem/ViewItem';
 
-import Men from './FrontEnd/Mens+Womens/Men/Men'
-import MensAll from './FrontEnd/Mens+Womens/Men/Mens_Items/MensAll';
-import MensPants from './FrontEnd/Mens+Womens/Men/Mens_Items/MensPants'
-import MensShorts from './FrontEnd/Mens+Womens/Men/Mens_Items/MensShorts'
-import MensTops from './FrontEnd/Mens+Womens/Men/Mens_Items/MensTops'
+import Women from './FrontEnd/ProductPages/Pages/Women/Women';
+import WomensAll from './FrontEnd/ProductPages/Pages/Women/Womens_Items/WomensAll';
+import WomensPants from './FrontEnd/ProductPages/Pages/Women/Womens_Items/WomensPants'
+import WomensShorts from './FrontEnd/ProductPages/Pages/Women/Womens_Items/WomensShorts'
+import WomensTops from './FrontEnd/ProductPages/Pages/Women/Womens_Items/WomensTops'
 
-import Accessories from './FrontEnd/Mens+Womens/Accessories/Accessories';
+import Men from './FrontEnd/ProductPages/Pages/Men/Men'
+import MensAll from './FrontEnd/ProductPages/Pages/Men/Mens_Items/MensAll';
+import MensPants from './FrontEnd/ProductPages/Pages/Men/Mens_Items/MensPants'
+import MensShorts from './FrontEnd/ProductPages/Pages/Men/Mens_Items/MensShorts'
+import MensTops from './FrontEnd/ProductPages/Pages/Men/Mens_Items/MensTops'
+
+import Accessories from './FrontEnd/ProductPages/Pages/Accessories/Accessories';
 
 // Checkout pages
-import Information from './FrontEnd/Purchase/Checkout/Information'
-import Shipping from './FrontEnd/Purchase/Checkout/Shipping'
-import Payment from './FrontEnd/Purchase/Checkout/Payment'
-import OrderConfirmation from './FrontEnd/Purchase/Checkout/OrderConfirmation';
+import Information from './FrontEnd/Purchase/Pages/Information'
+import Shipping from './FrontEnd/Purchase/Pages/Shipping'
+import Payment from './FrontEnd/Purchase/Pages/Payment'
+import OrderConfirmation from './FrontEnd/Purchase/Pages/OrderConfirmation';
 
 //Footer pages
-import AboutUs from './FrontEnd/Footer/Footer_Links/AboutUs'
-import FAQ from './FrontEnd/Footer/Footer_Links/FAQ'
+import AboutUs from './FrontEnd/Footer/Pages/AboutUs'
+import FAQ from './FrontEnd/Footer/Pages/FAQ'
 
 //Edit profile pages
-import EditProfile from './FrontEnd/EditAccount/EditPF_Column/EditPFColumn'
-import ReviseBilling from './FrontEnd/EditAccount/Revise_Info/ReviseBilling';
-import ReviseShipping from './FrontEnd/EditAccount/Revise_Info/ReviseShipping';
-import RevisePayment from './FrontEnd/EditAccount/Revise_Info/RevisePayment';
+import EditProfile from './FrontEnd/EditAccount/Pages/EditPF/EditPF'
+import ReviseBilling from './FrontEnd/EditAccount/Pages/Revise_Info/ReviseBilling';
+import ReviseShipping from './FrontEnd/EditAccount/Pages/Revise_Info/ReviseShipping';
+import RevisePayment from './FrontEnd/EditAccount/Pages/Revise_Info/RevisePayment';
+import Returns from './FrontEnd/EditAccount/Pages/Returns';
 
-import Returns from './FrontEnd/EditAccount/Returns';
+import Cart from './FrontEnd/Cart/Pages/Cart'
 
-import Cart from './FrontEnd/Cart/Cart'
-
-import Footer from './FrontEnd/Footer/Footer'
-
-// import { UserProvider } from './firebase/User';
 
 
 // Import components from React Router
-import { BrowserRouter as Router, Routes, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export const LoginContext = createContext();
 
@@ -69,7 +70,7 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/" element={<Main />} />
-              <Route path="/login" element={<LoginForm />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/search" element={<Search />} />
               <Route path="/wishlist-nli" element={<WishlistNLI />} />
               <Route path="/wishlist-li" element={<WishlistLI />} />

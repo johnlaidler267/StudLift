@@ -1,5 +1,5 @@
 //custom styling
-import '../Homepage.css';
+import '../Styling/Homepage.css';
 
 //React components
 import React from 'react';
