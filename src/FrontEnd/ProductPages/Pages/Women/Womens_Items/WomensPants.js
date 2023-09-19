@@ -1,15 +1,24 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//IMPORT Custom Styling
 import '../../../Styling/Pages.css'
+
+//IMPORT React elements
 import React from 'react';
-import { Card, Container, Row, Col, Button, Dropdown, DropdownButton, Tabs, Tab } from 'react-bootstrap';
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
+import { Card, Row, Col, Dropdown, DropdownButton} from 'react-bootstrap';
 
+//IMPORT Helper functions
 import { getProductCards } from '../../../HelperFunctions/ProductDBReqs'
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-function MensPants() {
+function WomensPants() {
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const [ProductCards, setProductCards] = React.useState([]);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     React.useEffect(() => {
         getProductCards('WomensProducts', 'Pants').then((result) => setProductCards(result));
     }, []);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     const FilterBar = () => {
         return (
@@ -99,4 +108,4 @@ function MensPants() {
     )
 }
 
-export default MensPants;
+export default WomensPants;

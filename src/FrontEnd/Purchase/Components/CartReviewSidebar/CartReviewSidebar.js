@@ -1,3 +1,4 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //IMPORT Custom styling
 import '../../Styling/Checkout.css'
 import './CartReviewSidebar.css'
@@ -8,7 +9,9 @@ import { Card, Row, Col, Form, Button } from 'react-bootstrap'
 
 //IMPORT MUI elements
 import Divider from '@mui/material/Divider';
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export const CartReviewSidebar = ({ bagItems, cart, shippingMethod }) => {
     return (
         <Col style={{ backgroundColor: "#EEEEEE", padding: "20px" }} xs={5}>
@@ -23,7 +26,7 @@ export const CartReviewSidebar = ({ bagItems, cart, shippingMethod }) => {
         </Col>
     );
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const DiscountCode = () => {
     return (
         <Form id='discount-code-form'>
@@ -42,7 +45,7 @@ const DiscountCode = () => {
         </Form>
     )
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const SubtotalShipping = ({ cart, shippingMethod }) => {
     return (
         <div>
@@ -65,7 +68,7 @@ const SubtotalShipping = ({ cart, shippingMethod }) => {
         </div>
     )
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const Total = ({ cart, shippingMethod }) => {
     let total = parseFloat(cart.total);
     if (shippingMethod)
@@ -83,9 +86,8 @@ const Total = ({ cart, shippingMethod }) => {
             </Row>
         </div >
     )
-
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const ProductRow = ({ cartItem, cart }) => {
     return (
         <div>
@@ -114,7 +116,7 @@ const ProductRow = ({ cartItem, cart }) => {
 
     )
 }
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export const ProductList = ({ bagItems, cart }) => {
     return (
         <>

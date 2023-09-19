@@ -1,25 +1,24 @@
-//custom styling
+//IMPORT Custom Styling
 import '../Styling/Homepage.css';
 
-//React components
+//IMPORT React components
 import React from 'react';
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 
-// Icons
+//IMPORT Icons
 import { AiFillInstagram, AiFillMail, AiFillTwitterCircle, AiOutlineStar } from 'react-icons/ai'
 import { GiConverseShoe, GiTankTop, GiTShirt } from 'react-icons/gi'
 
-//Photos
+//IMPORT Photos
 import intro from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/intro.png';
 
 function IntroCard(props) {
     return (
-        <div className='background'>
+        <div className='intro-bg-div'>
 
-            <Card className='intro-card-bg'>
+            <Card className='intro-bg-card'>
 
                 <Row >
-
                     <Col xs={12} md={4}>
 
                         <Card className='intro-card'>
@@ -55,7 +54,7 @@ function IntroCard(props) {
                                             <br></br>
                                             <br></br>
                                             <h5>SL Converse</h5>
-                                            <h8 style={{ display: "flex", justifyContent: "center" }}>$19.99</h8>
+                                            <h5 className='featured-prod-price'>$19.99</h5>
                                         </Card>
                                     </Col>
 
@@ -66,7 +65,7 @@ function IntroCard(props) {
                                             <br></br>
                                             <br></br>
                                             <h5>SL Tank</h5>
-                                            <h8 style={{ display: "flex", justifyContent: "center" }}>$49.99</h8>
+                                            <h5 className='featured-prod-price'>$49.99</h5>
                                         </Card>
                                     </Col>
 
@@ -77,7 +76,7 @@ function IntroCard(props) {
                                             <br></br>
                                             <br></br>
                                             <h5>SL Tee</h5>
-                                            <h8 style={{ display: "flex", justifyContent: "center" }}>$29.99</h8>
+                                            <h5 className='featured-prod-price'>$29.99</h5>
                                         </Card>
                                     </Col>
 
@@ -90,7 +89,7 @@ function IntroCard(props) {
                     </Col>
                     <Col xs={12} md={8}>
                         <Card>
-                            <Card.Img variant="right" src={intro} alt="My Image" style={{ width: "100%", height: "100%", overflow: "visible" }} />
+                            <Card.Img variant="right" src={intro} id='intro-img' />
                         </Card>
                     </Col>
                 </Row>

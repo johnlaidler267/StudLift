@@ -16,12 +16,12 @@ import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photo
 function EssentialsMen() {
     return (
         <div className='essentials'>
-            <Card style={{ width: '90%', paddingLeft: "10em", display: 'flex', justifyContent: 'center', alignItems: 'start', height: "20em", backgroundColor: "#32393F", color: 'white', zIndex: '5' }}>
-                <Card.Title style={{ fontSize: "2em" }}><b>SHOP MENS ESSENTIALS</b></Card.Title>
+            <Card id='essentials-card'>
+                <Card.Title className='subsection-header'><b>SHOP MENS ESSENTIALS</b></Card.Title>
                 <p>From training to rest day</p>
                 <br />
-                <Card.Img src={smilingGuy} style={{ width: "20em", height: "20em", zIndex: '3', position: 'absolute', left: '30em', top: '0em' }} />
-                <Button variant='dark' style={{ borderRadius: '20px', padding: '1em' }}>Shop Essentials</Button>
+                <Card.Img src={smilingGuy} id='essentials-img' />
+                <Button variant='dark' id='shop-essentials-btn'>Shop Essentials</Button>
             </Card>
         </div>
     )
@@ -30,12 +30,12 @@ function EssentialsMen() {
 function EssentialsWomen() {
     return (
         <div className='essentials'>
-            <Card style={{ width: '90%', paddingLeft: "10em", display: 'flex', justifyContent: 'center', alignItems: 'start', height: "20em", backgroundColor: "#F2E5E3", color: '#32393F', zIndex: '5' }}>
-                <Card.Title style={{ fontSize: "2em" }}><b>SHOP WOMENS  ESSENTIALS</b></Card.Title>
+            <Card id='essentials-card'>
+                <Card.Title className='subsection-header'><b>SHOP WOMENS ESSENTIALS</b></Card.Title>
                 <p>From training to rest day</p>
                 <br />
-                <Card.Img src={smilingWoman} style={{ width: "20em", height: "20em", zIndex: '3', position: 'absolute', left: '38em', top: '0em' }} />
-                <Button variant='dark' style={{ borderRadius: '20px', padding: '1em' }}>Shop Essentials</Button>
+                <Card.Img src={smilingWoman} id='essentials-img' />
+                <Button variant='dark' id='shop-essentials-btn'>Shop Essentials</Button>
             </Card>
         </div>
     )
@@ -43,7 +43,7 @@ function EssentialsWomen() {
 
 function Main(props) {
     return (
-        <div style={{ color: '#32393F', height: '100%' }}>
+        <div id='bg-div'>
             <IntroCard />
             {/* <div className='background-card-hp'>
                 <br />

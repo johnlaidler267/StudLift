@@ -1,79 +1,126 @@
-
 /*=============================================
-=                 Background                  =
+=                 Main                  =
 =============================================*/
 
-.background {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#bg-div {
+	color: #32393f;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /*=============================================
-=          Header Card Overlay                =
+=          Intro Card Overlay                =
 =============================================*/
 
-.intro-card-bg {
-  width: 90%;
-  height: 100%;
-  background-color: #5a6873;
-  border: none;
-  border-radius: 0px;
+#intro-bg-div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.intro-bg-card {
+	width: 90%;
+	height: 100%;
+	background-color: #5a6873;
+	border: none;
+	border-radius: 0px;
 }
 
 .intro-card {
-  border: none;
-  padding: 5px;
-  margin: 5px;
-  background-color: transparent;
-  color: white;
+	border: none;
+	padding: 5px;
+	margin: 5px;
+	background-color: transparent;
+	color: white;
 }
 
-/*----------  Header Card Components  ----------*/
+/*----------  Intro Card Components  ----------*/
 
 .social-links {
-  margin-bottom: 2vw;
+	margin-bottom: 2vw;
 }
 
 .about-us-btn {
-  color: white;
-  background-color: transparent;
-  border: 1px solid white;
+	color: white;
+	background-color: transparent;
+	border: 1px solid white;
 }
 
 .header-text {
-  margin: 2vw;
+	margin: 2vw;
 }
 
+/*----------  Featured products  ----------*/
+
 .featured-products {
-  margin: 2vw;
+	margin: 2vw;
 }
 
 .featured-product-card {
-  padding: 1vw;
-  border: none;
-  width: 120%;
-  color: #32393f;
+	padding: 1vw;
+	border: none;
+	width: 120%;
+	color: #32393f;
 }
 
 .featured-prod-col {
-  padding: 3vw;
+	padding: 3vw;
+}
+
+.featured-prod-price {
+	display: flex;
+	justify-content: center;
 }
 
 .view-products-btn {
-  background-color: #32393f;
-  border: none;
-  margin-top: 1vw;
+	background-color: #32393f;
+	border: none;
+	margin-top: 1vw;
 }
+
+#intro-img {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/*=============================================
+=            Shop Essentials                  =
+=============================================*/
 
 .essentials {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
-.background-card-hp {
-  background-color: rgba(224, 221, 225, 0.9);
-  height: 100%;
-  border: none;
-  border-radius: 0px;
+#essentials-card {
+	width: 90%;
+	padding-left: 10em;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	height: 20em;
+	background-color: #32393f;
+	color: white;
+	z-index: 5;
+}
+
+.subsection-header {
+	font-size: 2em;
+}
+
+#essentials-img {
+	width: 20em;
+	height: 20em;
+	z-index: 3;
+	position: absolute;
+	left: 30em;
+	top: 0em;
+}
+
+#shop-essentials-btn {
+	border-radius: 20px;
+	padding: 1em;
 }

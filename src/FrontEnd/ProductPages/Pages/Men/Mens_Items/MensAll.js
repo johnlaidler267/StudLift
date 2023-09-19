@@ -1,29 +1,26 @@
-//Custom styling
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//IMPORT Custom styling
 import '../../../Styling/Pages.css'
 
-//React components
+//IMPORT React components
 import React from 'react';
-import { useNavigate, createContext } from 'react-router-dom';
-import { Card, Row, Col, Button, Dropdown, DropdownButton } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { Card, Row, Col } from 'react-bootstrap';
 
-//Icons
-import { BiBookAdd } from 'react-icons/bi';
-import { MdFavorite } from 'react-icons/md'
-
-//Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
-
+//IMPORT Custom components
 import { FilterBar, CardGrid } from '../../../Components/FilterBar/FilterBar'
 
+//IMPORT Helper functions
 import { getProductCards } from '../../../HelperFunctions/ProductDBReqs'
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function MensAll() {
-    // =================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // -> initialize the navigate function to redirect to other pages
 
     const navigate = useNavigate();
 
-    //=================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const [ProductCards, setProductCards] = React.useState([]);
 
     React.useEffect(() => {

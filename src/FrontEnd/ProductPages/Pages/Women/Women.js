@@ -1,17 +1,19 @@
-//custom styling
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//IMPORT Custom styling
 import '../../Styling/Pages.css'
 
-//react components
+//IMPORT React components
 import React from 'react';
-import { Card, Container, Row, Col, Button } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 
-//images
+//IMPORT Images
 import illustrationWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/illustrationWoman.png'
 import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingWoman.png'
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-function Women(props) {
+function Women() {
+
     return (
-
         <div className='div-header' >
 
             <Card className="womens-header">

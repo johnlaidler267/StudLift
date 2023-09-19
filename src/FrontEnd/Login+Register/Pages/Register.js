@@ -1,3 +1,7 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//IMPORT Custom styling
+import '../Styling/Register.css'
+
 // IMPORT firebase events
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../BackEnd/firebase/firebase';
@@ -8,6 +12,7 @@ import { Card, Container, Button, Form, FloatingLabel, Alert } from 'react-boots
 import { useNavigate } from 'react-router-dom';
 
 import { LoginContext } from '../../../App'
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /**
  * This component represents the registration form for creating a new user account.
@@ -18,7 +23,7 @@ export default function Register() {
     // initialize the navigate function to redirect to other pages
     const navigate = useNavigate();
 
-    // =================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // -> Initialize state variables for form fields
 
     const [form, setForm] = useState({
@@ -43,7 +48,7 @@ export default function Register() {
         setForm({ ...form, [field]: value });
     }
 
-    // =================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     /**
      * Handle the registration form submission.
@@ -51,7 +56,6 @@ export default function Register() {
      */
     const handleRegister = async (event) => {
 
-        console.log('Trying to register')
         event.preventDefault();
 
         try {
@@ -85,7 +89,6 @@ export default function Register() {
                 window.alert(err)
                 return;
             });
-            console.log("In Register.js, the registration was sent OK. ", response);
 
             // ...............................................................
             // -> Redirect to the home page
@@ -95,7 +98,8 @@ export default function Register() {
             console.log(error);
         }
     }
-    //================================================================
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     return (
         <Card style={{ border: 'none' }}>
             <Container className='register-background-div'>

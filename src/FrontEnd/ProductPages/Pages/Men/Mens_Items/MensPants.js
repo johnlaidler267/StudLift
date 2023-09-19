@@ -1,16 +1,23 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//IMPORT Custom styling
 import '../../../Styling/Pages.css'
+
+//IMPORT React components
 import React from 'react';
-import { Card, Container, Row, Col, Button, Dropdown, DropdownButton, Tabs, Tab } from 'react-bootstrap';
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
+import { Card, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
 
+//IMPORT Helper functions
 import { getProductCards } from '../../../HelperFunctions/ProductDBReqs'
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function MensPants() {
     const [ProductCards, setProductCards] = React.useState([]);
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     React.useEffect(() => {
         getProductCards('MensProducts', 'Pants').then((result) => setProductCards(result));
     }, []);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     const FilterBar = () => {
         return (

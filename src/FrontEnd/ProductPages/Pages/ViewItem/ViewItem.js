@@ -1,3 +1,4 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //IMPORT Custom styling
 import '../../Styling/ViewItemStyling.css'
 
@@ -16,11 +17,11 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-//IMPORT Images
+//IMPORT Icons
 import { GiReturnArrow, GiDeliveryDrone } from 'react-icons/gi'
 import { TbTruckDelivery } from 'react-icons/tb'
 
-// - Main Images (LEFT)
+// IMPORT Images (LEFT)
 import one from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/one.webp'
 import two from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/two.webp'
 import three from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/three.webp'
@@ -31,6 +32,7 @@ import { fetchProductById, updateUserCart } from './ViewItemDB'
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../../BackEnd/firebase/firebase';
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const iOSBoxShadow =
     '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';

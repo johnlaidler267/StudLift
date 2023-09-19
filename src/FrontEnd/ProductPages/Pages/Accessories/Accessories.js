@@ -1,26 +1,28 @@
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //IMPORT custom styling
 import '../../Styling/Pages.css'
 import '../../Styling/AccessoriesStyling.css'
 
 //IMPORT react elements
 import React from 'react';
-import { Card, Container, Row, Col, Button, Dropdown, DropdownButton, Tabs, Tab } from 'react-bootstrap';
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
+import { Card, Row, Col,Tabs, Tab } from 'react-bootstrap';
 
 //IMPORT helper functions
 import { getProductCards } from '../../HelperFunctions/ProductDBReqs'
 
 //IMPORT custom components
 import { FilterBar } from '../../Components/FilterBar/FilterBar'
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function Accessories() {
 
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const [ProductCards, setProductCards] = React.useState([]);
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     React.useEffect(() => {
         getProductCards('Accessories', 'All').then((result) => setProductCards(result));
     }, []);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     const CardGrid = () => {
         return (
