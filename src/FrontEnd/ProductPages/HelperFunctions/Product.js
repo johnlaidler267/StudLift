@@ -1,10 +1,11 @@
 export default class Product {
-    constructor(name, color, price, ID, imageURL) {
+    constructor(name, color, price, ID, imageURL, type) {
         this._name = name;
         this._color = color;
         this._price = price;
         this._ID = ID;
         this._imageURL = imageURL;
+        this._type = type || "";
     }
 
     // Getter and setter for 'name'

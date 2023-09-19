@@ -20,3 +20,21 @@ export const getProductCards = async (dbName, type) => {
 
     return cardArray;
 }
+
+
+//Returns a list of JSON products available
+export const getProducts = async (dbName, type) => {
+    const response = await fetch(`http://localhost:3000/record/${dbName}/${type}`);
+
+    if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+    }
+
+    //extracts JSON data from a response object
+    const objArr = await response.json();
+    const jsonArray = convertJSONArrayToProductObjArray(objArr);
+
+    return jsonArray;
+}

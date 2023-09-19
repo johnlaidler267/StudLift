@@ -1,76 +1,62 @@
-//React components
-import React, { useState } from 'react';
+//IMPORT React components
+import React, { useState, useEffect } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
+
+//IMPORT MUI components
 import Divider from '@mui/material/Divider';
 
-//Photos
-import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/searchItem.webp';
+//IMPORT Custom components
+import { SearchResults } from '../Components/SearchComponents'
+
+//IMPORT Helper functions
+import { getProducts } from '../../ProductPages/HelperFunctions/ProductDBReqs'
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function Search() {
-    const [query, setQuery] = useState('');
-
+    const [query, setQuery] = useState("");
+    const [products, setProducts] = useState([]);
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const handleChange = (event) => {
+        console.log(`Setting the query to ${event.target.value}`)
         setQuery(event.target.value);
     };
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    useEffect(() => {
+        // Define an array of promises
+        const promises = [
+            getProducts('MensProducts', 'All'),
+            getProducts('WomensProducts', 'All'),
+            getProducts('Accessories', 'All'),
+        ];
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Perform search logic here
-    };
+        // Use Promise.all to wait for all promises to resolve
+        Promise.all(promises)
+            .then((results) => {
+                // results is an array containing the results of each promise
+                const allProducts = results.flat();
+                console.log(`Setting the products to ${allProducts}`);
+                setProducts(allProducts);
+            })
+            .catch((error) => {
+                console.error(`Error fetching products: ${error}`);
+            });
+    }, []);
 
-    const SearchItem = () => {
-        return (
-            <div>
-                <Card style={{ width: "20%", height: "20%", margin: "5px" }}>
-                    <Card.Img variant="right" src={ItemPicture} alt="My Image" style={{ width: "100%", height: "100%", overflow: "visible" }} />
-                    <Card.Footer>
-                        <Row>
-                            <Col xs={8}>
-                                <h7 style={{ fontSize: "12px" }}><b>| NEW</b></h7>
-                            </Col>
-                            <Col xs={4}>
-                                <h9 style={{ fontSize: "14px" }}><b>$49.99</b></h9>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <h7>Power Washed Rag Top</h7>
-                            <h9 style={{ fontSize: "12px" }}>Black</h9>
-                        </Row>
-                    </Card.Footer>
-                </Card>
-            </div>
-        )
-    }
-    const SearchResults = () => {
-        return (
-            <div>
-                <Card style={{ border: "none" }}>
-                    <Card.Body>
-                        <br></br>
-                        <h9>1 Products Found</h9>
-                        <br></br>
-                        <br></br>
-                        <SearchItem />
-                    </Card.Body>
-                </Card>
-            </div>
-        )
-    };
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     return (
         <div>
-            <Card style={{ border: 'none' }}>
-                <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+            <Card id='search-bar-card'>
+                <form style={{ width: '100%' }}>
                     <input
                         type="text"
                         value={query}
                         onChange={handleChange}
                         placeholder="Search By Typing Keywords..."
-                        style={{ width: '100%', padding: "30px", border: "none", fontSize: "1.5rem" }}
+                        id='search-bar-input'
                     />
                     <Divider />
                 </form>
-                <SearchResults />
+                {query !== "" && <SearchResults products={products} query={query} />}
             </Card>
         </div>
     );

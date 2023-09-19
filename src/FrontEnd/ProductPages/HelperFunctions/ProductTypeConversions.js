@@ -24,7 +24,7 @@ export const convertProductArrayToCardComponents = (productObjArray, dbName) => 
 
 //Takes a single JSON (product) object & returns a Product object (HELPER)
 export const convertJSONToProductObj = (product) => {
-    return new Product(product.Name, product.Color, product.Price, product._id, product.ImageURL);
+    return new Product(product.Name, product.Color, product.Price, product._id, product.ImageURL, product.Type);
 };
 
 //Takes an array of JSON (product) objects & returns an array of Product objects
