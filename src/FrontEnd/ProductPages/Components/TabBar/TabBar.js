@@ -15,7 +15,7 @@ const CardGrid = ({ ProductCards }) => {
 export const TabBar = ({ ProductCards }) => {
     return (
         <Tabs defaultActiveKey="all" id="tab-bar" className='mb-3' justify>
-            <Tab eventKey="all" title="ALL (148)" tabClassName="spaced-tabs">
+            <Tab eventKey="all" title="ALL (148)" tabClassName="spaced-tabs" onSelect={(eventKey) => handleTabSelection(eventKey, "price")}>
                 <CardGrid ProductCards={ProductCards} />
             </Tab>
             <Tab eventKey="headwear" title="HEADWEAR (20)" tabClassName="spaced-tabs">

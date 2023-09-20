@@ -12,6 +12,10 @@ import QuantityPicker from "../../../Purchase/Components/QuantityPicker/Quantity
 //IMPORT Helper functions
 import { fetchUserCart } from '../../../ProductPages/Pages/ViewItem/ViewItemDB'
 
+//IMPORT ICONS
+import { AiFillCloseCircle } from 'react-icons/ai'
+import { HiOutlineShoppingBag } from 'react-icons/hi'
+
 export const PopupBag = ({ onClose, firebaseID }) => {
     const navigate = useNavigate();
     const [bagItems, setBagItems] = useState([])
@@ -28,13 +32,13 @@ export const PopupBag = ({ onClose, firebaseID }) => {
     return (
         <div className="Modal Show">
 
-            <Card style={{ border: "none", padding: "10px", margin: "2px" }}>
+            <Card style={{ border: "none", padding: "15px", margin: "2px"}}>
                 <Row style={{ display: "flex", justifyContent: "center" }}>
                     <Col xs={10}>
-                        <h5><b>YOUR BAG</b></h5>
+                        <h3 style={{ fontSize: "1.7em" }}><HiOutlineShoppingBag className='mb-2' /><b>YOUR BAG</b></h3>
                     </Col>
                     <Col xs={2} >
-                        <Button onClick={onClose} variant='outline-secondary' className="Close">X</Button>
+                        <Button onClick={onClose} variant='outline-secondary' className="Close"><AiFillCloseCircle /></Button>
                     </Col>
 
                     <Divider></Divider>
@@ -46,7 +50,7 @@ export const PopupBag = ({ onClose, firebaseID }) => {
                                 <h5>Total:</h5>
                             </Col>
                             <Col xs={3}>
-                                <p><b>{cart.total}</b></p>
+                                <h5><b>{cart.total}</b></h5>
                             </Col>
                         </Row>
                     </Card>

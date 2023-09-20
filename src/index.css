@@ -1,18 +1,26 @@
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 @font-face {
-  font-family: "Sunset Gothic";
-  src: url("/Users/johnnylaidler/studentlifter/src/Resources/Uploaded_Fonts/SunsetGothic.ttf"); /* For TTF fonts */
-  /* Add additional font formats as necessary */
+	font-family: 'Sunset Gothic';
+	src: url('./Resources/Uploaded_Fonts/SunsetGothic.ttf'); /* For TTF fonts */
+	/* Add additional font formats as necessary */
 }
 
-* {
-  margin: 0; 
-  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+Card.Title {
+	font-family: 'Sunset Gothic', sans-serif, 'Courier New', Courier, monospace;
+}
+
+h1,
+h3,
+h4,
+h6 {
+	font-family: 'Sunset Gothic', sans-serif, 'Courier New', Courier, monospace;
+}
+
+body {
+	font-family: sans-serif;
+	background: url('./Resources/Photos/equipment.png') repeat 0 0;
+	z-index: 2;
 }

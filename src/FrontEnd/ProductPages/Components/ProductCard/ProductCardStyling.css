@@ -1,7 +1,9 @@
 #product-card {
 	border: none;
 	margin: none;
+	width: 20rem;
 }
+
 #wishlist-btn {
 	position: absolute;
 	margin: 10px;
@@ -35,12 +37,21 @@
 	font-size: 0.8em;
 }
 
+/* QUICK ADD */
+#card-body-div {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
 #quick-add-div {
 	position: absolute;
 	opacity: 0.9;
-	top: 55%;
-	left: 18%;
-	width: 15em;
+	top: 40%;
+	left: 10%;
+	width: 70%;
+	height: 30%;
 	background-color: white;
 	border-radius: 25px;
 	padding: 10px;
@@ -65,6 +76,12 @@
 .size-btn {
 	margin: 5px;
 	border: 1px solid gray;
+}
+
+.color-btn {
+	margin: 5px;
+	border: 1px solid gray;
+	color: transparent;
 }
 
 #img {

@@ -11,12 +11,22 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 //IMPORT Photos
 import illustrationMan from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/illustrationMan.png'
 import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingGuy.png'
+import headerGif from '../../../../Resources/Photos/MensHeader.gif';
 
 //IMPORT Icons
 import { AiFillStar } from 'react-icons/ai'
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function Men() {
+    const AnchorElement = () => (
+        <a
+            href="https://www.canva.com/design/DAFu9wWoJg0/watch?utm_content=DAFu9wWoJg0&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Sweat it out..
+        </a>
+    );
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // -> initialize the navigate function to redirect to other pages
 
@@ -28,7 +38,8 @@ function Men() {
 
             <Card className='mens-header'>
 
-                <div id='nested-header-div'>
+                <img src={headerGif} style={{maxHeight: "50rem"}}/>
+                {/* <div id='nested-header-div'>
 
                     <div id='header-col-left'>
                         <h1 id='header-title'><b>ELEVATE YOUR FITNESS GAME.</b></h1>
@@ -78,7 +89,7 @@ function Men() {
                         </Card>
                     </div>
 
-                </div>
+                </div> */}
 
             </Card>
 

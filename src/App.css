@@ -1,10 +1,10 @@
 body {
-  background-color: #100c0c;
-  margin: 0;
-  padding: 0;
-  background-image: url(/Users/johnnylaidler/studentlifter/src/Resources/Photos/equipment.png);
+	margin: 0;
+	padding: 0;
+	background-image: url('/src/Resources/Photos/equipment.png');
 }
 
 .bg-image {
-  background-image: url(/Users/johnnylaidler/studentlifter/src/Resources/Photos/equipment.png);
+	background-image: url('/src/Resources/Photos/equipment.png');
+  color: rgb(79, 38, 38);
 }
