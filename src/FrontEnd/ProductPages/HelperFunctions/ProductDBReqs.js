@@ -21,6 +21,11 @@ export const getProductCards = async (dbName, type) => {
     return cardArray;
 }
 
+export const getProductCardsFiltered = async (dbName, products) => {
+    const cardArray = await convertProductArrayToCardComponents(products, dbName);
+    return cardArray;
+}
+
 
 //Returns a list of JSON products available
 export const getProducts = async (dbName, type) => {

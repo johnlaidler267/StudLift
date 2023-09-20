@@ -3,39 +3,38 @@
 import '../../../Styling/Pages.css'
 
 //IMPORT React components
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 
 //IMPORT Custom components
-import { FilterBar, CardGrid } from '../../../Components/FilterBar/FilterBar'
+import { MensFilterBar } from '../../../Components/FilterBars/MensFilterBar/MensFilterBar'
+import { CardGrid } from '../../../Components/CardGrid/CardGrid'
 
 //IMPORT Helper functions
-import { getProductCards } from '../../../HelperFunctions/ProductDBReqs'
+import { getProductCardsFiltered, getProducts } from '../../../HelperFunctions/ProductDBReqs'
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function MensAll() {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // -> initialize the navigate function to redirect to other pages
+    const [ProductCards, setProductCards] = useState([]);
+    const [Products, setProducts] = useState([]);
+    const [FilteredProducts, setFilteredProducts] = useState([]);
 
-    const navigate = useNavigate();
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    const [ProductCards, setProductCards] = React.useState([]);
-
-    React.useEffect(() => {
-        getProductCards('MensProducts', 'All').then((result) => setProductCards(result));
+    //Get all the products on page load
+    useEffect(() => {
+        getProducts('MensProducts', 'All').then((result) => {
+            setProducts(result)
+            setFilteredProducts(result);
+        });
     }, []);
 
-    const CardGrid = () => {
-        return (
-            <div style={{ width: '100%', padding: '20px' }}>
-                <Row>
-                    {ProductCards.map(Card => (<Col>{Card}</Col>))}
-                </Row>
-            </div>
-        )
-    }
+    //Update the displayed product cards based on the filters applied
+    useEffect(() => {
+        // Fetch new product cards based on the filters
+        getProductCardsFiltered('MensProducts', FilteredProducts).then((result) => setProductCards(result));
+    }, [FilteredProducts]);
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     return (
         <div style={{ width: '100%' }}>
@@ -44,10 +43,10 @@ function MensAll() {
                 <h2 style={{ fontWeight: '500' }}><b>ALL PRODUCTS</b></h2>
             </Card>
             <Card style={{ display: 'flex', flexDirection: 'row', border: 'none', padding: '1em' }}>
-                <FilterBar />
+                <MensFilterBar Products={Products} FilteredProducts={FilteredProducts} setFilteredProducts={setFilteredProducts} setProducts={setProducts} />
             </Card>
             <Card style={{ border: 'none' }}>
-                <CardGrid />
+                <CardGrid ProductCards={ProductCards} />
             </Card>
 
         </div>

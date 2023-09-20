@@ -28,7 +28,7 @@ function Men() {
 
             <Card className='mens-header'>
 
-                <div id='header-div'>
+                <div id='nested-header-div'>
 
                     <div id='header-col-left'>
                         <h1 id='header-title'><b>ELEVATE YOUR FITNESS GAME.</b></h1>

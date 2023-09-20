@@ -1,10 +1,11 @@
+//IMPORT React elements
 import React from 'react';
-import { Card, Container, Row, Col, Button, Dropdown, DropdownButton, Tabs, Tab } from 'react-bootstrap';
+import { Card, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
 
-export const FilterBar = () => {
+export const AccessoriesFilterBar = () => {
     return (
-        <div className="filter-bar" style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-            <h5>FILTERS: </h5>
+        <div className="filter-bar" style={{ display: 'flex', alignItems: 'center', width: '100%', marginLeft: '1.5em' }}>
+            <h5 style={{ marginTop: '0.3em' }}>FILTERS: </h5>
             <DropdownButton
                 id="gender-filter"
                 title="GENDER"

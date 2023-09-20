@@ -3,92 +3,38 @@
 import '../../../Styling/Pages.css'
 
 //IMPORT React elements
-import React from 'react';
-import { Card, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Card } from 'react-bootstrap';
+
+//IMPORT Custom components
+import { MensFilterBar } from '../../../Components/FilterBars/MensFilterBar/MensFilterBar'
+import { CardGrid } from '../../../Components/CardGrid/CardGrid'
 
 //IMPORT Helper funcitons
-import { getProductCards } from '../../../HelperFunctions/ProductDBReqs'
+import { getProductCardsFiltered, getProducts } from '../../../HelperFunctions/ProductDBReqs'
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function MensTops() {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    const [ProductCards, setProductCards] = React.useState([]);
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    React.useEffect(() => {
-        getProductCards('MensProducts', 'Tops').then((result) => setProductCards(result));
+    const [ProductCards, setProductCards] = useState([]);
+    const [Products, setProducts] = useState([]);
+    const [FilteredProducts, setFilteredProducts] = useState([]);
+
+    //Get all the products on page load
+    useEffect(() => {
+        getProducts('MensProducts', 'Tops').then((result) => {
+            setProducts(result)
+            setFilteredProducts(result);
+        });
     }, []);
+
+    //Update the displayed product cards based on the filters applied
+    useEffect(() => {
+        // Fetch new product cards based on the filters
+        getProductCardsFiltered('MensProducts', FilteredProducts).then((result) => setProductCards(result));
+    }, [FilteredProducts]);
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    const FilterBar = () => {
-        return (
-            <div className="filter-bar" style={{ display: 'flex', alignItems: 'center', width: '100%', marginLeft: '1.5em' }}>
-                <h5 style={{ marginTop: '0.3em' }}>FILTERS: </h5>
-                <DropdownButton
-                    id="gender-filter"
-                    title="GENDER"
-                    variant='custom'
-                    className='dropdown-btn'
-                >
-                    <Dropdown.Item eventKey="1">Male</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Female</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">Other</Dropdown.Item>
-                </DropdownButton>
-                <DropdownButton
-                    id="size-filter"
-                    title="SIZE"
-                    variant='custom'
-                    className='dropdown-btn'
-                >
-                    <Dropdown.Item eventKey="1">$0 - $50</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">$50 - $100</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">$100+</Dropdown.Item>
-                </DropdownButton>
-                <DropdownButton
-                    id="color-filter"
-                    variant='custom'
-                    className='dropdown-btn'
-                    title="COLOR"
-                >
-                    <Dropdown.Item eventKey="1">$0 - $50</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">$50 - $100</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">$100+</Dropdown.Item>
-                </DropdownButton>
-                <DropdownButton
-                    id="price-filter"
-                    title="PRICE"
-                    variant='custom'
-                    className='dropdown-btn'
-                >
-                    <Dropdown.Item eventKey="1">$0 - $50</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">$50 - $100</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">$100+</Dropdown.Item>
-                </DropdownButton>
-                <DropdownButton
-                    id="sortby-filter"
-                    title="SORT BY"
-                    variant='custom'
-                    className='dropdown-btn'
-                >
-                    <Dropdown.Item eventKey="1">$0 - $50</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">$50 - $100</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">$100+</Dropdown.Item>
-                </DropdownButton>
-            </div >
-        );
-    };
-
-    const CardGrid = () => {
-        return (
-            <div style={{ width: '50%', padding: '20px' }}>
-                <Row>
-                    <Row>
-                        {ProductCards.map(Card => (<Col>{Card}</Col>))}
-                    </Row>
-                </Row>
-            </div>
-        )
-    }
-
     return (
         <div style={{ width: '100%' }}>
             <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', padding: '4.5em', backgroundColor: '#ECECEC', border: 'none' }}>
@@ -96,10 +42,10 @@ function MensTops() {
                 <h2 style={{ fontWeight: '500' }}><b>T-SHIRTS & TOPS</b></h2>
             </Card>
             <Card style={{ display: 'flex', flexDirection: 'row', border: 'none', padding: '1em' }}>
-                <FilterBar />
+                <MensFilterBar Products={Products} FilteredProducts={FilteredProducts} setFilteredProducts={setFilteredProducts} setProducts={setProducts} />
             </Card>
             <Card style={{ border: 'none' }}>
-                <CardGrid />
+                <CardGrid ProductCards={ProductCards} />
             </Card>
 
         </div>
