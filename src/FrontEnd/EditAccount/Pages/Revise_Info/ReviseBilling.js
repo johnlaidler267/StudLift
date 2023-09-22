@@ -2,7 +2,7 @@
 import '../../Styling/EditAccount.css'
 
 //IMPORT React elements
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Button, Row, Col, Form } from 'react-bootstrap';
 
@@ -11,7 +11,7 @@ import { getUserDetails, updateBillingAddress } from '../../../../BackEnd/common
 
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, firebasedb } from '../../../../BackEnd/firebase/firebase';
+import { auth } from '../../../../BackEnd/firebase/firebase';
 
 const ReviseBilling = () => {
     // initialize the navigate function to redirect to other pages
@@ -19,7 +19,7 @@ const ReviseBilling = () => {
     //================================================================
     // -> store the user logged in in the user variable
 
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     //================================================================
     //-> Pull user details from MongoDB

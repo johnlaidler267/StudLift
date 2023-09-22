@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
-export const MensFilterBar = ({ Products, FilteredProducts, setFilteredProducts, setProducts }) => {
+export const MensFilterBar = ({ Products, FilteredProducts, setFilteredProducts }) => {
     const [activeFilters, setActiveFilters] = useState({
         type: "",
         color: "",

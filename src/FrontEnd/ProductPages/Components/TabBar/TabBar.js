@@ -1,6 +1,6 @@
 //IMPORT react elements
 import React from 'react';
-import { Card, Row, Col, Tabs, Tab } from 'react-bootstrap';
+import { Row, Col, Tabs, Tab } from 'react-bootstrap';
 
 const CardGrid = ({ ProductCards }) => {
     return (
@@ -12,26 +12,26 @@ const CardGrid = ({ ProductCards }) => {
     )
 }
 
-export const TabBar = ({ ProductCards }) => {
+export const TabBar = ({ ProductCards, setActiveTab }) => {
     return (
-        <Tabs defaultActiveKey="all" id="tab-bar" className='mb-3' justify>
-            <Tab eventKey="all" title="ALL (148)" tabClassName="spaced-tabs" onSelect={(eventKey) => handleTabSelection(eventKey, "all")}>
-                <CardGrid ProductCards={ProductCards} />
+        <Tabs defaultActiveKey="All" id="tab-bar" className='mb-3' justify onSelect={(eventKey) => setActiveTab(eventKey)}>
+            <Tab eventKey="All" title="ALL" tabClassName="spaced-tabs">
+                <CardGrid ProductType="All" ProductCards={ProductCards} />
             </Tab>
-            <Tab eventKey="headwear" title="HEADWEAR (20)" tabClassName="spaced-tabs" onSelect={(eventKey) => handleTabSelection(eventKey, "all")}>
-                <CardGrid ProductCards={ProductCards} />
+            <Tab eventKey="Hats" title="HEADWEAR" tabClassName="spaced-tabs">
+                <CardGrid ProductType="Hats" ProductCards={ProductCards} />
             </Tab>
-            <Tab eventKey="bags" title="BAGS (15)" tabClassName="spaced-tabs" onSelect={(eventKey) => handleTabSelection(eventKey, "all")}>
-                <CardGrid ProductCards={ProductCards} />
+            <Tab eventKey="Bags" title="BAGS" tabClassName="spaced-tabs">
+                <CardGrid ProductType="Bags" ProductCards={ProductCards} />
             </Tab>
-            <Tab eventKey="socks" title="SOCKS (90)" tabClassName="spaced-tabs" onSelect={(eventKey) => handleTabSelection(eventKey, "all")}>
-                <CardGrid ProductCards={ProductCards} />
+            <Tab eventKey="Socks" title="SOCKS" tabClassName="spaced-tabs">
+                <CardGrid ProductType="Socks" ProductCards={ProductCards} />
             </Tab>
-            <Tab eventKey="equipment" title="EQUIPMENT (69)" tabClassName="spaced-tabs" onSelect={(eventKey) => handleTabSelection(eventKey, "all")}>
-                <CardGrid ProductCards={ProductCards} />
+            <Tab eventKey="Gloves" title="EQUIPMENT" tabClassName="spaced-tabs">
+                <CardGrid ProductType="Gloves" ProductCards={ProductCards} />
             </Tab>
-            <Tab eventKey="bottles" title="BOTTLES (53)" tabClassName="spaced-tabs">
-                <CardGrid ProductCards={ProductCards} />
+            <Tab eventKey="Bottles" title="BOTTLES" tabClassName="spaced-tabs">
+                <CardGrid ProductType="Bottles" ProductCards={ProductCards} />
             </Tab>
         </Tabs >
     );

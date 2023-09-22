@@ -1,7 +1,12 @@
-// Import necessary modules
+// IMPORT modules
 import express from "express"; // Import Express.js for building the router
 import db from "../db/conn.mjs"; // Import the database connection
+
+//IMPORT Classes
 import UserCart from '../../../FrontEnd/Cart/Classes/UserCart.js'
+import Wishlist from '../../../FrontEnd/Wishlist/Classes/Wishlist.js'
+
+//IMPORT MongoDB ObjectId
 import { ObjectId } from "mongodb"; // Import ObjectId for working with MongoDB IDs
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,7 +52,7 @@ router.post('/register', async (req, res) => {
             First: firstName,
             Last: lastName,
             Gender: gender,
-            Wishlist: [],
+            Wishlist: new Wishlist([], firebase),
             Billing: defaultAddress,
             Shipping: defaultAddress,
             Cards: [defaultCard],
@@ -224,7 +229,7 @@ router.patch('/updateCart/:id', async (req, res) => {
         $set: {
             Cart: req.body
         }
-    };    let collection = await db.collection("Test");
+    }; let collection = await db.collection("Test");
     let result = await collection.updateOne(query, updates);
     res.send(result).status(200);
 });
@@ -245,6 +250,24 @@ router.patch('/updateOrders/:id', async (req, res) => {
     res.send(result).status(200);
 });
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
+//-> Route to update a user's wishlist
+
+router.patch('/updateWishlist/:id', async (req, res) => {
+    let firebaseId = req.params.id;
+    console.log(`The request to update user ${firebaseId}'s WL was recieved`);
+
+    const query = { Firebase: firebaseId };
+    const updates = {
+        $set: {
+            'Wishlist.wishlistItems': req.body
+        }
+    };
+
+    let collection = await db.collection("Test");
+    let result = await collection.updateOne(query, updates);
+    res.send(result).status(200);
+});
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 // Export the router to use it in other parts of your application
 export default router;

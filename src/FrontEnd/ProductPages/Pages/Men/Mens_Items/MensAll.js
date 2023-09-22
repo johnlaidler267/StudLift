@@ -43,7 +43,7 @@ function MensAll() {
                 <h2 style={{ fontWeight: '500' }}><b>ALL PRODUCTS</b></h2>
             </Card>
             <Card style={{ display: 'flex', flexDirection: 'row', border: 'none', padding: '1em' }}>
-                <MensFilterBar Products={Products} FilteredProducts={FilteredProducts} setFilteredProducts={setFilteredProducts} setProducts={setProducts} />
+                <MensFilterBar Products={Products} FilteredProducts={FilteredProducts} setFilteredProducts={setFilteredProducts} />
             </Card>
             <Card style={{ border: 'none' }}>
                 <CardGrid ProductCards={ProductCards} />
