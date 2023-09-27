@@ -13,6 +13,7 @@ import { MdFavorite } from 'react-icons/md'
 
 //IMPORT Helper Functions
 import addWishlistItem from '../../../Wishlist/HelperFunctions/addWishlistItem';
+import addCartItem from '../../../Cart/HelperFunctions/addCartItem';
 
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -29,7 +30,7 @@ export const ProductCard = ({ product, db }) => {
             onMouseLeave={() => setShowCardText(false)}
         >
             <Card.Body>
-                <Button variant='light' id='wishlist-btn' onClick={async ()=> await addWishlistItem(product, user.uid)}><MdFavorite /></Button>
+                <Button variant='light' id='wishlist-btn' onClick={async () => await addWishlistItem(product, user.uid)}><MdFavorite /></Button>
                 <Card.Img id='img' src={product.imageURL} className="product" />
                 <div id='card-body-div'>
                     {showCardText && (
@@ -40,10 +41,10 @@ export const ProductCard = ({ product, db }) => {
                                     <Col>
                                         <Row>
                                             <ButtonGroup>
-                                                <Button variant='light' className='size-btn'>S</Button>
-                                                <Button variant='light' className='size-btn'>M</Button>
-                                                <Button variant='light' className='size-btn'>L</Button>
-                                                <Button variant='light' className='size-btn'>XL</Button>
+                                                <Button onClick={() => addCartItem(product, 'S', user.uid)} variant='light' className='size-btn'>S</Button>
+                                                <Button onClick={() => addCartItem(product, 'M', user.uid)} variant='light' className='size-btn'>M</Button>
+                                                <Button onClick={() => addCartItem(product, 'L', user.uid)} variant='light' className='size-btn'>L</Button>
+                                                <Button onClick={() => addCartItem(product, 'XL', user.uid)} variant='light' className='size-btn'>XL</Button>
                                             </ButtonGroup>
                                         </Row>
                                     </Col>

@@ -31,7 +31,7 @@ const Navbar = () => {
     //=================================================================
 
     //Sets the current user
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     //Sets whether the pop-up cart modal is showing
     const [showPopupBag, setShowPopupBag] = useState(false);

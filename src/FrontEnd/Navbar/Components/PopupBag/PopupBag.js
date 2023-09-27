@@ -32,7 +32,7 @@ export const PopupBag = ({ onClose, firebaseID }) => {
     return (
         <div className="Modal Show">
 
-            <Card style={{ border: "none", padding: "15px", margin: "2px"}}>
+            <Card style={{ border: "none", padding: "15px", margin: "2px" }}>
                 <Row style={{ display: "flex", justifyContent: "center" }}>
                     <Col xs={10}>
                         <h3 style={{ fontSize: "1.7em" }}><HiOutlineShoppingBag className='mb-2' /><b>YOUR BAG</b></h3>
@@ -61,8 +61,8 @@ export const PopupBag = ({ onClose, firebaseID }) => {
 
                 <Card style={{ width: "100%", padding: "5px", border: "none" }}>
                     <Col style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                        <Button onClick={() => navigate('/information')} variant="primary" style={{ width: "100%", margin: "2px" }}>CHECKOUT</Button>
-                        <Button onClick={() => navigate('/cart')} variant="secondary" style={{ width: "100%", margin: "2px" }}>YOUR BAG</Button>
+                        {cart.total != '0.00' && <Button onClick={() => navigate('/information')} variant="primary" style={{ width: "100%", margin: "2px" }}>CHECKOUT</Button>}
+                        {cart.total != '0.00' && <Button onClick={() => navigate('/cart')} variant="secondary" style={{ width: "100%", margin: "2px" }}>YOUR BAG</Button>}
                     </Col>
                 </Card>
 

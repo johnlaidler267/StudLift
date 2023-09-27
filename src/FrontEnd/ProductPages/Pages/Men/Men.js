@@ -9,24 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 
 //IMPORT Photos
-import illustrationMan from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/illustrationMan.png'
 import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingGuy.png'
-import headerGif from '../../../../Resources/Photos/MensHeader.gif';
+import MensHeader from '../../../../Resources/Photos/MensHeader.mp4';
 
-//IMPORT Icons
-import { AiFillStar } from 'react-icons/ai'
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function Men() {
-    const AnchorElement = () => (
-        <a
-            href="https://www.canva.com/design/DAFu9wWoJg0/watch?utm_content=DAFu9wWoJg0&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Sweat it out..
-        </a>
-    );
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // -> initialize the navigate function to redirect to other pages
 
@@ -36,10 +24,11 @@ function Men() {
     return (
         <div className='div-header'>
 
-            <Card className='mens-header'>
-
-                <img src={headerGif} style={{maxHeight: "50rem"}}/>
-                {/* <div id='nested-header-div'>
+            <div id='header-div'>
+                <video src={MensHeader} id='header-video' autoplay="true" loop />
+                <Button id='header-btn'>Shop Now</Button>
+            </div>
+            {/* <div id='nested-header-div'>
 
                     <div id='header-col-left'>
                         <h1 id='header-title'><b>ELEVATE YOUR FITNESS GAME.</b></h1>
@@ -91,7 +80,6 @@ function Men() {
 
                 </div> */}
 
-            </Card>
 
             <div id='shop-items-div'>
                 <Card id='shop-items-bg-card'>

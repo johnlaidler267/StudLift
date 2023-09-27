@@ -1,15 +1,15 @@
-//custom styling
+//IMPORT Custom styling
 import '../Styling/Homepage.css'
 
-//React components
+//IMPORT React components
 import React from 'react';
 import { Card, Button } from 'react-bootstrap'
 
-//Custom components
+//IMPORT Custom components
 import IntroCard from '../Components/IntroCard';
 import ProductWheel from '../Components/ProductWheel.js';
 
-//Photos
+//IMPORT Photos
 import smilingGuy from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingGuy.png'
 import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingWoman.png'
 

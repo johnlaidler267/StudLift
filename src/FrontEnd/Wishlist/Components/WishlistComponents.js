@@ -9,7 +9,14 @@ import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/bean
 import { BsSortDownAlt, BsSortDown } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
 
-export const ProductCard = ({ WishlistItem, Wishlist }) => {
+export const ProductCard = ({ WishlistItem, FilteredWLItems, Wishlist, setWishlistItems, setFilteredWLItems }) => {
+    const handleRemove = (id) => {
+        console.log(`Removing ${id} from wishlist`)
+        Wishlist.removeItem(id)
+        setWishlistItems(Wishlist.getItems())
+        setFilteredWLItems(FilteredWLItems.filter((item) => item.product._ID !== id))
+    }
+
     const id = WishlistItem.product._ID;
     return (
         <Card style={{ border: 'none' }}>
@@ -18,7 +25,7 @@ export const ProductCard = ({ WishlistItem, Wishlist }) => {
                 <div style={{ display: 'flex', flexDirection: 'row', paddingTop: '8px' }}>
                     <Card.Title style={{ paddingTop: '5px', fontSize: '0.98em', marginRight: '1em' }}>{WishlistItem.product._name}  </Card.Title>
                     <Card.Text style={{ fontSize: '1em', whiteSpace: 'nowrap' }}><b>${WishlistItem.product._price} USD</b> {/* Button to remove all items from the wishlist */}
-                        <Button className='remove-all-btn' onClick={() => Wishlist.removeItem(id)}>
+                        <Button className='remove-all-btn' onClick={() => handleRemove(id)}>
                             <FaTrashAlt />
                         </Button>
                     </Card.Text>
@@ -29,48 +36,49 @@ export const ProductCard = ({ WishlistItem, Wishlist }) => {
     )
 }
 
-export const CardGrid = ({ Wishlist, WishlistItems }) => {
+export const CardGrid = ({ Wishlist, FilteredWLItems, setWishlistItems, setFilteredWLItems }) => {
     return (
         <div style={{ width: '100%', padding: '20px' }}>
             <Row>
-                {WishlistItems.map((item) => (<Col xs={3}><ProductCard WishlistItem={item} Wishlist={Wishlist} /></Col>)) || <></>}
+                {FilteredWLItems.map((item) => (<Col xs={3}><ProductCard WishlistItem={item} FilteredWLItems={FilteredWLItems} Wishlist={Wishlist} setWishlistItems={setWishlistItems} setFilteredWLItems={setFilteredWLItems} /></Col>)) || <></>}
             </Row>
         </div>
     )
 }
 
-export function Filter({ WishlistItems, FilteredWLItems, setFilteredWLItems }) {
-    const [sortBy, setSortBy] = useState("low-high");
+export function Filter({ WishlistItems, FilteredWLItems, setFilteredWLItems, setSortBy, sortBy }) {
 
     // Sorting function
     function sortProducts(products, sortBy) {
+        console.log(`Sorting by ${sortBy}`)
         if (sortBy === "low-high") {
-            return products.sort((a, b) => parseInt(a._price) - parseInt(b._price));
+            return products.sort((a, b) => parseInt(a.product._price) - parseInt(b.product._price));
         } else if (sortBy === "high-low") {
-            return products.sort((a, b) => parseInt(b._price) - parseInt(a._price));
+            return products.sort((a, b) => parseInt(b.product._price) - parseInt(a.product._price));
         } else {
-            return products;
+            //sort by recently added
+            return products.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
         }
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //Updates the filtered products based on the active filters state
     useEffect(() => {
-        // Initialize the filtered products with a copy of Products
+        // Initialize the filtered products with a copy of WL Items
         let newFilteredProducts = [...WishlistItems];
 
         // Sort the products based on active filters
         newFilteredProducts = sortProducts(newFilteredProducts, sortBy);
 
-        // Only update state if newFilteredProducts is different from FilteredProducts
-        if (JSON.stringify(newFilteredProducts) !== JSON.stringify(FilteredWLItems)) {
-            setFilteredWLItems(newFilteredProducts);
-        }
+        console.log(`Filtered products: ${JSON.stringify(newFilteredProducts)}`)
+
+        setFilteredWLItems(newFilteredProducts);
+
     }, [sortBy]);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     return (
-        <Form.Select aria-label="sort" className="custom-select" style={{ width: '12em', marginLeft: '30px', border: 'none', fontWeight: '500' }} onSelect={(eventKey) => setSortBy(eventKey)} >
+        <Form.Select aria-label="sort" className="custom-select" style={{ width: '12em', marginLeft: '30px', border: 'none', fontWeight: '500' }} onChange={(e) => setSortBy(e.target.value)} >
             <option value="low-high" ><b>Price: Low to High</b></option>
             <option value="high-low"><b>Price: High to Low <BsSortDown /></b></option>
             <option value="recent"><b>Recently Added</b></option>

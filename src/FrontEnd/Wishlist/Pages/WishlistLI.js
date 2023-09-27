@@ -29,15 +29,17 @@ function WishlistLI() {
     const [loading, setLoading] = useState(true);
     const [wishlistItems, setWishlistItems] = useState([]);
     const [filteredWLItems, setFilteredWLItems] = useState([]);
+    const [sortBy, setSortBy] = useState("low-high");
 
     useEffect(() => {
+        console.log('WishlistLI.js: useEffect() called')
         getWishlist(user.uid).then((wl) => {
             setWishlist(wl);
             setWishlistItems(wl.getItems());
             setFilteredWLItems(wl.getItems());
             setLoading(false);
         });
-    });
+    }, []);
 
     function goBack() {
         window.history.back();
@@ -63,11 +65,11 @@ function WishlistLI() {
             {/* Product Display Card */}
             <Card className='product-display-card'>
                 {/* Filter component */}
-                <Filter WishlistItems={wishlistItems} FilteredWLItems={filteredWLItems} setFilteredWLItems={setFilteredWLItems} />
+                <Filter WishlistItems={wishlistItems} FilteredWLItems={filteredWLItems} setFilteredWLItems={setFilteredWLItems} setSortBy={setSortBy} sortBy={sortBy} />
 
                 <div className='card-grid-div'>
                     {/* CardGrid component */}
-                    <CardGrid Wishlist={wishlist} WishlistItems={filteredWLItems} />
+                    <CardGrid Wishlist={wishlist} FilteredWLItems={filteredWLItems} setWishlistItems={setWishlistItems} setFilteredWLItems={setFilteredWLItems} />
                 </div>
 
                 <div>

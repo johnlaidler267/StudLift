@@ -1,6 +1,5 @@
 class CartItem {
     constructor(product, color, size, itemID, quantity, subtotal) {
-        console.log(`New CartItem created with ${product._name}`)
         this.product = product; // Assuming product is an object
         this.color = color;
         this.size = size;

@@ -55,28 +55,27 @@
 /*----------  Featured products  ----------*/
 
 .featured-products {
+	height: 100%;
+	width: fit-content;
 	margin: 2vw;
 }
 
-.featured-product-card {
-	padding: 1vw;
-	border: none;
-	width: 120%;
-	color: #32393f;
+#featured-prod-car {
+	background-color: black;
+	border: 1px solid darkgray;
 }
 
-.featured-prod-col {
-	padding: 3vw;
+.featured-products img {
+	opacity: 0.5;
 }
-
-.featured-prod-price {
-	display: flex;
-	justify-content: center;
+#featured-prods-caption {
+	color: black;
 }
 
 .view-products-btn {
 	background-color: #32393f;
 	border: none;
+	width: fit-content;
 	margin-top: 1vw;
 }
 

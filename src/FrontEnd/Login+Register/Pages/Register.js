@@ -7,19 +7,18 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../BackEnd/firebase/firebase';
 
 //IMPORT React components
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Container, Button, Form, FloatingLabel, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-import { LoginContext } from '../../../App'
+//IMPORT Helper functions
+import validateRegister from '../HelperFunctions/validateRegister';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /**
  * This component represents the registration form for creating a new user account.
  */
 export default function Register() {
-    const [login, setLogin] = useContext(LoginContext);
-
     // initialize the navigate function to redirect to other pages
     const navigate = useNavigate();
 
@@ -49,15 +48,32 @@ export default function Register() {
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
 
     /**
      * Handle the registration form submission.
      * @param {object} event - The form submission event.
      */
     const handleRegister = async (event) => {
-
         event.preventDefault();
+        setErrors(validateRegister(form));
+        setSubmitting(true);
+    }
 
+    // .................................................................
+
+    //If trying to submit the form, and no errors, then finish the submission
+    useEffect(() => {
+        if (Object.keys(errors).length === 0 && submitting) {
+            finishSubmit();
+        }
+    }, [errors]);
+
+    // .................................................................
+
+    //Handles the firebase authentication and MongoDB database
+    const finishSubmit = async () => {
         try {
             //................................................................
             // -> Firebase authentication
@@ -98,6 +114,7 @@ export default function Register() {
             console.log(error);
         }
     }
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     return (
@@ -117,16 +134,31 @@ export default function Register() {
                         >
                             <Form.Control type="email" placeholder="name@example.com" value={form.email} onChange={(event) => handleFormChange(event.target.value, 'email')} />
                         </FloatingLabel>
+                        {errors.email ? (
+                            <p className="error">
+                                {errors.email}
+                            </p>
+                        ) : null}
 
                         <h9>PASSWORD* </h9>
-                        <FloatingLabel label="Password">
+                        <FloatingLabel label="Password" className="mb-3">
                             <Form.Control type="password" placeholder="Password" value={form.password} onChange={(event) => handleFormChange(event.target.value, 'password')} />
                         </FloatingLabel>
+                        {errors.password ? (
+                            <p className="error">
+                                {errors.password}
+                            </p>
+                        ) : null}
 
                         <h9>CONFIRM PASSWORD* </h9>
-                        <FloatingLabel label="Password">
+                        <FloatingLabel label="Password" className="mb-3">
                             <Form.Control type="password" placeholder="Password" value={form.confirmPassword} onChange={(event) => handleFormChange(event.target.value, 'confirmPassword')} />
                         </FloatingLabel>
+                        {errors.confirmPassword ? (
+                            <p className="error">
+                                {errors.confirmPassword}
+                            </p>
+                        ) : null}
 
                         <h9>GENDER* </h9>
                         <FloatingLabel
@@ -141,6 +173,11 @@ export default function Register() {
                             </Form.Select>
 
                         </FloatingLabel>
+                        {errors.gender ? (
+                            <p className="error">
+                                {errors.gender}
+                            </p>
+                        ) : null}
 
                         <h9>DATE OF BIRTH* </h9>
                         <FloatingLabel
@@ -149,22 +186,37 @@ export default function Register() {
                         >
                             <Form.Control type="date" name='date_of_birth' value={form.dateOfBirth} onChange={(event) => handleFormChange(event.target.value, 'dateOfBirth')} />
                         </FloatingLabel>
+                        {errors.dateOfBirth ? (
+                            <p className="error">
+                                {errors.dateOfBirth}
+                            </p>
+                        ) : null}
 
                         <h9>FIRST NAME* </h9>
                         <FloatingLabel
                             label="First name"
                             className="mb-3"
                         >
-                            <Form.Control placeholder="E.g. John" value={form.firstName} onChange={(event) => handleFormChange(event.target.value, 'firstName')} />
+                            <Form.Control placeholder="E.g. John" value={form.firstName} onChange={(event) => handleFormChange(event.target.value.replace(/\b\w/g, match => match.toUpperCase()), 'firstName')} />
                         </FloatingLabel>
+                        {errors.firstName ? (
+                            <p className="error">
+                                {errors.firstName}
+                            </p>
+                        ) : null}
 
                         <h9>LAST NAME* </h9>
                         <FloatingLabel
                             label="Last name"
                             className="mb-3"
                         >
-                            <Form.Control placeholder="E.g. Smith" value={form.lastName} onChange={(event) => handleFormChange(event.target.value, 'lastName')} />
+                            <Form.Control placeholder="E.g. Smith" value={form.lastName} onChange={(event) => handleFormChange(event.target.value.replace(/\b\w/g, match => match.toUpperCase()), 'lastName')} />
                         </FloatingLabel>
+                        {errors.lastName ? (
+                            <p className="error">
+                                {errors.lastName}
+                            </p>
+                        ) : null}
 
                         <Form.Check
                             type="switch"

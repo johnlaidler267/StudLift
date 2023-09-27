@@ -57,7 +57,7 @@ router.post('/register', async (req, res) => {
             Shipping: defaultAddress,
             Cards: [defaultCard],
             DefaultCardIdx: 0,
-            Cart: new UserCart([], firebase, 0),
+            Cart: new UserCart([], firebase, 0.00),
             Orders: []
         };
 

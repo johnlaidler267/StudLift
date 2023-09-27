@@ -7,7 +7,6 @@ import React from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 
 //IMPORT Images
-import illustrationWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/RunningWoman.png'
 import smilingWoman from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/smilingWoman.png'
 import WomensHeader from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/WomensHeader.mp4'
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,11 +16,12 @@ function Women() {
     return (
         <div className='div-header' >
 
-            <Card className="womens-header">
 
-                <video src={WomensHeader} style={{height:'100%'}} autoplay="true" loop/>
-
-                {/* <div style={{ display: "flex", zIndex: '1', color: 'white', width: '100%' }}>
+            <div id='header-div'>
+                <video src={WomensHeader} id='header-video' autoplay="true" loop />
+                <Button id='header-btn'>Shop Now</Button>
+            </div>
+            {/* <div style={{ display: "flex", zIndex: '1', color: 'white', width: '100%' }}>
 
                     <div style={{ display: "flex", flexDirection: 'column', zIndex: '2' }}>
                         <h1 style={{ fontSize: "5.5em", margin: '0px' }}><b>SWEAT IT OUT, SHINE BRIGHT.</b></h1>
@@ -69,7 +69,6 @@ function Women() {
                     </div>
 
                 </div> */}
-            </Card >
 
             <br />
 
