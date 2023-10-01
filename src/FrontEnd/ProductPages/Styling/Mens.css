@@ -2,79 +2,6 @@
 =                    Header                    =
 =============================================*/
 
-/*----------  Header: Left col  ----------*/
-
-#header-col-left {
-	display: flex;
-	flex-direction: column;
-	z-index: 2;
-}
-
-#header-title {
-	font-size: 4em;
-	margin: 0px;
-}
-
-#header-subtitle {
-	color: white;
-	font-size: 0.8em;
-}
-
-#rating {
-	display: flex;
-}
-
-#newspaper-source {
-	margin-left: 50%;
-}
-
-/* Subdetails (columns within header) */
-
-#header-subdetails-div {
-	display: flex;
-	flex-direction: row;
-	padding: 1em;
-	width: 30em;
-}
-
-/*----------  Header image  ----------*/
-#center-img {
-	width: 34em;
-	height: 50em;
-	z-index: 2;
-	position: absolute;
-	left: 35%;
-	top: -4em;
-}
-
-/*----------  Header: Right col  ----------*/
-#header-col-right {
-	display: flex;
-	flex-direction: column;
-	z-index: 2;
-	width: 28%;
-	margin-left: 22em;
-}
-
-/* Shop Now Card */
-#shopnow-card {
-	margin: 0.9em !important;
-	color: black !important;
-	display: flex !important;
-	flex-direction: column !important;
-	justify-content: center !important;
-	width: 30em !important;
-	padding: 1em !important;
-	border: none !important;
-	z-index: 5 !important;
-	left: -8em !important;
-	top: 5em !important;
-}
-
-.card-title {
-	font-size: 2em;
-}
-
 /*=====  End of Header  ======*/
 
 /*=============================================
@@ -83,36 +10,38 @@
 
 #shop-items-div {
 	width: 100%;
+
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
+	align-items: center;
 }
 
 #shop-items-bg-card {
 	width: 100%;
+
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	justify-content: center;
 	border: none;
+	background-color: transparent;
 }
 
 #shop-items-card {
-	width: 90%;
-	padding: 10px;
 	background-color: transparent;
 	border: none;
 }
+
 /*----------  The Essentials Card  ----------*/
 
 #essentials-card {
 	width: 100%;
-	padding-left: 10em;
 	display: flex;
 	justify-content: center;
-	align-items: start;
-	height: 20em;
 	background-color: #32393f;
 	color: white;
-	z-index: 5;
+}
+
+#essentials-card .card-title {
+	font-size: 2em;
 }
 
 #essentials-card-img {

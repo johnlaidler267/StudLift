@@ -28,65 +28,15 @@ function Men() {
                 <video src={MensHeader} id='header-video' autoplay="true" loop />
                 <Button id='header-btn'>Shop Now</Button>
             </div>
-            {/* <div id='nested-header-div'>
-
-                    <div id='header-col-left'>
-                        <h1 id='header-title'><b>ELEVATE YOUR FITNESS GAME.</b></h1>
-                        <p id='header-subtitle'><b>Get ready to <span style={{ color: 'white' }}>elevate your workout </span> with our <span style={{ color: 'white' }}>top-quality gym clothes</span> for men.</b></p>
-
-                        <br />
-
-                        <div id='header-subdetails-div'>
-                            <Card className='text-column' >
-                                <h3><b>Sweat it out, shine bright.</b></h3>
-                                <p>Get ready to elevate your workout game with our top-quality gym clothes for men.</p>
-                            </Card>
-
-                            <Card className='text-column'>
-                                <h3><b>Sweat it out, shine bright.</b></h3>
-                                <p>Get ready to elevate your workout game with our top-quality gym clothes for men.</p>
-                            </Card>
-                            <Card className='text-column'>
-                                <h3><b>Sweat it out, shine bright.</b></h3>
-                                <p>Get ready to elevate your workout game with our top-quality gym clothes for men.</p>
-                            </Card>
-                        </div>
-
-                        <br></br>
-
-                        <p id='rating'><AiFillStar className='star' /><AiFillStar className='star' /><AiFillStar className='star' /><AiFillStar className='star' /><AiFillStar className='star' /></p>
-                        <h3>"The only mens clothing and lifestyle brand you'll ever want."</h3 >
-                        <p id='newspaper-source'>- The New Yorker</p>
-
-                    </div>
-
-                    <Card.Img src={illustrationMan} id='center-img' />
-
-                    <div id='header-col-right'>
-                        <h3><b>Work Hard, turn heads.</b></h3>
-                        <p>Elevate your gym game with our fashionable and functional women's workout wear.</p>
-                        <br />
-                        <h3><b>Work Hard, turn heads.</b></h3>
-                        <p>Elevate your gym game with our fashionable and functional women's workout wear.</p>
-                        <br />
-                        <br />
-                        <br />
-                        <Card id='shopnow-card'>
-                            <h3 className='card-title'><b>Get the Support You Need.</b></h3>
-                            <p>Welcome to our women's workout wear collection! Here at [company name], we believe that feeling confident and comfortable in your gym clothes is key to a successful workout. That's why we've carefully curated a selection of stylish and functional pieces that will help you feel your best while breaking a sweat. From leggings and sports bras to tank tops and jackets, we've got everything you need to feel empowered and ready to tackle any workout. </p>
-                            <Button variant='dark'>Shop Now</Button>
-                        </Card>
-                    </div>
-
-                </div> */}
 
 
             <div id='shop-items-div'>
                 <Card id='shop-items-bg-card'>
+
                     <Card id='shop-items-card'>
 
                         <Row>
-                            <Card id='essentials-card'>
+                            <Card id='essentials-card' className='mb-3'>
                                 <Card.Title className='card-title'><b>THE ESSENTIALS</b></Card.Title>
                                 <p>From training to rest day</p>
                                 <br />
@@ -95,35 +45,37 @@ function Men() {
                             </Card>
                         </Row>
 
-                        <br />
 
-                        <Row xs={1} md={2} className="g-4">
+                        <Row xs={1} md={2} className='g-4'>
                             <Col>
                                 <Card className='tile'>
                                     <Card.Title>BOTTOMS & JOGGERS</Card.Title>
+                                    <p>Shop the latest mens bottoms.</p>
                                     <br />
-                                    <Button href='mens-pants' variant='dark' className='shop-btn'>Shop</Button>
+                                    <Button href='mens-pants' variant='dark' className='shop-btn'>Shop<span className='px-2'>👖</span></Button>
                                 </Card>
                             </Col>
                             <Col>
                                 <Card className='tile'>
                                     <Card.Title>T-SHIRTS & TOPS</Card.Title>
+                                    <p>Shop the latest mens tops.</p>
                                     <br />
-                                    <Button href='mens-tops' variant='dark' className='shop-btn'>Shop</Button>
+                                    <Button href='mens-tops' variant='dark' className='shop-btn'>Shop<span className='px-2'>👕</span></Button>
                                 </Card>
                             </Col>
                             <Col>
                                 <Card className='tile'>
                                     <Card.Title>SHORTS</Card.Title>
+                                    <p>Shop the latest mens shorts.</p>
                                     <br />
-                                    <Button href='mens-shorts' variant='dark' className='shop-btn'>Shop</Button>
+                                    <Button href='mens-shorts' variant='dark' className='shop-btn'>Shop <span className='px-2'>🩳</span> </Button>
                                 </Card>
                             </Col>
                             <Col>
                                 <Card className='tile'>
                                     <Card.Title>VIEW ALL</Card.Title>
                                     <br />
-                                    <Button href='mens-all' variant='dark' className='shop-btn'>Shop</Button>
+                                    <Button href='mens-all' variant='dark' className='shop-btn'>Shop <span className='px-2'>♾️</span></Button>
                                 </Card>
                             </Col>
                         </Row>

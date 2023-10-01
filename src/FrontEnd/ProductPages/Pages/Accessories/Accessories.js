@@ -33,7 +33,7 @@ function Accessories() {
     //Update the displayed product cards based on the filters applied
     useEffect(() => {
         // Fetch new product cards based on the filters
-        getProductCardsFiltered('MensProducts', FilteredProducts).then((result) => setProductCards(result));
+        getProductCardsFiltered('Accessories', FilteredProducts).then((result) => setProductCards(result));
     }, [FilteredProducts]);
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

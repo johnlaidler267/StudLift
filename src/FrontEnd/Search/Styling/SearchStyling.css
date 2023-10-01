@@ -8,11 +8,18 @@
 	border: none;
 }
 
+#search-results-card .col {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	flex-grow: 0;
+}
+
 /* SEARCH ITEMS */
 
 #search-item-card {
 	width: 15rem;
-	margin: 1rem;
 }
 
 #search-item-img {

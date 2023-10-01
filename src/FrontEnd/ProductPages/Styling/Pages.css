@@ -23,7 +23,7 @@ product:hover + div {
 
 #header-btn {
 	position: absolute;
-	top: 75%;
+	top: 55%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 1;
@@ -59,7 +59,7 @@ product:hover + div {
 }
 
 #header-div {
-	width: 95%;
+	width: 100%;
 	margin: 1rem;
 }
 
@@ -77,26 +77,26 @@ product:hover + div {
 	border: none;
 }
 
-h3 {
-	font-size: 1.2em;
-}
-
 p {
 	font-size: 0.8em;
 }
 
 .tile {
-	padding: 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 20em;
-	background-color: #1e2225;
+	background: linear-gradient(#1e2225, rgb(17, 16, 16));
 	color: white;
+	margin: 0.5em;
+}
+
+.tile .card-title {
+	font-size: 1.5em;
 }
 
 .tile-w {
-	padding: 5px;
+	padding: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

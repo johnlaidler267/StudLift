@@ -19,8 +19,12 @@ h6 {
 	font-family: 'Sunset Gothic', sans-serif, 'Courier New', Courier, monospace;
 }
 
-body {
+.bg-image {
 	font-family: sans-serif;
-	background: url('./Resources/Photos/equipment.png') repeat 0 0;
+	background-color: #dbdbd9;
 	z-index: 2;
+}
+
+* {
+	border: 1px solid red;
 }

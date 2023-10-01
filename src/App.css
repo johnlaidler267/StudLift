@@ -3,8 +3,3 @@ body {
 	padding: 0;
 	background-image: url('/src/Resources/Photos/equipment.png');
 }
-
-.bg-image {
-	background-image: url('/src/Resources/Photos/equipment.png');
-	color: rgb(79, 38, 38);
-}

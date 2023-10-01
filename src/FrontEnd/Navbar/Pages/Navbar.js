@@ -52,11 +52,10 @@ const Navbar = () => {
         <>
             <Nav className='navbar-cstm'>
 
-                <NavMenu className='nav-menu'>
+                <NavMenu className='nav-menu-left'>
                     <NavLink to="/" activeStyle>
                         <img src={logo} className='logo'></img>
                     </NavLink>
-                    <br></br>
                     <NavLink to="/Womens" activeStyle>
                         Women
                     </NavLink>
@@ -69,7 +68,6 @@ const Navbar = () => {
                 </NavMenu>
 
                 <NavMenu style={{
-                    width: "100% ",
                     backgroundColor: 'transparent'
                 }}>
                     < NavLink to='/search' onClick={() => navigate('/search')} activeStyle>

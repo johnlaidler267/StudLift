@@ -2,16 +2,11 @@ html {
 	box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-	box-sizing: inherit;
-}
-
 .Overlay.Show {
 	display: block;
 }
 
+/* MODAL */
 .Modal {
 	position: fixed;
 	bottom: -150vh;
@@ -39,6 +34,7 @@ html {
 	padding: 3px;
 }
 
+/* FOOTER */
 .footer-header {
 	font-size: 0.9em;
 	font-weight: 700;
@@ -58,16 +54,9 @@ html {
 .navbar-cstm {
 	display: flex !important;
 	flex-direction: row !important;
-	width: 100vw !important;
+	width: 100% !important;
 	justify-content: space-between !important;
 	background-color: #1f3140 !important;
-}
-
-.nav-menu {
-	padding-left: 5%;
-	background-color: transparent;
-	width: 50%;
-	margin-right: 50%;
 }
 
 .profile-pic {

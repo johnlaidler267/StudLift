@@ -195,17 +195,13 @@ const PrettoSlider = styled(Slider)({
 });
 
 function ViewItem() {
-    const [user, loading] = useAuthState(auth);
+    const user = useAuthState(auth);
 
     // Get the productId, dbName from the URL parameter
     const { productId, dbName } = useParams();
-
     const [product, setProduct] = useState({}); // State for product object
-
     const [gender, setGender] = useState("");
-
     const [uppercaseName, setUppercaseName] = useState("")
-
     const [color, setColor] = useState("")
     const [size, setSize] = useState(''); // Initialize the size state as an empty string
 
@@ -252,7 +248,7 @@ function ViewItem() {
     return (
         <div>
             <Card id='view-item-card'>
-                <p>{<Link to={`/`}>Home</Link>} / {<Link to={`/${gender}`}>{gender}</Link>} / {product.name}</p>
+                <p>{<Link to={`/ `}>Home</Link>} / {<Link to={` / ${gender}`}>{gender}</Link>} / {product.name}</p>
 
                 <Row>
 

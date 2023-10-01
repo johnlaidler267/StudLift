@@ -21,6 +21,7 @@ import { auth } from '../../../../BackEnd/firebase/firebase';
 
 //Takes a single Product object & returns a ProductCard component (HELPER)
 export const ProductCard = ({ product, db }) => {
+    console.log(`ProductCard: ${JSON.stringify(product._ID)} and ${db}`)
     const [user] = useAuthState(auth);
     const [showCardText, setShowCardText] = useState(false);
 

@@ -10,6 +10,7 @@ import { AiFillInstagram, AiFillMail, AiFillTwitterCircle, AiOutlineStar } from 
 
 //IMPORT Photos
 import intro from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/intro.png';
+import introSub from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/introSub.png';
 
 //IMPORT Helper functions
 import { getProducts } from '../../ProductPages/HelperFunctions/ProductDBReqs';
@@ -83,10 +84,13 @@ function IntroCard(props) {
                     </Card>
                     <br />
                 </Col>
-                <Col xs={12} md={8}>
-                    <Card>
+                <Col>
+                    <div>
                         <Card.Img variant="right" src={intro} id='intro-img' />
-                    </Card>
+                        <Card.Img variant="right" src={introSub} id='intro-img' className='my-3' />
+                    </div>
+
+
                 </Col>
             </Row>
         </Card>
