@@ -48,11 +48,7 @@ export const OrderGrid = ({ orders }) => {
     console.log(`The orders are ${typeof (orders)}`)
     return (
         <div style={{ width: '100%', padding: '20px' }}>
-            <Row>
-                <Col>
-                    <RiOrderPlayFill />
-                </Col>
-            </Row>
+
             <Row>
                 {orders.map(order => (<Col><Order order={order} /></Col>))}
             </Row>

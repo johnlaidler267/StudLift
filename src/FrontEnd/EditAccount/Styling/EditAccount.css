@@ -132,7 +132,31 @@
 .order-history-col {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: start;
+}
+
+#no-orders-title {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+#no-orders-img {
+	width: 50%;
+}
+
+.no-orders-card {
+	font-size: 1.1em;
+	border: none;
+	width: fit-content;
+	height: fit-content;
+	font-family: 'Sunset Gothic';
+}
+
+#no-orders-btn {
+	border-radius: 20px;
+	background-color: black;
+	padding: 0.75em;
+	border: none;
 }
 
 .account-details-header-div {

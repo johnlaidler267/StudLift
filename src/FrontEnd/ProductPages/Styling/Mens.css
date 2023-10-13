@@ -10,7 +10,6 @@
 
 #shop-items-div {
 	width: 100%;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,43 +17,48 @@
 
 #shop-items-bg-card {
 	width: 100%;
-
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	border: none;
 	background-color: transparent;
 }
 
 #shop-items-card {
+	width: 90%;
 	background-color: transparent;
 	border: none;
 }
 
 /*----------  The Essentials Card  ----------*/
 
+#essentials-card-container {
+	position: relative;
+	margin-top: 1em;
+}
+
 #essentials-card {
 	width: 100%;
-	display: flex;
-	justify-content: center;
-	background-color: #32393f;
+	height: 30rem;
+	background: linear-gradient(#293642, #203242);
 	color: white;
 }
 
 #essentials-card .card-title {
-	font-size: 2em;
+	font-size: 2.9rem;
 }
 
 #essentials-card-img {
-	width: 20em;
-	height: 20em;
+	width: 30em;
+	height: 30em;
 	z-index: 3;
+
 	position: absolute;
-	left: 25em;
-	top: 0em;
+	left: 30%;
+	bottom: 0;
 }
 
 .shop-btn {
-	border-radius: 20px;
 	padding: 1em;
 }
 

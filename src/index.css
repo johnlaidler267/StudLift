@@ -4,11 +4,7 @@
 	/* Add additional font formats as necessary */
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-Card.Title {
+.card {
 	font-family: 'Sunset Gothic', sans-serif, 'Courier New', Courier, monospace;
 }
 
@@ -23,8 +19,4 @@ h6 {
 	font-family: sans-serif;
 	background-color: #dbdbd9;
 	z-index: 2;
-}
-
-* {
-	border: 1px solid red;
 }

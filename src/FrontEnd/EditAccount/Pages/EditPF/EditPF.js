@@ -8,6 +8,7 @@ import Divider from '@mui/material/Divider';
 
 //Photos
 import header from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/accountdetails.png';
+import noorders from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/noorders.png';
 
 //Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -20,6 +21,9 @@ import { LoginContext } from '../../../../App';
 
 //Helper functions
 import { getUserDetails } from '../../../../BackEnd/commonFunctions';
+
+//Icons
+import { AiOutlineFrown } from 'react-icons/ai';
 
 function Main() {
     // =================================================================
@@ -59,11 +63,29 @@ function Main() {
                 setUserDetails(data);
                 setDefaultCard(data.Cards[data.DefaultCardIdx])
                 setOrders(data.Orders)
-                console.log(`The orders retrieved in the parent ${data.Orders}`)
             });
         }
     }, []);
     //================================================================
+
+    const NoOrdersCard = () => {
+        return (
+            <Card className='no-orders-card'>
+                <Card.Body>
+                    <Card.Title id='no-orders-title'>No Orders <AiOutlineFrown className='mx-2' /></Card.Title>
+                    <Card.Text>
+                        You currently have no orders to show.
+                        Find products you like!
+                    </Card.Text>
+                    <Card.Img id='no-orders-img' src={noorders} />
+                    
+                </Card.Body>
+                <div className='w-100 d-flex justify-content-start'>
+                    <Button id='no-orders-btn' onClick={() => navigate("/")}>Go shopping!</Button>
+                </div>
+            </Card>
+        )
+    }
 
 
     return (
@@ -147,8 +169,8 @@ function Main() {
 
                     </Col>
 
-                    <Col xs={9} className='order-history-col'>
-                        <div>
+                    <Col className='order-history-col'>
+                        <div className='w-100'>
                             <div className='account-details-header-div'>
                                 <Card.Img src={header} className='account-details-header'></Card.Img>
                             </div>
@@ -156,6 +178,9 @@ function Main() {
                             <div>
                                 <OrderGrid orders={orders} />
                             </div >
+                            <div className='d-flex w-100 justify-content-center'>
+                                {orders.length == 0 && (<NoOrdersCard />)}
+                            </div>
                         </div >
                     </Col >
 

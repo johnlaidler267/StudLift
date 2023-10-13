@@ -101,9 +101,9 @@ const Navbar = () => {
                         </NavLink>
                     )}
 
-                    <NavLink onClick={() => setShowPopupBag(!showPopupBag)} activeStyle>
+                    {user && (<NavLink onClick={() => setShowPopupBag(!showPopupBag)} activeStyle>
                         <AiOutlineShoppingCart />
-                    </NavLink>
+                    </NavLink>)}
                 </NavMenu>
                 {showPopupBag && <PopupBag onClose={() => setShowPopupBag(false)} firebaseID={user.uid} />}
             </Nav >
