@@ -2,43 +2,14 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
 
-//Photos
-import Beanie from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/beanie.webp'
-
 //Icons
-import { BsSortDownAlt, BsSortDown } from 'react-icons/bs'
+import { BsSortDown } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
 
-export const ProductCard = ({ WishlistItem, FilteredWLItems, Wishlist, setWishlistItems, setFilteredWLItems }) => {
-    const handleRemove = (id) => {
-        console.log(`Removing ${id} from wishlist`)
-        Wishlist.removeItem(id)
-        setWishlistItems(Wishlist.getItems())
-        setFilteredWLItems(FilteredWLItems.filter((item) => item.product._ID !== id))
-    }
-
-    const id = WishlistItem.product._ID;
-    return (
-        <Card style={{ border: 'none' }}>
-            <Card.Body>
-                <Card.Img src={WishlistItem.imageURL} style={{ width: '100%' }}></Card.Img>
-                <div style={{ display: 'flex', flexDirection: 'row', paddingTop: '8px' }}>
-                    <Card.Title style={{ paddingTop: '5px', fontSize: '0.98em', marginRight: '1em' }}>{WishlistItem.product._name}  </Card.Title>
-                    <Card.Text style={{ fontSize: '1em', whiteSpace: 'nowrap' }}><b>${WishlistItem.product._price} USD</b> {/* Button to remove all items from the wishlist */}
-                        <Button className='remove-all-btn' onClick={() => handleRemove(id)}>
-                            <FaTrashAlt />
-                        </Button>
-                    </Card.Text>
-                </div>
-                <Card.Text style={{ color: 'gray', fontSize: '0.8em' }}>{WishlistItem.color}</Card.Text>
-            </Card.Body>
-        </Card >
-    )
-}
-
+// Displays the full grid of wishlist items
 export const CardGrid = ({ Wishlist, FilteredWLItems, setWishlistItems, setFilteredWLItems }) => {
     return (
-        <div style={{ width: '100%', padding: '20px' }}>
+        <div className='w-100' style={{ padding: '20px' }}>
             <Row>
                 {FilteredWLItems.map((item) => (<Col xs={3}><ProductCard WishlistItem={item} FilteredWLItems={FilteredWLItems} Wishlist={Wishlist} setWishlistItems={setWishlistItems} setFilteredWLItems={setFilteredWLItems} /></Col>)) || <></>}
             </Row>
@@ -46,11 +17,71 @@ export const CardGrid = ({ Wishlist, FilteredWLItems, setWishlistItems, setFilte
     )
 }
 
+// Displays a singular wishlist product as a card
+export const ProductCard = ({ WishlistItem, FilteredWLItems, Wishlist, setWishlistItems, setFilteredWLItems }) => {
+    const id = WishlistItem.product._ID;
+
+    const handleRemove = (id) => {
+        Wishlist.removeItem(id)
+        setWishlistItems(Wishlist.getItems())
+        setFilteredWLItems(FilteredWLItems.filter((item) => item.product._ID !== id))
+    }
+
+    const Img = () => {
+        const url = WishlistItem.imageURL
+        return (
+            <Card.Img src={url} className='w-100'></Card.Img>
+        )
+    }
+
+    const Title = () => {
+        const name = WishlistItem.product._name
+        return (
+            <Card.Title style={{ paddingTop: '5px', fontSize: '0.98em', marginRight: '1em' }}>{name}</Card.Title>
+        )
+    }
+
+    const Color = () => {
+        const color = WishlistItem.color
+        return (
+            <Card.Text style={{ color: 'gray', fontSize: '0.8em' }}>{color}</Card.Text>
+        )
+    }
+
+    const Price = () => {
+        const price = WishlistItem.product._price;
+        return (
+            <Card.Text style={{ fontSize: '1em', whiteSpace: 'nowrap' }}><b>${price} USD</b></Card.Text>
+        )
+    }
+
+    const RemoveBtn = () => {
+        return (
+            <Button className='remove-all-btn' onClick={() => handleRemove(id)}>
+                <FaTrashAlt />
+            </Button>
+        )
+    }
+
+    return (
+        <Card className='border-0'>
+            <Img />
+            <Card.Body>
+                <div className='d-flex flex-row' style={{ paddingTop: '8px' }}>
+                    <Title />
+                    <Price />
+                    <RemoveBtn />
+                </div>
+                <Color />
+            </Card.Body>
+        </Card >
+    )
+}
+
 export function Filter({ WishlistItems, FilteredWLItems, setFilteredWLItems, setSortBy, sortBy }) {
 
     // Sorting function
     function sortProducts(products, sortBy) {
-        console.log(`Sorting by ${sortBy}`)
         if (sortBy === "low-high") {
             return products.sort((a, b) => parseInt(a.product._price) - parseInt(b.product._price));
         } else if (sortBy === "high-low") {
@@ -69,8 +100,6 @@ export function Filter({ WishlistItems, FilteredWLItems, setFilteredWLItems, set
 
         // Sort the products based on active filters
         newFilteredProducts = sortProducts(newFilteredProducts, sortBy);
-
-        console.log(`Filtered products: ${JSON.stringify(newFilteredProducts)}`)
 
         setFilteredWLItems(newFilteredProducts);
 

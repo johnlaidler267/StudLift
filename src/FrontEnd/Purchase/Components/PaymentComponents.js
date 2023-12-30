@@ -3,11 +3,29 @@ import '../Styling/Payment.css'
 
 //IMPORT React elements
 import React, { useState } from 'react';
-import { Card, Row, Col, Form, Accordion, InputGroup} from 'react-bootstrap'
+import { Card, Row, Col, Form, Accordion, InputGroup } from 'react-bootstrap'
+
+//IMPORT Context
+import { usePaymentContext } from '../Contexts/PaymentContext';
+// import { useUserInfoContext } from '../../Contexts/UserInfoContext'
+// import { useCartContext } from '../../Contexts/CartContext'
+// import { useCheckoutContext } from '../../CheckoutContext'
 
 //IMPORT Icons
 import { AiFillLock, AiFillQuestionCircle } from 'react-icons/ai'
 
+const paymentContext = usePaymentContext();
+const { form, setForm, setSameAsShipping, handlePayNow } = paymentContext;
+
+// TODO: Implement context below:
+// const cartContext = useCartContext();
+// const { cart, items } = cartContext;
+
+// const userContext = useUserInfoContext();
+// const {cards, }
+
+// const checkoutContext = useCheckoutContext();
+// const { email, shippingAddress, shippingMethod, shippingMethodDisplay } = checkoutContext;
 
 export const UserLICreditCardForm = ({ cards }) => {
     const [activeCard, setActiveCard] = useState({});
@@ -179,4 +197,72 @@ export const BillingForm = ({ form, setForm, setSameAsShipping }) => {
             </Card >
         </div >
     );
+}
+
+export const ShippingDetails = ({ navigate, email, shippingAddress, shippingMethodDisplay }) => {
+    return (<div className="container-center">
+        <Card className="card-border">
+            <Row>
+                <Col xs={2}>
+                    <p className="subtext-size subtext-color">Contact</p>
+                </Col>
+                <Col xs={8}>
+                    <p className="subtext-size">{email}</p>
+                </Col>
+                <Col xs={2}>
+                    <a onClick={() => navigate('/information')} className="subtext-size">Change</a>
+                </Col>
+            </Row>
+            <Divider />
+            <Row style={{ paddingTop: "1em" }}>
+                <Col xs={2}>
+                    <p className="subtext-size subtext-color">Ship to</p>
+                </Col>
+                <Col xs={8}>
+                    <p className="subtext-size">{shippingAddress}</p>
+                </Col>
+                <Col xs={2}>
+                    <a onClick={() => navigate('/information')} className="subtext-size">Change</a>
+                </Col>
+            </Row>
+            <Row style={{ paddingTop: "1em" }}>
+                <Col xs={2}>
+                    <p className="subtext-size subtext-color">Method</p>
+                </Col>
+                <Col xs={8}>
+                    <p className="subtext-size">{shippingMethodDisplay}</p>
+                </Col>
+                <Col xs={2}>
+                    <a onClick={() => navigate('/shipping')} className="subtext-size">Change</a>
+                </Col>
+            </Row>
+        </Card>
+    </div>)
+}
+
+export const Navigate = ({ navigate, handlePayNow }) => {
+   return (<div className="container-center">
+        <div className='button-row'>
+            <Button className='direction-btn' onClick={() => navigate('/shipping')} type="submit">
+                <IoIosArrowDropleft className='arrow' /> Return to shipping
+            </Button>
+            <Button className='direction-btn variant-dark' onClick={() => handlePayNow()} variant="dark" type="submit">
+                <b>PAY NOW <IoIosArrowDroprightCircle className='arrow' /></b>
+            </Button>
+        </div>
+    </div>
+    )
+}
+
+export const SaveInfo = () => {
+    return (
+        <Container className="container-center">
+            <Form.Check
+                type="switch"
+                id="custom-switch"
+                label="Save my information for a faster checkout"
+                style={{ marginRight: "10px" }}
+            />
+        </Container>
+    )
 }

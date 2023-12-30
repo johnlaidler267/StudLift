@@ -2,14 +2,14 @@
 =                 Shop Items                  =
 =============================================*/
 
-#shop-items-div {
+#shop-items-div-w {
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-#shop-items-bg-card {
+#shop-items-bg-card-w {
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -18,7 +18,7 @@
 	background-color: transparent;
 }
 
-#shop-items-card {
+#shop-items-card-w {
 	width: 90%;
 	background-color: transparent;
 	border: none;
@@ -26,15 +26,15 @@
 
 /*----------  The Essentials Card  ----------*/
 
-#essentials-card-container {
+#essentials-card-container-w {
 	position: relative;
 	margin-top: 1em;
 }
 
-#essentials-card {
+#essentials-card-w {
 	width: 100%;
 	height: 30rem;
-	background: linear-gradient(#293642, #203242);
+	background-color: #cdb0c0;
 	color: white;
 	padding-left: 10em;
 	display: flex;
@@ -42,11 +42,11 @@
 	align-items: start;
 }
 
-#essentials-card .card-title {
+#essentials-card-w .card-title {
 	font-size: 2.9rem;
 }
 
-#essentials-card-img {
+#essentials-card-img-w {
 	width: 30em;
 	height: 30em;
 	z-index: 3;
@@ -63,19 +63,19 @@
 /*---------- Product Tiles  ----------*/
 
 /* Shop particular item card (e.g. joggers) */
-.product-tiles-container {
+.product-tiles-container-w {
 	position: relative;
 	display: flex;
 	justify-content: space-between;
 }
 
-#product-tiles-bg-div {
+#product-tiles-bg-div-w {
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 10%;
 	bottom: 10%; /* Set the height of the backdrop as needed */
-	background-color: rgb(80, 82, 90); /* Adjust the background color and opacity */
+	background-color: #b0c3d5; /* Adjust the background color and opacity */
 	z-index: 0;
 	border-radius: 10px;
 }

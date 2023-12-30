@@ -34,46 +34,73 @@ function Cart() {
         fetchUserCart(user.uid).then((cart) => {
             setBagItems(cart.cartItems);
             setCart(cart);
-            console.log(`The current cart is ${JSON.stringify(cart)}`)
         });
     });
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    const Checkout = () => {
+        return (
+            <div className='w-80 d-flex justify-content-end' style={{padding: '10px' }}>
+                <img src={Cards} style={{ width: '15%', marginRight: '70%' }}></img>
+                <Button onClick={() => navigate('/information')} style={{ width: '15em' }}>CHECKOUT</Button >
+            </div>
+        )
+    }
+
+    const CartHeader = () => {
+        return (
+            <Card.Header >
+                <Row>
+                    <Col xs={8}>
+                        <p>ITEM</p>
+                    </Col>
+                    <Col xs={2} className='center'>
+                        <p>QUANTITY</p>
+                    </Col>
+                    <Col xs={2} className='center'>
+                        <p>SUBTOTAL</p>
+                    </Col>
+                </Row>
+            </Card.Header>
+        )
+    }
+
+    const CartItems = () => {
+        return (
+            <Card.Body>
+                <ProductList bagItems={bagItems} cart={cart} />
+            </Card.Body>
+        )
+    }
+
+    const CartTotal = () => {
+        return (
+            <Card.Footer style={{ backgroundColor: 'white' }}>
+                <Row>
+                    <Col xs={10}>
+                        <Button href='mens-all' variant='dark'>Continue Shopping</Button>
+                    </Col>
+                    <Col xs={2}>
+                        <p><b>TOTAL <span style={{ marginLeft: '20px' }}>${cart.total} USD</span></b></p>
+                    </Col>
+                </Row>
+            </Card.Footer>
+        )
+    }
+
+    const CartLabel = () => {
+        return (<h3 style={{ marginTop: '5%', marginBottom: '1%' }}>SHOPPING BAG</h3>);
+    }
+
     return (
-        <div style={{ width: '100%' }}>
-            <Card className='center' style={{ alignItems: 'center', padding: '10px', border: 'none' }}>
-                <h3 style={{ marginTop: '5%', marginBottom: '1%' }}>SHOPPING BAG</h3>
-                <Card style={{ width: '80%' }}>
-                    <Card.Header >
-                        <Row>
-                            <Col xs={8}>
-                                <p>ITEM</p>
-                            </Col>
-                            <Col xs={2} className='center'>
-                                <p>QUANTITY</p>
-                            </Col>
-                            <Col xs={2} className='center'>
-                                <p>SUBTOTAL</p>
-                            </Col>
-                        </Row>
-                    </Card.Header>
-                    <Card.Body>
-                        <ProductList bagItems={bagItems} cart={cart} />
-                    </Card.Body>
-                    <Card.Footer style={{ backgroundColor: 'white' }}>
-                        <Row>
-                            <Col xs={10}>
-                                <Button href='mens-all' variant='dark'>Continue Shopping</Button>
-                            </Col>
-                            <Col xs={2}>
-                                <p><b>TOTAL <span style={{ marginLeft: '20px' }}>${cart.total} USD</span></b></p>
-                            </Col>
-                        </Row>
-                    </Card.Footer>
+        <div className='w-100'>
+            <Card className='b-0 center' style={{ padding: '10px' }}>
+                <CartLabel/>
+                <Card className='w-80'>
+                    <CartHeader/>
+                    <CartItems/>
+                    <CartTotal/>
                 </Card>
-                <div style={{ width: '80%', display: 'flex', justifyContent: 'end', padding: '10px' }}>
-                    <img src={Cards} style={{ width: '15%', marginRight: '70%' }}></img>
-                    <Button onClick={() => navigate('/information')} style={{ width: '15em' }}>CHECKOUT</Button >
-                </div>
+                <Checkout/>
                 <br />
                 <br />
                 <br />

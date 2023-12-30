@@ -1,0 +1,81 @@
+/* Express Checkout */
+.express-checkout {
+  display: flex;
+  justify-content: center;
+}
+
+.express-checkout-content {
+  width: 90%;
+}
+
+.express-checkout-card {
+  padding: 5px;
+  border: none;
+}
+
+.express-checkout-row {
+  width: 100%;
+}
+
+.express-checkout-button {
+  width: 60%;
+  border: none;
+  margin: 5px;
+}
+
+.express-checkout-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* Main form component */
+.info-container {
+  max-width: none;
+  width: 101%;
+  height: 900px;
+}
+
+.info-card {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.info-row {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.checkout-timeline {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.direction-btn {
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+}
+
+.terms {
+  display: flex;
+  justify-content: center;
+}
+
+.terms p {
+  font-size: 12px;
+}

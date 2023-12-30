@@ -103,24 +103,6 @@ p {
 
 /* Shop Items */
 
-/* Shop particular item card (e.g. joggers) */
-.product-tiles-container {
-	position: relative;
-	display: flex;
-	justify-content: space-between;
-}
-
-#product-tiles-bg-div {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 10%;
-	bottom: 10%; /* Set the height of the backdrop as needed */
-	background-color: rgb(80, 82, 90); /* Adjust the background color and opacity */
-	z-index: 0;
-	border-radius: 10px;
-}
-
 .tile {
 	display: flex;
 	justify-content: center;
@@ -130,9 +112,6 @@ p {
 	background-color: lightslategray;
 	border: none;
 	box-shadow: 0 0 0.5em rgb(12, 11, 11);
-}
-
-.tile-img {
 }
 
 .tile .card-title {

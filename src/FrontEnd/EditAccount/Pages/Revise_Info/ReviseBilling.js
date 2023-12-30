@@ -95,60 +95,95 @@ const ReviseBilling = () => {
         }
     }
     //================================================================
-    return (
-        <div>
-            <Card id='background' className='background-card'>
 
-                <div id='page-content' className='content'>
+    const BillingHeader = () => {
+        return (
+            <div id='header' className='header'>
+                <h3>REVISE BILLING DETAILS</h3>
+                <p className='sub-header'>Edit your billing address details below.</p>
+            </div>
+        )
+    }
 
-                    <div id='header' className='header'>
-                        <h3>REVISE BILLING DETAILS</h3>
-                        <p className='sub-header'>Edit your billing address details below.</p>
-                    </div>
+    const BillingForm = () => {
 
-                    <div id='address-div' className='form-div'>
-                        <Form id='address-form' className='address'>
+        const InputAddLine1 = () => {
+            return(
+                <Form.Group className="mb-3" controlId="AddLine1">
+                    <Form.Control placeholder="Address Line 1" value={form.AddLine1} onChange={(event) => handleFormChange(event.target.value, 'AddLine1')} />
+                </Form.Group>
+            )
+        }
 
-                            <Form.Group className="mb-3" controlId="AddLine1">
-                                <Form.Control placeholder="Address Line 1" value={form.AddLine1} onChange={(event) => handleFormChange(event.target.value, 'AddLine1')} />
-                            </Form.Group>
+        const InputAddLine2 = () => {
+            return (
+                <Form.Group className="mb-3" controlId="AddLine2">
+                    <Form.Control placeholder="Apartment, studio, or floor" value={form.AddLine2} onChange={(event) => handleFormChange(event.target.value, 'AddLine2')} />
+                </Form.Group>
+            )
+        }
 
-                            <Form.Group className="mb-3" controlId="AddLine2">
-                                <Form.Control placeholder="Apartment, studio, or floor" value={form.AddLine2} onChange={(event) => handleFormChange(event.target.value, 'AddLine2')} />
-                            </Form.Group>
+        const InputCity = () => {
+            return (
+                <Form.Group as={Col} controlId="City">
+                    <Form.Control placeholder="City" value={form.City} onChange={(event) => handleFormChange(event.target.value, 'City')} />
+                </Form.Group>
+            )
+        }
 
-                            <Row className="mb-3">
-                                <Form.Group as={Col} controlId="City">
-                                    <Form.Control placeholder="City" value={form.City} onChange={(event) => handleFormChange(event.target.value, 'City')} />
-                                </Form.Group>
+        const InputState = () => {
+            <Form.Group as={Col} controlId="State" >
+                <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
+                    <option>State</option>
+                    <option>MA</option>
+                    <option>...</option>
+                </Form.Select>
+            </Form.Group>
+        }
 
-                                <Form.Group as={Col} controlId="State" >
-                                    <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
-                                        <option>State</option>
-                                        <option>MA</option>
-                                        <option>...</option>
-                                    </Form.Select>
-                                </Form.Group>
+        const InputZip = () => {
+            return (
+                <Form.Group as={Col} controlId="Zip" >
+                    <Form.Control placeholder="Zip" value={form.Zip} onChange={(event) => handleFormChange(event.target.value, 'Zip')} />
+                </Form.Group>
+            )
+        }
 
-                                <Form.Group as={Col} controlId="Zip" >
-                                    <Form.Control placeholder="Zip" value={form.Zip} onChange={(event) => handleFormChange(event.target.value, 'Zip')} />
-                                </Form.Group>
-                            </Row>
-
-                            <Row>
-                                <div className='save-button-div'>
-                                    <Button onClick={handleSave} variant="dark" type="submit" className='save-button'>
-                                        <b>SAVE DETAILS</b>
-                                    </Button>
-                                </div>
-                            </Row>
-                        </Form>
-
-                    </div>
+        const SaveBtn = () => {
+            return (
+                <div className='save-button-div'>
+                    <Button onClick={handleSave} variant="dark" type="submit" className='save-button'>
+                        <b>SAVE DETAILS</b>
+                    </Button>
                 </div>
+            )
+        }
 
-            </Card>
-        </div>
+        return (
+            <div id='address-div' className='form-div'>
+                <Form id='address-form' className='address'>
+                    <InputAddLine1/>
+                    <InputAddLine2/>
+                    <Row className="mb-3">
+                        <InputCity/>
+                        <InputState/>
+                        <InputZip/>
+                    </Row>
+                    <Row>
+                       <SaveBtn/>
+                    </Row>
+                </Form>
+            </div>
+        )
+    }
+
+    return (
+        <Card id='background' className='background-card'>
+            <div id='page-content' className='content'>
+                <BillingHeader />
+                <BillingForm />
+            </div>
+        </Card >
     )
 }
 

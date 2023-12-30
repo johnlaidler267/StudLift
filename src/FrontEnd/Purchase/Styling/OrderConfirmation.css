@@ -1,0 +1,34 @@
+.order-confirmation {
+  max-width: none;
+  width: 101%;
+  height: 100%;
+}
+
+.order-confirmation-card {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.order-confirmation-title {
+  margin: 30px;
+  border: none;
+}
+
+.order-confirmation-number {
+  color: slategray;
+  border: none;
+}
+
+.order-confirmation-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  width: 80%;
+}
+
+.order-confirmation-button {
+  margin: 10px;
+}

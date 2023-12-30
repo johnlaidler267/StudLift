@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom'
 import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
 
+//IMPORT Context
+import ShippingProvider from '../Contexts/ShippingContext'
+
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../BackEnd/firebase/firebase';
@@ -18,7 +21,9 @@ import { fetchUserCart } from '../../ProductPages/Pages/ViewItem/ViewItemDB'
 
 //IMPORT Custom components
 import { CartReviewSidebar } from '../Components/CartReviewSidebar/CartReviewSidebar.js'
-import CheckoutTimeline from '../Components/CheckoutTimeline/CheckoutTimeline.js'
+import { BuyerDetails, SelectShippingMethod, Navigate } from '../Components/ShippingComponents';
+import { Terms, Timeline } from '../Components/CommonComponents'
+
 
 export default function Shipping() {
     // =================================================================
@@ -125,104 +130,37 @@ export default function Shipping() {
     }
     //================================================================
 
+    context = {
+        email,
+        shipping,
+        bagItems,
+        cart,
+        handleShippingSelection,
+        shippingMethod
+    }
+
     return (
-        <Container id='shipping-container'>
-            <Card id='shipping-card'>
-                <Row id='shipping-row'>
-                    <Col xs={7}>
-                        <br />
-
-                        <Container id='timeline-container'>
-                            <CheckoutTimeline url={window.location.pathname} />
-                        </Container>
-
-                        <br />
-                        <br />
-
-                        <div id='info-div'>
-                            <Card id='info-card'>
-                                <Row>
-                                    <Col xs={2}>
-                                        <p className='info-label'>Contact</p>
-                                    </Col>
-                                    <Col xs={8}>
-                                        <p className='info-field'>{email}</p>
-                                    </Col>
-                                    <Col xs={2}>
-                                        <a onClick={() => navigate('/information')} className='info-field'>Change</a>
-                                    </Col>
-                                </Row>
-                                <Divider />
-                                <Row style={{ paddingTop: "1em" }}>
-                                    <Col xs={2}>
-                                        <p className='info-label'>Ship to</p>
-                                    </Col>
-                                    <Col xs={8}>
-                                        <p className='info-field'>{shipping}</p>
-                                    </Col>
-                                    <Col xs={2}>
-                                        <a onClick={() => navigate('/information')} className='info-field'>Change</a>
-                                    </Col>
-                                </Row>
-                            </Card>
-                        </div>
-
-                        <br />
-
-                        <div id='select-shipping-bg-div'>
-                            <div id='select-shipping-div'>
-                                <h4 >Shipping Method</h4>
-                                <br />
-                                <Card id='select-shipping-card'>
-                                    <Form>
-                                        <Row>
-                                            <Col xs={10}>
-                                                <Form.Check defaultChecked checked={standardChecked} name='shippingMethod' type='radio' className='shipping-radio' label='Standard Delivery (4 - 7 Working Days) *Once your order has shipped.' value='$0.00' onClick={(e) => handleShippingSelection(e.target.value)} />
-                                            </Col>
-                                            <Col xs={2}>
-                                                <p className='info-field'><b>Free</b></p>
-                                            </Col>
-                                        </Row>
-                                        <Divider />
-                                        <Row style={{ paddingTop: "1em" }}>
-                                            <Col xs={10}>
-                                                <Form.Check checked={!standardChecked} name='shippingMethod' type='radio' className='shipping-radio' label='Express Delivery (1 - 3 Working Days) *Once your order has shipped' value='$15.00' onClick={(e) => handleShippingSelection(e.target.value)} />
-                                            </Col>
-                                            <Col xs={2}>
-                                                <p className='info-field'><b>$15.00</b></p>
-                                            </Col>
-                                        </Row>
-                                    </Form>
-                                </Card>
-                            </div>
-                        </div>
-
-                        <br />
-                        <Container id='navigation-container'>
-                            <Row>
-                                <Col xs={8}>
-                                    <Button onClick={() => navigate('/information')} type="submit" id='proceed-btn'>
-                                        ⇐ Return to information
-                                    </Button>
-                                </Col>
-                                <Col xs={4}>
-                                    <Button onClick={() => navigate('/payment')} variant="dark" type="submit" id='back-btn'>
-                                        <b>CONTINUE TO PAYMENT ⇒</b>
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </Container>
-                        <br />
-                        <Container id='terms-and-conditions-container'>
-                            <p style={{ fontSize: "12px" }}>By placing your order you agree to StudentLifter's <u>Terms and Conditions</u>, <u>Privacy Notice</u> and <u>Cookie Policy.</u></p>
-                        </Container>
-
-                    </Col>
-                    <CartReviewSidebar bagItems={bagItems} cart={cart} shippingMethod={shippingMethod} />
-                </Row>
-                <Divider />
-                <Row></Row>
-            </Card >
-        </Container >
+        <ShippingProvider value={context}>
+            <Container id='shipping-container'>
+                <Card id='shipping-card'>
+                    <Row id='shipping-row'>
+                        <Col xs={7}>
+                            <Timeline currentURL={window.current.pathName} />
+                            <br />
+                            <BuyerDetails navigate={navigate} email={email} shipping={shipping} />
+                            <br />
+                            <SelectShippingMethod standardChecked={standardChecked} handleShippingSelection={handleShippingSelection} />
+                            <br />
+                            <Navigate navigate={navigate} />
+                            <br />
+                            <Terms />
+                        </Col>
+                        <CartReviewSidebar bagItems={bagItems} cart={cart} shippingMethod={shippingMethod} />
+                    </Row>
+                    <Divider />
+                    <Row></Row>
+                </Card >
+            </Container >
+        </ShippingProvider>
     );
 }

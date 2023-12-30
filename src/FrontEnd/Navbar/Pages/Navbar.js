@@ -30,14 +30,13 @@ const Navbar = () => {
 
     //=================================================================
 
-    //Sets the current user
+    // Sets the current user
     const [user] = useAuthState(auth);
 
     //Sets whether the pop-up cart modal is showing
     const [showPopupBag, setShowPopupBag] = useState(false);
 
     const [alert, setAlert] = useState("");
-
 
     // Idk what this does
     useEffect(() => {
@@ -47,44 +46,49 @@ const Navbar = () => {
         return () => clearTimeout(clearMessage);
     }, [alert]);
 
+    // Displays the left side of the nav bar
+    const NavBarLeft = () => {
+        const HomepageIcon = () => {
+            return (<NavLink to="/" activeStyle>
+                <img src={logo} className='logo'></img>
+            </NavLink>)
+        }
+        const WomensIcon = () => {
+            return (
+                <NavLink to="/Womens" activeStyle>
+                    Women
+                </NavLink>
+            )
+        }
+        const MensIcon = () => {
+            return (
+                <NavLink to="/Mens" activeStyle>
+                    Men
+                </NavLink>
+            )
+        }
+        const AccessoriesIcon = () => {
+            return (
+                <NavLink to="/accessories" activeStyle>
+                    Accessories
+                </NavLink>
+            )
+        }
+        return (
+            <NavMenu className='nav-menu-left'>
+                <HomepageIcon />
+                <WomensIcon />
+                <MensIcon />
+                <AccessoriesIcon/>
+            </NavMenu>
+        )
+    }
 
-    return (
-        <>
-            <Nav className='navbar-cstm'>
-
-                <NavMenu className='nav-menu-left'>
-                    <NavLink to="/" activeStyle>
-                        <img src={logo} className='logo'></img>
-                    </NavLink>
-                    <NavLink to="/Womens" activeStyle>
-                        Women
-                    </NavLink>
-                    <NavLink to="/Mens" activeStyle>
-                        Men
-                    </NavLink>
-                    <NavLink to="/accessories" activeStyle>
-                        Accessories
-                    </NavLink>
-                </NavMenu>
-
-                <NavMenu style={{
-                    backgroundColor: 'transparent'
-                }}>
-                    < NavLink to='/search' onClick={() => navigate('/search')} activeStyle>
-                        <BsSearch />
-                    </NavLink>
-
-                    {!user && (
-                        <NavLink to="/wishlist-nli" activeStyle>
-                            <AiOutlineHeart />
-                        </NavLink>
-                    )}
-                    {user && (
-                        <NavLink to="/wishlist-li" activeStyle>
-                            <AiOutlineHeart />
-                        </NavLink>
-                    )}
-
+    // Displays the right side of the nav bar
+    const NavBarRight = () => {
+        const ProfileIcon = () => {
+            return (
+                <>
                     {!user && (
                         <NavLink to="/login" activeStyle>
                             <CgProfile />
@@ -100,14 +104,61 @@ const Navbar = () => {
                             )}
                         </NavLink>
                     )}
+                </>
+            )
+        }
 
+        const WishlistIcon = () => {
+            return (
+                <>
+                    {!user && (
+                        <NavLink to="/wishlist-nli" activeStyle>
+                            <AiOutlineHeart />
+                        </NavLink>
+                    )}
+                    {user && (
+                        <NavLink to="/wishlist-li" activeStyle>
+                            <AiOutlineHeart />
+                        </NavLink>
+                    )}
+                </>
+            )
+        }
+
+        const CartIcon = () => {
+            return (
+                <>
                     {user && (<NavLink onClick={() => setShowPopupBag(!showPopupBag)} activeStyle>
                         <AiOutlineShoppingCart />
                     </NavLink>)}
-                </NavMenu>
-                {showPopupBag && <PopupBag onClose={() => setShowPopupBag(false)} firebaseID={user.uid} />}
-            </Nav >
-        </>
+                    {showPopupBag && <PopupBag onClose={() => setShowPopupBag(false)} firebaseID={user.uid} />}
+                </>
+            )
+        }
+
+        const SearchIcon = () => {
+            return (<NavLink to='/search' onClick={() => navigate('/search')} activeStyle>
+                <BsSearch />
+            </NavLink>)
+        }
+
+        return (
+            <NavMenu style={{
+                backgroundColor: 'transparent'
+            }}>
+                <SearchIcon />
+                <WishlistIcon />
+                <ProfileIcon />
+                <CartIcon />
+            </NavMenu>
+        )
+    }
+
+    return (
+        <Nav className='navbar-cstm'>
+            <NavBarLeft />
+            <NavBarRight />
+        </Nav >
     );
 };
 

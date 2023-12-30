@@ -5,6 +5,7 @@ import '../Styling/SearchStyling.css'
 import React, { useState, useEffect } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
+//Displays the full search results
 export const SearchResults = ({ products, query }) => {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -17,10 +18,8 @@ export const SearchResults = ({ products, query }) => {
         }
 
         const querySeparated = query.split(" ").map(word => word.toLowerCase());
-        console.log(querySeparated);
 
         const filtered = products.filter((product) => {
-            console.log(`The product here is ${JSON.stringify(product)}`);
             try {
                 const id = product._ID;
                 const name = product._name.toLowerCase();
@@ -34,6 +33,7 @@ export const SearchResults = ({ products, query }) => {
                         type.includes(word) ||
                         color.includes(word)
                     ));
+                
             } catch (error) {
                 console.log(`Error filtering products: ${error}`);
                 return false;
@@ -44,31 +44,78 @@ export const SearchResults = ({ products, query }) => {
         // No need to return anything here
     }, [query, products]);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    const numProducts = filteredProducts.length;
+
+    const NumResults = () => {
+        return (
+            <h5>{numProducts} Products Found</h5>
+        )
+    }
+
+    const SearchResults = () => {
+        return (
+            <Row style={{ gap: '1rem' }}>
+                {filteredProducts.map((product) => (<SearchItem product={product} />))}
+            </Row>
+        )
+    }
+
     return (
         <Card id='search-results-card'>
             <Card.Body id='search-results-card-body'>
-                <h5>{filteredProducts.length} Products Found</h5>
-                <Row style={{ gap: '1rem' }}>
-                    {filteredProducts.map((product) => (<SearchItem product={product} />))}
-                </Row>
+                <NumResults/>
+                <SearchResults/>
             </Card.Body>
         </Card>
     )
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 };
 
+// Displays a single search item
 const SearchItem = ({ product }) => {
+    const url = product._imageURL;
+    const price = product._price;
+    const name = product._name
+    const color = product._color;
+
+    const ProductImg = () => {
+        return (
+            <Card.Img variant="right" src={url} id='search-item-img' />
+        )
+    }
+
+    const ProductDetails = () => {
+        const Price = () => {
+            return (
+                <h6 id='search-item-price'><b>${price}</b></h6>
+            )
+        }
+        const Name = () => {
+            return (
+                <h7>{name}</h7>
+            )
+        }
+        const Color = () => {
+            return (
+                <h7 id='search-item-color'>{color}</h7>
+            )
+        }
+        return (
+            <Card.Footer>
+                <Price/>
+                <Row>
+                    <Name />
+                    <Color/>
+                </Row>
+            </Card.Footer>
+        )
+    }
+
     return (
         <Col>
             <Card id='search-item-card'>
-                <Card.Img variant="right" src={product._imageURL} id='search-item-img' />
-                <Card.Footer>
-                    <h6 id='search-item-price'><b>${product._price}</b></h6>
-                    <Row>
-                        <h7>{product._name}</h7>
-                        <h7 id='search-item-color'>{product._color}</h7>
-                    </Row>
-                </Card.Footer>
+                <ProductImg/>
+                <ProductDetails/>
             </Card>
         </Col>
     )

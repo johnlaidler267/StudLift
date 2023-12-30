@@ -3,8 +3,6 @@ import Card from '../../Login+Register/Classes/Card.js'
 
 class UserOrder {
     constructor(cartItems, orderNumber, email, shipping, billing, total) {
-        console.log(`The shipping address inside the UserOrder constructor is ${JSON.stringify(shipping)}`)
-        console.log(`The billing address inside the UserOrder constructor is ${JSON.stringify(billing)}`)
         this.cart = cartItems || [];
         this.datePlaced = new Date();
         this.dateDelivered = new Date();

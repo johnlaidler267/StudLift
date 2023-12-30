@@ -1,14 +1,14 @@
 //IMPORT Custom styling
 import '../Components/QuantityPicker/QuantityPicker.css';
+import '../Styling/OrderConfirmation.css'
 
 //IMPORT Reaact elements
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Card, Container, Button } from 'react-bootstrap'
 
-//IMPORT Icons
-import { AiFillPrinter } from 'react-icons/ai'
-import { MdAttachEmail } from 'react-icons/md'
+//IMPORT Contexts
+import OrderConfirmationProvider from './Contexts/OrderConfirmationContext'
 
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -19,7 +19,7 @@ import { getUserDetails } from '../../../BackEnd/commonFunctions';
 import { fetchUserCart } from '../../ProductPages/Pages/ViewItem/ViewItemDB'
 
 //IMPORT Custom components
-import { Summary, SubtotalShipping, Total } from '../Components/OrderConfirmationComponents'
+import { OrderSummary, SubtotalShipping, Total, ExportOrderDetails, OrderConfirmationHeading } from '../Components/OrderConfirmationComponents'
 
 //IMPORT Classes
 import UserOrder from '../Classes/Order.js'
@@ -99,8 +99,6 @@ export default function OrderConfirmation() {
                     Zip: localStorage.getItem('billingZip')
                 }
 
-                console.log(`The billing address being sent in OrderConfirmation.js is: ${JSON.stringify(billingAddress)}`)
-
                 let shippingCost = localStorage.getItem('shippingMethod') === 'Standard' ? 0 : 15;
 
                 const userOrders = data.Orders; // Grab the current order array
@@ -125,23 +123,25 @@ export default function OrderConfirmation() {
         });
     }, [user.uid]);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    context = {
+        cart,
+        cartItems,
+        email,
+        shippingMethod
+    }
+
     return (
-        <Container style={{
-            maxWidth: "none", width: "101%", height: "100%"
-        }}>
-            <Card style={{ width: "100%", height: "100%", border: "none", display: "flex", alignItems: "center" }}>
-                <Card style={{ margin: "30px", border: "none" }}><h1>Thanks, your order was confirmed. </h1></Card>
-                <Card style={{ color: "slategray", border: "none" }}><h3>Order # {orderNumber}</h3></Card>
-                <br />
-                <Summary cart={cart} items={cartItems} email={email} />
-                <br />
-                <SubtotalShipping cart={cart} shippingMethod={shippingMethod} />
-                <Total cart={cart} shippingMethod={shippingMethod} />
-                <div style={{ display: "flex", flexDirection: "row", justifyContent: "start", width: "80%" }}>
-                    <Button variant="dark" style={{ margin: "10px" }}><MdAttachEmail /></Button>
-                    <Button variant="light" style={{ margin: "10px" }}><AiFillPrinter /></Button>
-                </div>
-            </Card >
-        </Container >
+        <OrderConfirmationProvider value={context}>
+            <Container className="order-confirmation">
+                <Card className="order-confirmation-card">
+                    <OrderConfirmationHeading />
+                    <OrderSummary />
+                    <SubtotalShipping/>
+                    <Total/>
+                    <ExportOrderDetails />
+                </Card>
+            </Container>
+        </OrderConfirmationProvider>
     );
-}
+}; 

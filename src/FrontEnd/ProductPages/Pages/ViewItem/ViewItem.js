@@ -245,144 +245,77 @@ function ViewItem() {
 
     //================================================================
 
-    return (
-        <div>
-            <Card id='view-item-card'>
-                <p>{<Link to={`/ `}>Home</Link>} / {<Link to={` / ${gender}`}>{gender}</Link>} / {product.name}</p>
+    const NavDisplay = () => {
+        return (
+            <p>{<Link to={`/ `}>Home</Link>} / {<Link to={` / ${gender}`}>{gender}</Link>} / {product.name}</p>
+        )
+    }
 
+    const ProductImages = () => {
+        return (
+            <Card style={{ border: "none", width: "100%", border: "none" }}>
+                <Row style={{ padding: "6px" }}>
+                    <Col xs={4} >
+                        <Card.Img variant="right" src={one} className='product-img' />
+                    </Col>
+                    <Col xs={4}>
+                        <Card.Img variant="right" src={two} className='product-img' />
+                    </Col>
+                    <Col xs={4}>
+                        <Card.Img variant="right" src={three} className='product-img' />
+                    </Col>
+                </Row>
                 <Row>
+                    <Card.Img variant="right" src={product.imageURL} className='product-img' />
+                </Row>
+            </Card>
+        )
+    }
 
-                    <Col style={{ border: "none" }} xs={7}>
-                        <Card style={{ border: "none", width: "100%", border: "none" }}>
-                            <Row style={{ padding: "6px" }}>
-                                <Col xs={4} >
-                                    <Card.Img variant="right" src={one} className='product-img' />
-                                </Col>
-                                <Col xs={4}>
-                                    <Card.Img variant="right" src={two} className='product-img' />
-                                </Col>
-                                <Col xs={4}>
-                                    <Card.Img variant="right" src={three} className='product-img' />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Card.Img variant="right" src={product.imageURL} className='product-img' />
-                            </Row>
+    const WishlistBtn = () => {
+        return (
+            <Card id='add-card'>
+                <Button class="btn btn-primary" className='add-btn' onClick={() => handleAddToBag()}>Add to Bag</Button>
+                <Button variant="dark" className='add-btn'>Add to Wishlist</Button>
+            </Card>
+        )
+    }
 
-                        </Card>
-                    </Col>
+    const PurchaseInfo = () => {
+        return (
+            <Card style={{ padding: "12px", margin: "5px", backgroundColor: "#E5DDE7", fontSize: "14px", border: "none" }}>
+                <p><b><GiReturnArrow /> Free Returns. Purchases through 1/1/23 can be returned up until 1/31/23</b></p>
+                <p><b><TbTruckDelivery /> Free Standard Delivery Over $75</b></p>
+                <p><b><GiDeliveryDrone /> Free Express Delivery Over $150</b></p>
+            </Card>
+        )
+    }
 
-                    <Col xs={5}>
-                        <Card style={{ border: "none", width: "100%", padding: "6px", border: "none" }}>
-                            <Row>
-                                <Col xs={3}>
-                                    <Rating name="read-only" value={3} readOnly style={{ color: "black" }} />
-                                </Col>
-                                <Col xs={2}>
-                                    <p>(7)</p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <p style={{ fontSize: "12px" }}><b>|NEW</b></p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <h5><b>{uppercaseName}</b></h5>
-                                </Col>
-                                <Col>
-                                    <h5 style={{ fontSize: "15px" }}><b>{product.price} USD</b></h5>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <p style={{ fontSize: "12px" }}>StudentLifter {gender}</p>
-                            </Row>
-                            <Divider />
+    const ProductSpecs = () => {
+        return (
+            <Card style={{ border: "none" }}>
+                <h6><b>BUILD YOUR LEGACY</b></h6>
 
-                            <Card style={{ border: "none", padding: "5px" }}>
-                                <Row>
-                                    <p className='selection-label'><b>COLOR:</b></p>
-                                </Row>
-                                <Row>
-                                    <ButtonGroup size="large" color="primary" id='color-selection-btn-group'>
-                                        <Button onClick={() => handleColorClick('Black')} id='color-btn'>
-                                            {<Card.Img
-                                                src={product.imageURL}
-                                                className='color-image' />}
-                                        </Button>
-                                        <Button onClick={() => handleColorClick('Red')} id='color-btn'>
-                                            {<Card.Img
-                                                src={product.imageURL}
-                                                className='color-image' />}
-                                        </Button>
-                                        <Button onClick={() => handleColorClick('Green')} id='color-btn'>
-                                            {<Card.Img
-                                                src={product.imageURL}
-                                                className='color-image' />}
-                                        </Button>
+                <p>
+                    The Legacy collection is all about Gymshark history, featuring an updated version of our classic screenprint logo.
+                    So turn up to lift in this reworked collection and start building your own legacy.
+                </p>
+                <p>
+                    - 5" inseam based on a M <br />
+                    - High depth waistband offers comfort and support <br />
+                    - Toggles to side <br />
+                    - Legacy logo to back waistband <br />
+                    - 78% Nylon, 22% Elastane <br />
+                    - We’ve cut down on our use of swing tags, so this product comes without one. <br />
+                    - Model is 5'3" and wears size S <br />
+                    - SKU: B4A3Y-BBBB</p>
+            </Card>
+        )
+    }
 
-                                    </ButtonGroup>
-                                    <p>Selected Color: {color}</p> {/* Display the selected size */}
-                                </Row>
-                            </Card>
-
-
-
-                            <Card id='size-card'>
-                                <p className='selection-label'><b>SELECT SIZE</b></p>
-                                <ButtonGroup size="large" color="primary">
-                                    <ButtonG onClick={() => handleSizeClick('XS')}>XS</ButtonG>
-                                    <ButtonG onClick={() => handleSizeClick('S')}>S</ButtonG>
-                                    <ButtonG onClick={() => handleSizeClick('M')}>M</ButtonG>
-                                    <ButtonG onClick={() => handleSizeClick('L')}>L</ButtonG>
-                                    <ButtonG onClick={() => handleSizeClick('XL')}>XL</ButtonG>
-                                </ButtonGroup>
-                                <p>Selected Size: {size}</p> {/* Display the selected size */}
-                            </Card>
-
-                            <br />
-
-                            <Card id='add-card'>
-                                <Button class="btn btn-primary" className='add-btn' onClick={() => handleAddToBag()}>Add to Bag</Button>
-                                <Button variant="dark" className='add-btn'>Add to Wishlist</Button>
-                            </Card>
-
-                            <br></br>
-
-                            <Card style={{ padding: "12px", margin: "5px", backgroundColor: "#E5DDE7", fontSize: "14px", border: "none" }}>
-                                <p><b><GiReturnArrow /> Free Returns. Purchases through 1/1/23 can be returned up until 1/31/23</b></p>
-                                <p><b><TbTruckDelivery /> Free Standard Delivery Over $75</b></p>
-                                <p><b><GiDeliveryDrone /> Free Express Delivery Over $150</b></p>
-                            </Card>
-
-                            <br />
-                            <Divider />
-                            <br />
-
-                            <Card style={{ border: "none" }}>
-                                <h6><b>BUILD YOUR LEGACY</b></h6>
-
-                                <p>
-                                    The Legacy collection is all about Gymshark history, featuring an updated version of our classic screenprint logo.
-                                    So turn up to lift in this reworked collection and start building your own legacy.
-                                </p>
-                                <p>
-                                    - 5" inseam based on a M <br />
-                                    - High depth waistband offers comfort and support <br />
-                                    - Toggles to side <br />
-                                    - Legacy logo to back waistband <br />
-                                    - 78% Nylon, 22% Elastane <br />
-                                    - We’ve cut down on our use of swing tags, so this product comes without one. <br />
-                                    - Model is 5'3" and wears size S <br />
-                                    - SKU: B4A3Y-BBBB</p>
-                            </Card>
-
-                        </Card>
-                    </Col>
-                </Row >
-                <br />
-
+    const Reviews = () => {
+        return (
+            <>
                 <Card style={{ border: "none", display: "flex", textAlign: "center", padding: "30px" }}>
                     <h3><b>REVIEWS</b></h3>
                     <Row>
@@ -487,14 +420,161 @@ function ViewItem() {
                         </Row>
                     </Box>
                 </Card>
-
-                <br />
-                <br />
-
                 <Container style={{ width: "100%", display: "flex", justifyContent: "center" }}>
                     <Button variant="dark" style={{ width: "20%" }}>LOAD MORE</Button>
                 </Container>
+            </>
 
+        )
+    }
+
+    const Description = () => {
+
+        const Rating = () => {
+            return (
+                <Row>
+                    <Col xs={3}>
+                        <Rating name="read-only" value={3} readOnly style={{ color: "black" }} />
+                    </Col>
+                    <Col xs={2}>
+                        <p>(7)</p>
+                    </Col>
+                </Row>
+            )
+        }
+
+        const NewTag = () => {
+            return (
+                <Row>
+                    <Col>
+                        <p style={{ fontSize: "12px" }}><b>|NEW</b></p>
+                    </Col>
+                </Row>
+            )
+        }
+
+        const Name = () => {
+            return (
+                <Col>
+                    <h5><b>{uppercaseName}</b></h5>
+                </Col>
+            )
+        }
+
+        const Price = () => {
+            const price = product.price;
+            return (
+                <Col>
+                    <h5 style={{ fontSize: "15px" }}><b>{price} USD</b></h5>
+                </Col>
+            )
+        }
+
+        const Gender = () => {
+            return (
+                <Row>
+                    <p style={{ fontSize: "12px" }}>StudentLifter {gender}</p>
+                </Row>
+            )
+        }
+
+        return (
+            <>
+                <Rating />
+                <NewTag />
+                <Row>
+                    <Name />
+                    <Price />
+                </Row>
+                <Gender />
+            </>
+        )
+    }
+
+    const AttributeSelection = () => {
+
+        const ColorSelection = () => {
+            return (
+                <Card style={{ border: "none", padding: "5px" }}>
+                    <Row>
+                        <p className='selection-label'><b>COLOR:</b></p>
+                    </Row>
+                    <Row>
+                        <ButtonGroup size="large" color="primary" id='color-selection-btn-group'>
+                            <Button onClick={() => handleColorClick('Black')} id='color-btn'>
+                                {<Card.Img
+                                    src={product.imageURL}
+                                    className='color-image' />}
+                            </Button>
+                            <Button onClick={() => handleColorClick('Red')} id='color-btn'>
+                                {<Card.Img
+                                    src={product.imageURL}
+                                    className='color-image' />}
+                            </Button>
+                            <Button onClick={() => handleColorClick('Green')} id='color-btn'>
+                                {<Card.Img
+                                    src={product.imageURL}
+                                    className='color-image' />}
+                            </Button>
+
+                        </ButtonGroup>
+                        <p>Selected Color: {color}</p> {/* Display the selected size */}
+                    </Row>
+                </Card>
+            )
+        }
+
+        const SizeSelection = () => {
+            return (
+                <Card id='size-card'>
+                    <p className='selection-label'><b>SELECT SIZE</b></p>
+                    <ButtonGroup size="large" color="primary">
+                        <ButtonG onClick={() => handleSizeClick('XS')}>XS</ButtonG>
+                        <ButtonG onClick={() => handleSizeClick('S')}>S</ButtonG>
+                        <ButtonG onClick={() => handleSizeClick('M')}>M</ButtonG>
+                        <ButtonG onClick={() => handleSizeClick('L')}>L</ButtonG>
+                        <ButtonG onClick={() => handleSizeClick('XL')}>XL</ButtonG>
+                    </ButtonGroup>
+                    <p>Selected Size: {size}</p> {/* Display the selected size */}
+                </Card>
+            )
+        }
+
+        return (
+            <>
+                <ColorSelection />
+                <SizeSelection />
+            </>
+        )
+    }
+
+    return (
+        <div>
+            <Card id='view-item-card'>
+                <NavDisplay />
+                <Row>
+                    <Col className='border-0' xs={7}>
+                        <ProductImages />
+                    </Col>
+                    <Col xs={5}>
+                        <Card className='border-0 w-100' style={{ padding: "6px" }}>
+                            <Description />
+                            <Divider />
+                            <AttributeSelection/>
+                            <WishlistBtn />
+                            <br />
+                            <PurchaseInfo />
+                            <br />
+                            <Divider />
+                            <br />
+                            <ProductSpecs />
+                        </Card>
+                    </Col>
+                </Row >
+                <br />
+                <Reviews />
+                <br />
+                <br />
             </Card >
         </div >
     );

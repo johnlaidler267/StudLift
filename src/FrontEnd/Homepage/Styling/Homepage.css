@@ -4,10 +4,11 @@
 
 #bg-div {
 	color: #32393f;
-	height: 100%;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 }
 
 /*=============================================
@@ -88,18 +89,14 @@
 /*=============================================
 =            Shop Essentials                  =
 =============================================*/
-
+#essentials-bg {
+	width: 90%;
+}
 .essentials {
-	display: flex;
-	justify-content: center;
 }
 
 #essentials-card {
-	width: 90%;
-	padding-left: 10em;
 	display: flex;
-	justify-content: center;
-	align-items: start;
 	height: 20em;
 	background-color: #32393f;
 	color: white;

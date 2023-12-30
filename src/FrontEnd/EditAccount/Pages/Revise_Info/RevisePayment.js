@@ -105,151 +105,234 @@ const RevisePayment = () => {
     const handleActiveCardChange = (event) => {
         //The active card = card with index # of the selected card option
         const activeCardId = JSON.parse(event.target.value).id;
-
         setActiveCard(cardNameList[activeCardId]);
         setActiveCardInfo(cardList[activeCardId]);
     }
     //=================================================================
     //-> Function to handle checkbox 'defaultCard' change
     const handleCheckboxChange = (event) => {
-        console.log("The checkbox is checked: " + event.target.checked);
         const { checked } = event.target;
         setIsChecked(checked);
     };
     //================================================================
 
+    const RevisePaymentHeader = () => {
+        return (
+            <div id='header' className='header'>
+                <h3>REVISE PAYMENT DETAILS</h3>
+                <p className='sub-header'>Edit your payment information or create a new card.</p>
+            </div>
+        )
+    }
+
+    const SaveBtn = () => {
+        return (
+            <div className='add-card-div'>
+                <Button onClick={(event) => handleEditCard(event, userDetails, user, activeCardInfo, activeCard.id, isChecked).then(navigate('/edit-profile'))} variant="dark" type="submit" className='save-button'>
+                    <b>SAVE INFORMATION</b>
+                </Button>
+            </div>
+        )
+    }
+
+    const EditCard = () => {
+
+        const EditCardHeader = () => {
+            return (
+                <Accordion.Header >
+                    <b>Edit card information </b>
+                </Accordion.Header>
+            )
+        }
+
+        const EditCardForm = () => {
+
+            const SelectCard = () => {
+                return (
+                    <InputGroup className="mb-3 card-select" controlId="cardSelect" >
+                        <Form.Select onChange={handleActiveCardChange}>
+                            <option value={JSON.stringify(activeCard)}>{activeCard.name}</option>
+                            {
+                                cardNameList.map(currCard => {
+                                    if (currCard.name != activeCard.name)
+                                        return (<option value={JSON.stringify(currCard)} key={currCard.id}>{currCard.name}</option>)
+                                })
+                            }
+                        </Form.Select>
+                    </InputGroup>
+                )
+            }
+
+            const SetDefaultCard = () => {
+                return (
+                    <InputGroup className="mt-2 card-select" controlId="cardSelect" >
+                        <Form.Check inline label='Mark default' checked={isChecked} onChange={handleCheckboxChange}></Form.Check>
+                    </InputGroup>
+                )
+            }
+
+            const InputCardNumber = () => {
+                <InputGroup className="mb-3" controlId="cardNumber">
+                    <Form.Control placeholder="Card Number" style={{ borderRight: "none" }} value={activeCardInfo.Number} onChange={(event) => handleEditCardFormChange(event.target.value, 'Number')} />
+                    <InputGroup.Text id="lock-icon" className='input-icon'><AiFillLock /></InputGroup.Text>
+                </InputGroup>
+            }
+
+            const InputCardName = () => {
+                return (
+                    <Form.Group className="mb-3" controlId="nameOnCard">
+                        <Form.Control placeholder="Name on Card (e.g. 'John Smith')" value={activeCardInfo.Name} onChange={(event) => handleEditCardFormChange(event.target.value, 'Name')} />
+                    </Form.Group>
+                )
+            }
+
+            const InputExpiration = () => {
+                return (
+                    <Form.Group as={Col}>
+                        <Form.Control placeholder="Expiration Date (MM/YY)" value={activeCardInfo.Expiration} onChange={(event) => handleEditCardFormChange(event.target.value, 'Expiration')} />
+                    </Form.Group>
+                )
+            }
+
+            const InputCVV = () => {
+                return (
+                    <InputGroup as={Col}>
+                        <Form.Control placeholder="CVV" style={{ borderRight: "none" }} value={activeCardInfo.CVV} onChange={(event) => handleEditCardFormChange(event.target.value, 'CVV')} />
+                        <InputGroup.Text id="question-mark-icon" className='input-icon'><AiFillQuestionCircle /> </InputGroup.Text>
+                    </InputGroup>
+                )
+            }
+
+            return (
+                <Form style={{ padding: "10px" }}>
+                    <Row className="mb-3 form-row">
+                        <Row>
+                            <SelectCard />
+                            <SetDefaultCard/>
+                        </Row>
+                        <InputCardNumber />
+                        <InputCardName />
+                        <InputExpiration />
+                        <InputCVV />   
+                    </Row>
+                    <Row>
+                        <SaveBtn />
+                    </Row>
+                </Form>
+            )
+        }
+
+        return (
+            <Accordion.Item eventKey="edit-card" className='accordion-item' >
+                <EditCardHeader />
+                <Accordion.Body>
+                    <EditCardForm />
+                </Accordion.Body>
+            </Accordion.Item >
+        )
+    }
+
+    const AddCard = () => {
+
+        const AddCardHeader = () => {
+            return (
+                <Accordion.Header>
+                    <b>Add a new card</b>
+                </Accordion.Header>
+            )
+        }
+
+        const AddCardForm = () => {
+
+            const InputCardNumber = () => {
+                return (
+                    <InputGroup className="mb-3" controlId="cardNumber" >
+                        <Form.Control placeholder="Card Number" style={{ borderRight: "none" }} aria-describedby="lock-icon" value={newCardInfo.Number} onChange={(event) => handleNewCardFormChange(event.target.value, 'Number')} />
+                        <InputGroup.Text id="lock-icon" style={{ backgroundColor: "white", borderLeft: "none" }} ><AiFillLock /> </InputGroup.Text>
+                    </InputGroup>
+                )
+            }
+
+            const InputCardName = () => {
+                return (
+                    <Form.Group className="mb-3" controlId="nameOnCard" >
+                        <Form.Control placeholder="Name on Card (e.g. 'John Smith')" value={newCardInfo.Name} onChange={(event) => handleNewCardFormChange(event.target.value, 'Name')} />
+                    </Form.Group >
+                )
+            }
+
+            const InputExpiration = () => {
+                return (
+                    <Form.Group as={Col}>
+                        <Form.Control placeholder="Expiration Date (MM/YY)" value={newCardInfo.Expiration} onChange={(event) => handleNewCardFormChange(event.target.value, 'Expiration')} />
+                    </Form.Group>
+                )
+            }
+
+            const InputCVV = () => {
+                return (
+                    <InputGroup as={Col}>
+                        <Form.Control placeholder="CVV" aria-describedby="question-icon" style={{ borderRight: "none" }} value={newCardInfo.CVV} onChange={(event) => handleNewCardFormChange(event.target.value, 'CVV')} />
+                        <InputGroup.Text id="question-icon" style={{ backgroundColor: "white", borderLeft: "none" }}><AiFillQuestionCircle /> </InputGroup.Text>
+                    </InputGroup>
+                )
+            }
+
+            const AddCardBtn = () => {
+                return (
+                    <div className='add-card-div'>
+                        <Button onClick={(event) => handleAddCard(event, userDetails, user, newCardInfo, navigate).then(navigate("/edit-profile"))} variant="dark" type="submit" className='save-button'>
+                            <b>ADD CARD</b>
+                        </Button>
+                    </div>
+                )
+            }
+
+            return (
+                <Form style={{ padding: "10px" }}>
+                    <Row className="mb-3 form-row">
+                        <InputCardNumber />
+                        <InputCardName />
+                        <InputExpiration />
+                        <InputCVV />
+                    </Row>
+                    <Row>
+                        <AddCardBtn />
+                    </Row>
+                </Form>
+            )
+        }
+
+        return (
+            <Accordion.Item eventKey="new-card" className='accordion-item'>
+                <AddCardHeader />
+                <Accordion.Body>
+                    <AddCardForm />
+                </Accordion.Body>
+            </Accordion.Item>
+        )
+    }
+
+    const CardInfoDivider = () => {
+        return (
+            <Divider><IoMdAddCircleOutline style={{ fontSize: '2em' }} /></Divider>
+        )
+    }
+
     return (
         <div>
             <Card id='background' className='background-card'>
-
                 <div id='page-content' className='content'>
-
-                    <div id='header' className='header'>
-                        <h3>REVISE PAYMENT DETAILS</h3>
-                        <p className='sub-header'>Edit your payment information or create a new card.</p>
-                    </div>
-
+                    <RevisePaymentHeader />
                     <div id='address-div' className='form-div'>
                         <Accordion defaultActiveKey="edit-card" >
-
-                            {/* Edit-card */}
-                            <Accordion.Item eventKey="edit-card" className='accordion-item'>
-
-                                <Accordion.Header >
-                                    <b>Edit card information </b>
-                                </Accordion.Header>
-
-                                <Accordion.Body>
-                                    <Form style={{ padding: "10px" }}>
-
-                                        <Row className="mb-3 form-row">
-
-                                            <Row>
-                                                {/* Card selection */}
-                                                <InputGroup className="mb-3 card-select" controlId="cardSelect" >
-                                                    <Form.Select onChange={handleActiveCardChange}>
-                                                        <option value={JSON.stringify(activeCard)}>{activeCard.name}</option>
-                                                        {
-                                                            cardNameList.map(currCard => {
-                                                                if (currCard.name != activeCard.name)
-                                                                    return (<option value={JSON.stringify(currCard)} key={currCard.id}>{currCard.name}</option>)
-                                                            })
-                                                        }
-                                                    </Form.Select>
-                                                </InputGroup>
-
-                                                {/* Mark default checkbox */}
-                                                <InputGroup className="mt-2 card-select" controlId="cardSelect" >
-                                                    <Form.Check inline label='Mark default' checked={isChecked} onChange={handleCheckboxChange}></Form.Check>
-                                                </InputGroup>
-                                            </Row>
-
-                                            <InputGroup className="mb-3" controlId="cardNumber">
-                                                <Form.Control placeholder="Card Number" style={{ borderRight: "none" }} value={activeCardInfo.Number} onChange={(event) => handleEditCardFormChange(event.target.value, 'Number')} />
-                                                <InputGroup.Text id="lock-icon" className='input-icon'><AiFillLock /></InputGroup.Text>
-                                            </InputGroup>
-
-                                            <Form.Group className="mb-3" controlId="nameOnCard">
-                                                <Form.Control placeholder="Name on Card (e.g. 'John Smith')" value={activeCardInfo.Name} onChange={(event) => handleEditCardFormChange(event.target.value, 'Name')} />
-                                            </Form.Group>
-
-                                            <Form.Group as={Col}>
-                                                <Form.Control placeholder="Expiration Date (MM/YY)" value={activeCardInfo.Expiration} onChange={(event) => handleEditCardFormChange(event.target.value, 'Expiration')} />
-                                            </Form.Group>
-
-                                            <InputGroup as={Col}>
-                                                <Form.Control placeholder="CVV" style={{ borderRight: "none" }} value={activeCardInfo.CVV} onChange={(event) => handleEditCardFormChange(event.target.value, 'CVV')} />
-                                                <InputGroup.Text id="question-mark-icon" className='input-icon'><AiFillQuestionCircle /> </InputGroup.Text>
-                                            </InputGroup>
-                                        </Row>
-
-                                        <Row>
-                                            <div className='add-card-div'>
-                                                <Button onClick={(event) => handleEditCard(event, userDetails, user, activeCardInfo, activeCard.id, isChecked).then(navigate('/edit-profile'))} variant="dark" type="submit" className='save-button'>
-                                                    <b>SAVE INFORMATION</b>
-                                                </Button>
-                                            </div>
-                                        </Row>
-
-                                    </Form>
-
-                                </Accordion.Body>
-
-                            </Accordion.Item>
-
-                            <Divider><IoMdAddCircleOutline style={{ fontSize: '2em' }} /></Divider>
-
-                            <Accordion.Item eventKey="new-card" className='accordion-item'>
-                                <Accordion.Header>
-                                    <b>Add a new card</b>
-                                </Accordion.Header>
-
-                                <Accordion.Body>
-
-                                    <Form style={{ padding: "10px" }}>
-
-                                        <Row className="mb-3 form-row">
-
-                                            <InputGroup className="mb-3" controlId="cardNumber" >
-                                                <Form.Control placeholder="Card Number" style={{ borderRight: "none" }} aria-describedby="lock-icon" value={newCardInfo.Number} onChange={(event) => handleNewCardFormChange(event.target.value, 'Number')} />
-                                                <InputGroup.Text id="lock-icon" style={{ backgroundColor: "white", borderLeft: "none" }} ><AiFillLock /> </InputGroup.Text>
-                                            </InputGroup>
-
-                                            <Form.Group className="mb-3" controlId="nameOnCard">
-                                                <Form.Control placeholder="Name on Card (e.g. 'John Smith')" value={newCardInfo.Name} onChange={(event) => handleNewCardFormChange(event.target.value, 'Name')} />
-                                            </Form.Group>
-
-                                            <Form.Group as={Col}>
-                                                <Form.Control placeholder="Expiration Date (MM/YY)" value={newCardInfo.Expiration} onChange={(event) => handleNewCardFormChange(event.target.value, 'Expiration')} />
-                                            </Form.Group>
-
-                                            <InputGroup as={Col}>
-                                                <Form.Control placeholder="CVV" aria-describedby="question-icon" style={{ borderRight: "none" }} value={newCardInfo.CVV} onChange={(event) => handleNewCardFormChange(event.target.value, 'CVV')} />
-                                                <InputGroup.Text id="question-icon" style={{ backgroundColor: "white", borderLeft: "none" }}><AiFillQuestionCircle /> </InputGroup.Text>
-                                            </InputGroup>
-                                        </Row>
-
-                                        <Row>
-                                            <div className='add-card-div'>
-                                                <Button onClick={(event) => handleAddCard(event, userDetails, user, newCardInfo, navigate).then(navigate("/edit-profile"))} variant="dark" type="submit" className='save-button'>
-                                                    <b>ADD CARD</b>
-                                                </Button>
-                                            </div>
-                                        </Row>
-
-                                    </Form>
-
-                                </Accordion.Body>
-
-                            </Accordion.Item>
-
+                            <EditCard />
+                            <CardInfoDivider />
+                            <AddCard />
                         </Accordion>
                         <br />
-
-
                     </div>
                 </div>
-
             </Card >
         </div >
     )

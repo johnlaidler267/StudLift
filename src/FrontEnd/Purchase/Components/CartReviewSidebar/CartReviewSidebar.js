@@ -14,7 +14,7 @@ import Divider from '@mui/material/Divider';
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 export const CartReviewSidebar = ({ bagItems, cart, shippingMethod }) => {
     return (
-        <Col style={{ backgroundColor: "#EEEEEE", padding: "20px" }} xs={5}>
+        <Col style={{ backgroundColor: "#EEEEEE", padding: "20px" }}>
             <ProductList bagItems={bagItems} cart={cart} />
             <br />
             <DiscountCode />
@@ -49,22 +49,14 @@ const DiscountCode = () => {
 const SubtotalShipping = ({ cart, shippingMethod }) => {
     return (
         <div>
-            <Row className='total-row'>
-                <Col xs={10}>
-                    <h6>Subtotal</h6>
-                </Col>
-                <Col xs={2}>
-                    <b>${cart.total}</b>
-                </Col>
-            </Row>
-            <Row className='total-row'>
-                <Col xs={9}>
-                    <h6>Shipping</h6>
-                </Col>
-                <Col xs={3} >
-                    {!shippingMethod ? <p style={{ fontSize: "12px" }}>Calculated at next step...</p> : <p style={{ fontSize: "12px" }}>{shippingMethod}</p>}
-                </Col>
-            </Row>
+            <div className='total-row'>
+                <h6>Subtotal</h6>
+                <b>${cart.total}</b>
+            </div>
+            <div className='total-row'>
+                <h6>Shipping</h6>
+                {!shippingMethod ? <p style={{ fontSize: "12px" }}>Calculated at next step...</p> : <p style={{ fontSize: "12px" }}>{shippingMethod}</p>}
+            </div>
         </div>
     )
 }
@@ -76,43 +68,37 @@ const Total = ({ cart, shippingMethod }) => {
 
     return (
         <div>
-            <Row className='total-row'>
-                <Col xs={8}>
-                    <h5>TOTAL</h5>
-                </Col>
-                <Col xs={4}>
-                    <p>USD <span style={{ fontSize: "25px" }}><b>${total}</b></span></p>
-                </Col>
-            </Row>
+            <div className='total-row'>
+                <h5>TOTAL</h5>
+                <p>USD <span style={{ fontSize: "25px" }}><b>${total}</b></span></p>
+            </div>
         </div >
     )
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const ProductRow = ({ cartItem, cart }) => {
     return (
-        <div>
-            <Row id='product-row'>
-                <Col xs={10}>
-                    <Card id='product-card'>
-                        <Card.Body className='flex'>
-                            <div style={{ width: '30%', position: 'relative', marginRight: '15px' }}>
-                                <Card.Img src={cartItem.product._imageURL} id='product-img' />
-                                <span class='badge badge-warning' id='lblCartCount'> {cartItem.quantity}</span>
-                            </div>
-                            <div style={{ marginTop: '40px', marginRight: '40px' }}>
-                                <Card.Title id='product-title'>{cartItem.product._name} </Card.Title>
-                                <Card.Text className='product-desc'>{cartItem.color}</Card.Text>
-                                <Card.Text className='product-desc'>Size: {cartItem.size}</Card.Text>
-                            </div>
-                        </Card.Body>
-                    </Card >
-                </Col>
-                <Col xs={2} className='center-column'>
-                    <b>${cart.getCartItem(cartItem.getItemID()).getSubtotal()}</b>
-                </Col>
-            </Row>
+        <Row id='product-row'>
+            <Col xs={10}>
+                <Card id='product-card'>
+                    <Card.Body className='flex'>
+                        <div style={{ width: '30%', position: 'relative', marginRight: '15px' }}>
+                            <Card.Img src={cartItem.product._imageURL} id='product-img' />
+                            <span class='badge badge-warning' id='lblCartCount'> {cartItem.quantity}</span>
+                        </div>
+                        <div style={{ marginTop: '40px', marginRight: '40px' }}>
+                            <Card.Title id='product-title'>{cartItem.product._name} </Card.Title>
+                            <Card.Text className='product-desc'>{cartItem.color}</Card.Text>
+                            <Card.Text className='product-desc'>Size: {cartItem.size}</Card.Text>
+                        </div>
+                    </Card.Body>
+                </Card >
+            </Col>
+            <Col xs={2} className='center-column'>
+                <b>${cart.getCartItem(cartItem.getItemID()).getSubtotal()}</b>
+            </Col>
             <Divider />
-        </div>
+        </Row>
 
     )
 }

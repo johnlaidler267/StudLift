@@ -4,7 +4,7 @@ import '../../../Styling/Pages.css'
 
 //IMPORT React components
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 //IMPORT Custom components
 import { MensFilterBar } from '../../../Components/FilterBars/MensFilterBar/MensFilterBar'
@@ -36,20 +36,37 @@ function MensAll() {
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    return (
-        <div style={{ width: '100%' }}>
-            <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', padding: '4.5em', backgroundColor: '#ECECEC', border: 'none' }}>
+    const Header = () => {
+        return (
+            <Card className='d-flex flex-column align-items-start border-0'  style={{ padding: '4.5em', backgroundColor: '#ECECEC'}}>
                 <h5 style={{ fontSize: '1em' }}><b>MENS</b></h5>
                 <h2 style={{ fontWeight: '500' }}><b>ALL PRODUCTS</b></h2>
             </Card>
-            <Card style={{ display: 'flex', flexDirection: 'row', border: 'none', padding: '1em' }}>
+        )
+    }
+
+    const Filter = () => {
+        return (
+            <Card className='d-flex flex-row border-0 p-1'>
                 <MensFilterBar Products={Products} FilteredProducts={FilteredProducts} setFilteredProducts={setFilteredProducts} />
             </Card>
-            <Card style={{ border: 'none' }}>
+        )
+    }
+
+    const ProductsDisplay = () => {
+        return (
+            <Card className='border-0'>
                 <CardGrid ProductCards={ProductCards} />
             </Card>
+        )
+    }
 
-        </div>
+    return (
+        <div className='w-100'>
+            <Header />
+            <Filter />
+            <ProductsDisplay />
+        </div> 
 
     )
 }

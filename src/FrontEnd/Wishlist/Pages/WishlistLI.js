@@ -32,7 +32,6 @@ function WishlistLI() {
     const [sortBy, setSortBy] = useState("low-high");
 
     useEffect(() => {
-        console.log('WishlistLI.js: useEffect() called')
         getWishlist(user.uid).then((wl) => {
             setWishlist(wl);
             setWishlistItems(wl.getItems());
@@ -45,12 +44,8 @@ function WishlistLI() {
         window.history.back();
     }
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    return (
-        <div className='background-div'>
-            {/* Header Card */}
+    const Header = () => {
+        return (
             <Card className='header-card'>
                 <Button onClick={goBack} className='back-arrow'>
                     <IoIosArrowBack /> <b>Back</b>
@@ -61,23 +56,41 @@ function WishlistLI() {
                     <h5><b>{wishlistItems.length} PRODUCT(S)</b></h5>
                 </div>
             </Card>
+        )
+    }
 
-            {/* Product Display Card */}
+    const Filter = () => {
+        return (
+            <Filter WishlistItems={wishlistItems} FilteredWLItems={filteredWLItems} setFilteredWLItems={setFilteredWLItems} setSortBy={setSortBy} sortBy={sortBy} />
+        )
+    }
+
+    const ClearWishlistBtn = () => {
+        return (
+            <Button className='remove-all-btn' onClick={() => wishlist.clear()}>
+                <FaTrashAlt /><b> <span style={{ padding: '8px' }}>Remove all items</span></b>
+            </Button>
+        )
+    }
+
+    const WishlistItems = () => {
+        return (
+            <div className='card-grid-div'>
+                <CardGrid Wishlist={wishlist} FilteredWLItems={filteredWLItems} setWishlistItems={setWishlistItems} setFilteredWLItems={setFilteredWLItems} />
+            </div>
+        )
+    }
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    return (
+        <div className='background-div'>
+            <Header />
             <Card className='product-display-card'>
-                {/* Filter component */}
-                <Filter WishlistItems={wishlistItems} FilteredWLItems={filteredWLItems} setFilteredWLItems={setFilteredWLItems} setSortBy={setSortBy} sortBy={sortBy} />
-
-                <div className='card-grid-div'>
-                    {/* CardGrid component */}
-                    <CardGrid Wishlist={wishlist} FilteredWLItems={filteredWLItems} setWishlistItems={setWishlistItems} setFilteredWLItems={setFilteredWLItems} />
-                </div>
-
-                <div>
-                    {/* Button to remove all items from the wishlist */}
-                    <Button className='remove-all-btn' onClick={() => wishlist.clear()}>
-                        <FaTrashAlt /><b> <span style={{ padding: '8px' }}>Remove all items</span></b>
-                    </Button>
-                </div>
+                <Filter />
+                <WishlistItems/>
+                <ClearWishlistBtn/>
             </Card>
         </div>
     );

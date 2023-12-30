@@ -1,0 +1,22 @@
+#header {
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	padding: 4.5em;
+	background-color: #ececec;
+}
+
+#filterbar {
+	display: flex;
+	flex-direction: row;
+	border: none;
+	padding: 1em;
+}
+
+#tabbar {
+	border: none;
+}
+
+.nav-link {
+	color: #2e4456;
+}

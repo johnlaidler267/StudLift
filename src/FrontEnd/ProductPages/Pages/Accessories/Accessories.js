@@ -1,7 +1,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //IMPORT custom styling
-import '../../Styling/Pages.css'
 import '../../Styling/AccessoriesStyling.css'
+import '../../Styling/Pages.css'
 
 //IMPORT react elements
 import React, { useState, useEffect } from 'react';
@@ -21,6 +21,7 @@ function Accessories() {
     const [Products, setProducts] = useState([]);
     const [FilteredProducts, setFilteredProducts] = useState([]);
     const [activeTab, setActiveTab] = useState("All");
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     //Get all the products on page load
     useEffect(() => {
@@ -38,17 +39,38 @@ function Accessories() {
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    return (
-        <div style={{ width: '100%' }}>
-            <Card style={{ display: 'flex', flexDirection: 'row', alignItems: 'start', padding: '4.5em', backgroundColor: '#ECECEC' }}>
+    // Displays the accesories page header
+    const Header = () => {
+        return (
+            <Card id='header'>
                 <h2><b>ALL ACCESSORIES</b></h2>
             </Card>
-            <Card style={{ display: 'flex', flexDirection: 'row', border: 'none', padding: '1em' }}>
+        )
+    }
+
+    // Displays the filter bar
+    const Filter = () => {
+        return (
+            <Card id='filterbar'>
                 <AccessoriesFilterBar Products={Products} FilteredProducts={FilteredProducts} setFilteredProducts={setFilteredProducts} activeTab={activeTab} />
             </Card>
-            <Card style={{ border: 'none' }}>
+        )
+    }
+
+    // Displays the tab bar
+    const Tabs = () => {
+        return (
+            <Card id='tabbar'>
                 <TabBar ProductCards={ProductCards} setActiveTab={setActiveTab} />
             </Card>
+        )
+    }
+
+    return (
+        <div className='w-100'>
+            <Header/>
+            <Filter/>
+            <Tabs/>
         </div>
     )
 }

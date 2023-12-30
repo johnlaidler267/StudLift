@@ -1,5 +1,6 @@
 //IMPORT Custom styling
 import '../Styling/Checkout.css'
+import '../Styling/Information.css'
 import '../Components/QuantityPicker/QuantityPicker.css';
 
 //IMPORT React elements
@@ -7,6 +8,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
+
+//IMPORT Context
+import InformationProvider from '../Contexts/InformationContext'
 
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -18,12 +22,13 @@ import { fetchUserCart } from '../../ProductPages/Pages/ViewItem/ViewItemDB'
 
 //IMPORT Custom components
 import { CartReviewSidebar } from '../Components/CartReviewSidebar/CartReviewSidebar.js'
-import CheckoutTimeline from '../Components/CheckoutTimeline/CheckoutTimeline.js'
-import { CheckoutForm } from '../Components/InformationComponents'
+import { CheckoutForm, Navigate, ExpressCheckout } from '../Components/InformationComponents'
+import { Terms, Timeline } from '../Components/CommonComponents'
 
 //IMPORT Icons
-import { FaCcPaypal, FaGooglePay } from 'react-icons/fa'
+import { FaCcStripe, FaGooglePay } from 'react-icons/fa'
 import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io'
+import UserInfoContext from '../../../Contexts/UserInfoContext';
 
 export default function Information() {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
@@ -43,6 +48,11 @@ export default function Information() {
 
     // Stores the actual cart
     const [cart, setCart] = useState({})
+
+    // TODO: Import Context
+    const { checkoutInfo, setCheckoutInfo } = useContext(CheckoutContext)
+    const { cartContext, setCartContext } = useContext(CartContext);
+    const { userInfoContext, setUserInfoContext } = useContext(UserInfoContext);
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     useEffect(() => {
@@ -71,6 +81,15 @@ export default function Information() {
                 const city = shippingCityLS || data.Shipping.City;
                 const state = shippingStateLS || data.Shipping.State;
                 const zip = shippingZipLS || data.Shipping.Zip;
+
+                const shippingAddress = {
+                    AddLine1: addLine1,
+                    AddLine2: addLine2,
+                    Country: country,
+                    City: city,
+                    State: state,
+                    Zip: zip,
+                }
 
                 // -> Initialize state variables for form fields
                 setForm({
@@ -107,7 +126,6 @@ export default function Information() {
         fetchUserCart(user.uid).then((cart) => {
             setBagItems(cart.cartItems);
             setCart(cart);
-            console.log(`The current cart is ${JSON.stringify(cart)}`)
         });
     }, []);
 
@@ -160,61 +178,43 @@ export default function Information() {
         localStorage.setItem('shippingState', form.State);
         localStorage.setItem('shippingZip', form.Zip);
 
+        // TODO: Store values in context
+        setCheckoutInfo({ ...checkoutInfo, Email: email, First: first, Last: last, ShippingAddress: shippingAddress, });
+
         navigate('/shipping')
     }
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
+    // //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-    const ExpressCheckout = () => {
-        return (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <div style={{ width: "90%" }}>
-                    <Divider>Express Checkout</Divider>
-                    <Card style={{ padding: "5px", border: "none" }}>
-                        <Row style={{ width: "100%" }}>
-                            <Button style={{ width: "60%", backgroundColor: "orange", border: "none", margin: "5px" }} as={Col}><FaCcPaypal style={{ width: "30px", height: "30px" }} /></Button>
-                            <Button style={{ width: "60%", backgroundColor: "black", border: "none", margin: "5px" }} as={Col}><FaGooglePay style={{ width: "30px", height: "30px" }} /></Button>
-                        </Row>
-                    </Card>
-                </div>
-            </div>
-        )
+    context = {
+        user,
+        form,
+        setForm,
+        navigate,
+        handleProceedtoShipping,
+        bagItems,
+        cart
     }
 
     return (
-        <Container style={{
-            maxWidth: "none", width: "101%", height: "900px"
-        }}>
-            <Card style={{ width: "100%", height: "100%", border: "none", display: "flex", alignItems: "center" }}>
-                <Row style={{ padding: "5px", width: "100%", height: "100%" }}>
-                    <Col xs={7}>
-                        <br />
-                        <Container style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                            <CheckoutTimeline url={window.location.pathname} />
-                        </Container>
-                        <br />
-                        <ExpressCheckout />
-                        <br />
-                        <Divider>OR</Divider>
-                        <CheckoutForm user={user} form={form} setForm={setForm} />
-                        <div className='button-row'>
-                            <Button className='direction-btn' onClick={() => navigate('/cart')} type="submit" style={{ color: "black", backgroundColor: "white" }} >
-                                <IoIosArrowDropleft className='arrow' /> Return to cart
-                            </Button>
-                            <Button className='direction-btn' onClick={(event) => handleProceedtoShipping(event)} variant="dark" type="submit" style={{ borderRadius: "20px" }}>
-                                <b>CONTINUE TO SHIPPING <IoIosArrowDroprightCircle className='arrow' /></b>
-                            </Button>
-                        </div>
-                        <br />
-                        <Container style={{ display: "flex", justifyContent: "center" }}>
-                            <p style={{ fontSize: "12px" }}>By placing your order you agree to StudentLifter's <u>Terms and Conditions</u>, <u>Privacy Notice</u> and <u>Cookie Policy.</u></p>
-                        </Container>
-                    </Col>
-                    <CartReviewSidebar bagItems={bagItems} cart={cart} />
-                </Row>
-                <Divider />
-                <Row></Row>
-            </Card>
-        </Container >
+        <InformationProvider value={context}>
+            <Container className="info-container">
+                <Card className="info-card">
+                    <Row className="info-row">
+                        <Col xs={7}>
+                            <Timeline currentURL={window.location.pathname} />
+                            <ExpressCheckout />
+                            <Divider>OR</Divider>
+                            <CheckoutForm user={user} form={form} setForm={setForm} />
+                            <Navigate navigate={navigate} />
+                            <Terms />
+                        </Col>
+                        <CartReviewSidebar bagItems={bagItems} cart={cart} />
+                    </Row>
+                    <Divider />
+                </Card>
+            </Container>
+        </InformationProvider>
     );
 }

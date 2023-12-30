@@ -6,6 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap';
 
+//IMPORT Context
+import PaymentProvider from '../Contexts/PaymentContext'
+
 //IMPORT MUI elements
 import Divider from '@mui/material/Divider';
 
@@ -23,8 +26,9 @@ import { getCardNameList } from '../../EditAccount/HelperFunctions/RevisePayment
 
 //IMPORT Custom components
 import { CartReviewSidebar } from '../Components/CartReviewSidebar/CartReviewSidebar.js';
-import CheckoutTimeline from '../Components/CheckoutTimeline/CheckoutTimeline.js';
-import { UserLICreditCardForm, UserNLICreditCardForm, BillingForm } from '../Components/PaymentComponents';
+import { UserLICreditCardForm, UserNLICreditCardForm, BillingForm, ShippingDetails, Navigate, SaveInfo } from '../Components/PaymentComponents';
+import { Terms, Timeline } from '../Components/CommonComponents'
+
 
 export default function Payment() {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,7 +113,6 @@ export default function Payment() {
         fetchUserCart(user.uid).then((cart) => {
             setBagItems(cart.cartItems);
             setCart(cart);
-            console.log(`The current cart is ${JSON.stringify(cart)}`)
         });
     }, []);
 
@@ -178,94 +181,32 @@ export default function Payment() {
     };
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    context = {
+        billingForm,
+        setBillingForm,
+        handlePayNow
+    }
+    
     return (
-        <Container style={{
-            maxWidth: "none", width: "101%", height: "100%"
-        }}>
-            <Card style={{ width: "100%", height: "100%", border: "none", display: "flex", alignItems: "center" }}>
-                <Row style={{ padding: "5px", width: "100%", height: "100%" }}>
-                    <Col xs={7}>
-                        <br />
-                        <Container style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                            <CheckoutTimeline url={window.location.pathname} />
-                        </Container>
-                        <br />
-                        <br />
-
-                        <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                            <Card style={{ border: "1px solid lightgray", borderRadius: "10px", padding: "15px", width: "90%" }}>
-                                <Row>
-                                    <Col xs={2}>
-                                        <p style={{ fontSize: "0.9em", color: "lightslategray" }}>Contact</p>
-                                    </Col>
-                                    <Col xs={8}>
-                                        <p style={{ fontSize: "0.9em" }}>{email}</p>
-                                    </Col>
-                                    <Col xs={2}>
-                                        <a onClick={() => navigate('/information')} style={{ fontSize: "0.9em" }}>Change</a>
-                                    </Col>
-                                </Row>
-                                <Divider />
-                                <Row style={{ paddingTop: "1em" }}>
-                                    <Col xs={2}>
-                                        <p style={{ fontSize: "0.9em", color: "lightslategray" }}>Ship to</p>
-                                    </Col>
-                                    <Col xs={8}>
-                                        <p style={{ fontSize: "0.9em" }}>{shippingAddress}</p>
-                                    </Col>
-                                    <Col xs={2}>
-                                        <a onClick={() => navigate('/information')} style={{ fontSize: "0.9em" }}>Change</a>
-                                    </Col>
-                                </Row>
-                                <Row style={{ paddingTop: "1em" }}>
-                                    <Col xs={2}>
-                                        <p style={{ fontSize: "0.9em", color: "lightslategray" }}>Method</p>
-                                    </Col>
-                                    <Col xs={8}>
-                                        <p style={{ fontSize: "0.9em" }}>{shippingMethodDisplay}</p>
-                                    </Col>
-                                    <Col xs={2}>
-                                        <a onClick={() => navigate('/shipping')} style={{ fontSize: "0.9em" }}>Change</a>
-                                    </Col>
-                                </Row>
-                            </Card>
-                        </div>
-                        <br />
-                        {user ? <UserLICreditCardForm cards={cardNameList} /> : <UserNLICreditCardForm />}
-                        <br />
-                        <BillingForm form={billingForm} setForm={setBillingForm} setSameAsShipping={setSameAsShipping} />
-                        <br />
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <div className='button-row' style={{ width: '90%' }}>
-                                <Button className='direction-btn' onClick={() => navigate('/shipping')} type="submit" style={{ color: "black", backgroundColor: "white" }} >
-                                    <IoIosArrowDropleft className='arrow' /> Return to shipping
-                                </Button>
-                                <Button className='direction-btn' onClick={() => handlePayNow()} variant="dark" type="submit" style={{ borderRadius: "20px" }}>
-                                    <b>PAY NOW <IoIosArrowDroprightCircle className='arrow' /></b>
-                                </Button>
-                            </div>
-                        </div>
-                        <br />
-                        <Container style={{ display: "flex", justifyContent: "center" }}>
-                            <Form.Check
-                                type="switch"
-                                id="custom-switch"
-                                label="Save my information for a faster checkout"
-                                style={{ marginRight: "10px" }}
-                            />
-                        </Container>
-
-                        <br />
-                        <Container style={{ display: "flex", justifyContent: "center" }}>
-                            <p style={{ fontSize: "12px" }}>By placing your order you agree to StudentLifter's <u>Terms and Conditions</u>, <u>Privacy Notice</u> and <u>Cookie Policy.</u></p>
-                        </Container>
-
-                    </Col>
-                    <CartReviewSidebar bagItems={bagItems} cart={cart} shippingMethod={shippingMethod} />
-                </Row>
-                <Divider />
-                <Row></Row>
-            </Card >
-        </Container >
+        <PaymentProvider value={context}>
+            <Container className="payment-container">
+                <Card className="payment-card">
+                    <Row className="payment-row">
+                        <Col xs={7}>
+                            <Timeline currentURL={window.location.pathname} />
+                            <ShippingDetails navigate={navigate} email={email} shippingAddress={shippingAddress} shippingMethodDisplay={shippingMethodDisplay} />
+                            {user ? <UserLICreditCardForm cards={cardNameList} /> : <UserNLICreditCardForm />}
+                            <BillingForm form={billingForm} setForm={setBillingForm} setSameAsShipping={setSameAsShipping} />
+                            <Navigate navigate={navigate} handlePayNow={handlePayNow} />
+                            <SaveInfo />
+                            <Terms />
+                        </Col>
+                        <CartReviewSidebar bagItems={bagItems} cart={cart} shippingMethod={shippingMethod} />
+                    </Row>
+                    <Divider />
+                    <Row></Row>
+                </Card >
+            </Container >
+        </PaymentProvider>
     );
 }
