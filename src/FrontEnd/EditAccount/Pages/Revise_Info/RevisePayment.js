@@ -172,10 +172,12 @@ const RevisePayment = () => {
             }
 
             const InputCardNumber = () => {
-                <InputGroup className="mb-3" controlId="cardNumber">
-                    <Form.Control placeholder="Card Number" style={{ borderRight: "none" }} value={activeCardInfo.Number} onChange={(event) => handleEditCardFormChange(event.target.value, 'Number')} />
-                    <InputGroup.Text id="lock-icon" className='input-icon'><AiFillLock /></InputGroup.Text>
-                </InputGroup>
+                return (
+                    <InputGroup className="mb-3" controlId="cardNumber">
+                        <Form.Control placeholder="Card Number" style={{ borderRight: "none" }} value={activeCardInfo.Number} onChange={(event) => handleEditCardFormChange(event.target.value, 'Number')} />
+                        <InputGroup.Text id="lock-icon" className='input-icon'><AiFillLock /></InputGroup.Text>
+                    </InputGroup>
+                );
             }
 
             const InputCardName = () => {
@@ -208,12 +210,12 @@ const RevisePayment = () => {
                     <Row className="mb-3 form-row">
                         <Row>
                             <SelectCard />
-                            <SetDefaultCard/>
+                            <SetDefaultCard />
                         </Row>
                         <InputCardNumber />
                         <InputCardName />
                         <InputExpiration />
-                        <InputCVV />   
+                        <InputCVV />
                     </Row>
                     <Row>
                         <SaveBtn />

@@ -1,4 +1,4 @@
-import React, {createContext, useContext} from 'react';
+import React, { createContext, useContext } from 'react';
 
 const OrderConfirmationContext = createContext();
 
@@ -10,7 +10,7 @@ export const OrderConfirmationProvider = ({ children, value }) => {
     );
 };
 
-export const useOrerConfirmationContext = () => {
+export const useOrderConfirmationContext = () => {
     return useContext(OrderConfirmationContext);
 };
 

@@ -3,15 +3,16 @@ import '../Styling/Payment.css'
 
 //IMPORT React elements
 import React, { useState } from 'react';
-import { Card, Row, Col, Form } from 'react-bootstrap'
+import { Card, Row, Col, Form, Container, Button } from 'react-bootstrap'
+import { Divider } from '@mui/material'
 
 //IMPORT Context
 import { useShippingContext } from '../Contexts/ShippingContext';
 // import { useCheckoutContext } from '../../CheckoutContext'
 
 // Extract variables from context
-const shippingContext = useShippingContext();
-const { standardChecked, handleShippingSelection } = paymentContext;
+// const shippingContext = useShippingContext();
+// const { standardChecked, handleShippingSelection } = paymentContext;
 
 // TODO: Implement context below:
 // const checkoutContext = useCheckoutContext();
@@ -36,7 +37,7 @@ export const Navigate = ({ navigate }) => {
     )
 }
 
-export const SelectShippingMethod = ({standardChecked, handleShippingSelection}) => {
+export const SelectShippingMethod = ({ standardChecked, handleShippingSelection }) => {
     return (<div id='select-shipping-bg-div'>
         <div id='select-shipping-div'>
             <h4 >Shipping Method</h4>
@@ -66,7 +67,7 @@ export const SelectShippingMethod = ({standardChecked, handleShippingSelection})
     </div>)
 }
 
-export const BuyerDetails = ({naviate, email, shipping}) => {
+export const BuyerDetails = ({ navigate, email, shipping }) => {
     return (
         <div id='info-div'>
             <Card id='info-card'>

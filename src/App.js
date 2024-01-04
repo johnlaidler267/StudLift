@@ -62,8 +62,15 @@ import LoginProvider from './Contexts/LoginContext'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //* App.js: The main component that serves as the entry point/central hub for rendering and managing other components.
-function App() {
+function wrapWithProvider(Component, Provider) {
+  return (
+    <Provider>
+      <Component />
+    </Provider>
+  );
+}
 
+function App() {
   return (
     <LoginProvider>
       <CartProvider>
@@ -72,6 +79,7 @@ function App() {
             <Router>
               <Navbar />
               <Routes>
+                {/* Main routes */}
                 <Route path="/" element={<Main />} />
                 <Route path="/search" element={<Search />} />
                 <Route path='/viewitem' element={<ViewItem />} />
@@ -89,31 +97,66 @@ function App() {
                 <Route path='/product/:dbName/:productId' element={<ViewItem />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path="/wishlist-nli" element={<WishlistNLI />} />
-                <UserInfoProvider>
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path='/edit-profile' element={<EditProfile />} />
-                  <Route path='/revise-billing' element={<ReviseBilling />} />
-                  <Route path='/revise-shipping' element={<ReviseShipping />} />
-                  <Route path='/revise-payment' element={<RevisePayment />} />
-                  <Route path="/wishlist-li" element={<WishlistLI />} />
-                  <CheckoutProvider>
-                    <Route path='/information' element={<Information />} />
-                    <Route path='/shipping' element={<Shipping />} />
-                    <Route path='/payment' element={<Payment />} />
-                    <Route path='/confirmation' element={<OrderConfirmation />} />
-                  </CheckoutProvider>
-                </UserInfoProvider>
+
+                {/* User-related routes */}
+                <Route
+                  path="/login"
+                  element={wrapWithProvider(Login, UserInfoProvider)}
+                />
+                <Route
+                  path="/register"
+                  element={wrapWithProvider(Register, UserInfoProvider)}
+                />
+                <Route
+                  path='/edit-profile'
+                  element={wrapWithProvider(EditProfile, UserInfoProvider)}
+                />
+                <Route
+                  path='/revise-billing'
+                  element={wrapWithProvider(ReviseBilling, UserInfoProvider)}
+                />
+                <Route
+                  path='/revise-shipping'
+                  element={wrapWithProvider(ReviseShipping, UserInfoProvider)}
+                />
+                <Route
+                  path='/revise-payment'
+                  element={wrapWithProvider(RevisePayment, UserInfoProvider)}
+                />
+                <Route
+                  path="/wishlist-li"
+                  element={wrapWithProvider(WishlistLI, UserInfoProvider)}
+                />
+
+                {/* Checkout-related routes */}
+                <Route
+                  path='/information'
+                  element={wrapWithProvider(Information, CheckoutProvider)}
+                />
+                <Route
+                  path='/shipping'
+                  element={wrapWithProvider(Shipping, CheckoutProvider)}
+                />
+                <Route
+                  path='/payment'
+                  element={wrapWithProvider(Payment, CheckoutProvider)}
+                />
+                <Route
+                  path='/confirmation'
+                  element={wrapWithProvider(OrderConfirmation, CheckoutProvider)}
+                />
+
+                {/* Other routes outside providers */}
                 <Route path='/returns' element={<Returns />} />
                 <Route path='/about-us' element={<AboutUs />} />
                 <Route path='/FAQ' element={<FAQ />} />
               </Routes>
             </Router>
-          </div >
+          </div>
           <Footer />
         </div>
       </CartProvider>
-    </LoginProvider >
+    </LoginProvider>
   );
 }
 

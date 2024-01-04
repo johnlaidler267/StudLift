@@ -178,15 +178,17 @@ const FAQ = () => {
             }
 
             const GeneralInfoTitle = () => {
-                return (<Card.Title>
-                    GENERAL INFORMATION
-                </Card.Title>)
+                return (
+                    <Card.Title>
+                        GENERAL INFORMATION
+                    </Card.Title>
+                );
             }
 
             return (
                 <Card className='faq-card'>
                     <GeneralInfoIcon />
-                    <GeneralInfoLabel />
+                    <GeneralInfoTitle />
                 </Card>
             )
         }
@@ -263,10 +265,10 @@ const FAQ = () => {
 
     return (
         <div className='faq-background'>
-            <FAQHeader/>
+            <FAQHeader />
             <FAQGrid />
             <PopularQuestions />
-            <MoreHelp/>
+            <MoreHelp />
         </div>
     )
 }

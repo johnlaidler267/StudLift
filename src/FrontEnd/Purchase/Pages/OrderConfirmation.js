@@ -3,12 +3,12 @@ import '../Components/QuantityPicker/QuantityPicker.css';
 import '../Styling/OrderConfirmation.css'
 
 //IMPORT Reaact elements
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { Card, Container, Button } from 'react-bootstrap'
+import { Card, Container } from 'react-bootstrap'
 
 //IMPORT Contexts
-import OrderConfirmationProvider from './Contexts/OrderConfirmationContext'
+import OrderConfirmationProvider from '../Contexts/OrderConfirmationContext'
 
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -124,7 +124,7 @@ export default function OrderConfirmation() {
     }, [user.uid]);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    context = {
+    const context = {
         cart,
         cartItems,
         email,
@@ -135,11 +135,11 @@ export default function OrderConfirmation() {
         <OrderConfirmationProvider value={context}>
             <Container className="order-confirmation">
                 <Card className="order-confirmation-card">
-                    <OrderConfirmationHeading />
-                    <OrderSummary />
-                    <SubtotalShipping/>
-                    <Total/>
-                    <ExportOrderDetails />
+                    <OrderConfirmationHeading orderNumber={orderNumber} />
+                    <OrderSummary items={cartItems} />
+                    <SubtotalShipping cart={cart} />
+                    <Total />
+                    <ExportOrderDetails cart={cart} shippingMethod={shippingMethod} />
                 </Card>
             </Container>
         </OrderConfirmationProvider>

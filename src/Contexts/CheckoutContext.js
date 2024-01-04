@@ -1,14 +1,11 @@
-import { createContext, useState } from 'react';
-
+import React, { createContext, useState } from 'react';
 const CheckoutContext = createContext();
 
 export function CheckoutProvider({ children }) {
-    const [checkoutContext, setCheckoutContext] = useState({});
+    const [checkoutInfo, setCheckoutInfo] = useState([]);
     return (
-        <CheckoutContext.Provider value={[ checkoutContext, setCheckoutContext ]}>
-            {children}
-        </CheckoutContext.Provider>
+        <CheckoutContext.Provider value={[checkoutInfo, setCheckoutInfo]}>{children}</CheckoutContext.Provider>
     )
 }
 
-export default CheckoutContext;
+export default CheckoutProvider;

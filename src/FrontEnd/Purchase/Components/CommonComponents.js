@@ -1,5 +1,10 @@
-import CheckoutTimeline from './Components/CheckoutTimeline/CheckoutTimeline.js'
+import React from 'react';
+import { Container } from 'react-bootstrap'
 
+//IMPORT Custom Components
+import CheckoutTimeline from './CheckoutTimeline/CheckoutTimeline.js'
+
+// Displays the site's terms of use
 export const Terms = () => {
     return (
         <Container className="terms">
@@ -10,6 +15,7 @@ export const Terms = () => {
     )
 }
 
+// Displays the navigational timeline
 export const Timeline = ({ currentURL }) => {
     return (
         <Container className="checkout-timeline">

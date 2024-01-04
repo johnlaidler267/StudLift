@@ -4,9 +4,9 @@ import '../Styling/Information.css'
 import '../Components/QuantityPicker/QuantityPicker.css';
 
 //IMPORT React elements
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Card, Container, Row, Col } from 'react-bootstrap'
 import Divider from '@mui/material/Divider';
 
 //IMPORT Context
@@ -26,8 +26,6 @@ import { CheckoutForm, Navigate, ExpressCheckout } from '../Components/Informati
 import { Terms, Timeline } from '../Components/CommonComponents'
 
 //IMPORT Icons
-import { FaCcStripe, FaGooglePay } from 'react-icons/fa'
-import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io'
 import UserInfoContext from '../../../Contexts/UserInfoContext';
 
 export default function Information() {
@@ -50,9 +48,9 @@ export default function Information() {
     const [cart, setCart] = useState({})
 
     // TODO: Import Context
-    const { checkoutInfo, setCheckoutInfo } = useContext(CheckoutContext)
-    const { cartContext, setCartContext } = useContext(CartContext);
-    const { userInfoContext, setUserInfoContext } = useContext(UserInfoContext);
+    // const { checkoutInfo, setCheckoutInfo } = useContext(CheckoutContext)
+    // const { cartContext, setCartContext } = useContext(CartContext);
+    // const { userInfoContext, setUserInfoContext } = useContext(UserInfoContext);
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     useEffect(() => {
@@ -179,7 +177,7 @@ export default function Information() {
         localStorage.setItem('shippingZip', form.Zip);
 
         // TODO: Store values in context
-        setCheckoutInfo({ ...checkoutInfo, Email: email, First: first, Last: last, ShippingAddress: shippingAddress, });
+        // setCheckoutInfo({ ...checkoutInfo, Email: email, First: first, Last: last, ShippingAddress: shippingAddress, });
 
         navigate('/shipping')
     }
@@ -187,7 +185,7 @@ export default function Information() {
 
     // //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
-    context = {
+    const context = {
         user,
         form,
         setForm,

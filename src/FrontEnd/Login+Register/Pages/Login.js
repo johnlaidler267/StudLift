@@ -13,14 +13,18 @@ import { auth } from '../../../BackEnd/firebase/firebase';
 import { LoginContext } from '../../../Contexts/LoginContext'
 
 // IMPORT Context
-import {UserInfoContext} from '../../../Contexts/UserInfoContext'
+import { UserInfoContext } from '../../../Contexts/UserInfoContext'
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function LoginForm() {
     // initialize the navigate function to redirect to other pages
     const navigate = useNavigate();
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    const [login, setLogin] = useContext(LoginContext);
+
+    // Todo
+    // const [login, setLogin] = useContext(LoginContext);
+
     const [userInfoContext, setUserInfoContext] = useContext(userInfoContext);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const googleProvider = new GoogleAuthProvider();
@@ -75,7 +79,9 @@ function LoginForm() {
             navigate("/");
             return;
         }
-        setLogin(userData);
+
+        //Todo
+        // setLogin(userData);
 
         // Set the user info for children
         setUserInfoContext(userData);

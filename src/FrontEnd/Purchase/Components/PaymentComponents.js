@@ -3,7 +3,11 @@ import '../Styling/Payment.css'
 
 //IMPORT React elements
 import React, { useState } from 'react';
-import { Card, Row, Col, Form, Accordion, InputGroup } from 'react-bootstrap'
+import { Card, Row, Col, Form, Accordion, InputGroup, Button, Container } from 'react-bootstrap'
+import { Divider } from '@mui/material'
+
+//IMPORT Icons
+import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io';
 
 //IMPORT Context
 import { usePaymentContext } from '../Contexts/PaymentContext';
@@ -14,8 +18,9 @@ import { usePaymentContext } from '../Contexts/PaymentContext';
 //IMPORT Icons
 import { AiFillLock, AiFillQuestionCircle } from 'react-icons/ai'
 
-const paymentContext = usePaymentContext();
-const { form, setForm, setSameAsShipping, handlePayNow } = paymentContext;
+
+// const paymentContext = usePaymentContext();
+// const { form, setForm, setSameAsShipping, handlePayNow } = paymentContext;
 
 // TODO: Implement context below:
 // const cartContext = useCartContext();
@@ -200,8 +205,9 @@ export const BillingForm = ({ form, setForm, setSameAsShipping }) => {
 }
 
 export const ShippingDetails = ({ navigate, email, shippingAddress, shippingMethodDisplay }) => {
-    return (<div className="container-center">
-        <Card className="card-border">
+
+    const DisplayEmail = () => {
+        return (
             <Row>
                 <Col xs={2}>
                     <p className="subtext-size subtext-color">Contact</p>
@@ -213,7 +219,11 @@ export const ShippingDetails = ({ navigate, email, shippingAddress, shippingMeth
                     <a onClick={() => navigate('/information')} className="subtext-size">Change</a>
                 </Col>
             </Row>
-            <Divider />
+        )
+    }
+
+    const DisplayShippingAdd = () => {
+        return (
             <Row style={{ paddingTop: "1em" }}>
                 <Col xs={2}>
                     <p className="subtext-size subtext-color">Ship to</p>
@@ -225,6 +235,11 @@ export const ShippingDetails = ({ navigate, email, shippingAddress, shippingMeth
                     <a onClick={() => navigate('/information')} className="subtext-size">Change</a>
                 </Col>
             </Row>
+        )
+    }
+
+    const DisplayShippingMethod = () => {
+        return (
             <Row style={{ paddingTop: "1em" }}>
                 <Col xs={2}>
                     <p className="subtext-size subtext-color">Method</p>
@@ -236,12 +251,23 @@ export const ShippingDetails = ({ navigate, email, shippingAddress, shippingMeth
                     <a onClick={() => navigate('/shipping')} className="subtext-size">Change</a>
                 </Col>
             </Row>
-        </Card>
-    </div>)
+        )
+    }
+
+    return (
+        <div className="container-center">
+            <Card className="card-border">
+                <DisplayEmail />
+                <Divider />
+                <DisplayShippingAdd />
+                <DisplayShippingMethod />
+            </Card>
+        </div>
+    );
 }
 
 export const Navigate = ({ navigate, handlePayNow }) => {
-   return (<div className="container-center">
+    return (<div className="container-center">
         <div className='button-row'>
             <Button className='direction-btn' onClick={() => navigate('/shipping')} type="submit">
                 <IoIosArrowDropleft className='arrow' /> Return to shipping

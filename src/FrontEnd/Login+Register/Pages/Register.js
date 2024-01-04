@@ -26,7 +26,8 @@ export default function Register() {
     // initialize the navigate function to redirect to other pages
     const navigate = useNavigate();
 
-    const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext)
+    //Todo
+    // const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext)
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // -> Initialize state variables for form fields
@@ -100,8 +101,8 @@ export default function Register() {
                 gender: form.gender
             };
 
-            // Set user info context
-            setUserInfoContext(userData);
+            // Todo Set user info context
+            // setUserInfoContext(userData);
 
             // Make a POST request to your backend API endpoint
             const response = await fetch('http://localhost:3000/record/register', {

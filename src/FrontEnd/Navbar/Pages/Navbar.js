@@ -17,7 +17,6 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
 
 //IMPORT Photos
-import ItemPicture from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/searchItem.webp';
 import logo from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/logo1.png';
 
 import { PopupBag } from '../Components/PopupBag/PopupBag'
@@ -86,6 +85,7 @@ const Navbar = () => {
 
     // Displays the right side of the nav bar
     const NavBarRight = () => {
+
         const ProfileIcon = () => {
             return (
                 <>

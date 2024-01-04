@@ -1,6 +1,6 @@
 //IMPORT React components
 import React, { useState, useEffect } from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 //IMPORT MUI components
 import Divider from '@mui/material/Divider';
@@ -17,7 +17,6 @@ function Search() {
     const [products, setProducts] = useState([]);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const handleChange = (event) => {
-        console.log(`Setting the query to ${event.target.value}`)
         setQuery(event.target.value);
     };
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,7 +33,6 @@ function Search() {
             .then((results) => {
                 // results is an array containing the results of each promise
                 const allProducts = results.flat();
-                console.log(`Setting the products to ${allProducts}`);
                 setProducts(allProducts);
             })
             .catch((error) => {
@@ -43,20 +41,35 @@ function Search() {
     }, []);
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    const SearchBar = () => {
+        return (
+            <form style={{ width: '100%' }}>
+                <input
+                    type="text"
+                    value={query}
+                    onChange={handleChange}
+                    placeholder="Search By Typing Keywords..."
+                    id='search-bar-input'
+                />
+                <Divider />
+            </form>
+        )
+    }
+
+    const Results = () => {
+        return (
+            <>
+                {query !== "" && <SearchResults products={products} query={query} />}
+            </>
+        )
+    }
+    
     return (
         <div>
             <Card id='search-bar-card'>
-                <form style={{ width: '100%' }}>
-                    <input
-                        type="text"
-                        value={query}
-                        onChange={handleChange}
-                        placeholder="Search By Typing Keywords..."
-                        id='search-bar-input'
-                    />
-                    <Divider />
-                </form>
-                {query !== "" && <SearchResults products={products} query={query} />}
+                <SearchBar/>
+                <Results/>
             </Card>
         </div>
     );

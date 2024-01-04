@@ -45,10 +45,10 @@ export const PopupBag = ({ onClose, firebaseID }) => {
         return (
             <>
                 <Col xs={10}>
-                    <BagLabel/>
+                    <BagLabel />
                 </Col>
                 <Col xs={2} >
-                    <CloseBtn/>
+                    <CloseBtn />
                 </Col>
             </>
         )
@@ -79,10 +79,12 @@ export const PopupBag = ({ onClose, firebaseID }) => {
             )
         }
 
-        <Card id='bag-item-card'>
-            <BagItems/>
-            <Total/>
-        </Card>
+        return (
+            <Card id='bag-item-card'>
+                <BagItems />
+                <Total />
+            </Card>
+        );
     }
 
     // Displays nav btns to checkout OR view bag
@@ -102,10 +104,10 @@ export const PopupBag = ({ onClose, firebaseID }) => {
             )
         }
         return (
-            <Card className='w-100 b-0' style={{ padding: "5px"}}>
+            <Card className='w-100 b-0' style={{ padding: "5px" }}>
                 <Col className='w-100 d-flex justify-content-center'>
                     <CheckoutBtn />
-                    <ViewBagBtn/>
+                    <ViewBagBtn />
                 </Col>
             </Card>
         )
@@ -115,12 +117,12 @@ export const PopupBag = ({ onClose, firebaseID }) => {
         <div className="Modal Show">
             <Card style={{ border: "none", padding: "15px", margin: "2px" }}>
                 <Row className='d-flex justify-content-center'>
-                   <BagHeader/>
+                    <BagHeader />
                     <Divider></Divider>
-                    <BagContents/>
+                    <BagContents />
                     <Divider></Divider>
                 </Row>
-                <NavBtns/>
+                <NavBtns />
             </Card>
         </div >
     )

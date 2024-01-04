@@ -108,7 +108,7 @@ const ReviseBilling = () => {
     const BillingForm = () => {
 
         const InputAddLine1 = () => {
-            return(
+            return (
                 <Form.Group className="mb-3" controlId="AddLine1">
                     <Form.Control placeholder="Address Line 1" value={form.AddLine1} onChange={(event) => handleFormChange(event.target.value, 'AddLine1')} />
                 </Form.Group>
@@ -132,13 +132,23 @@ const ReviseBilling = () => {
         }
 
         const InputState = () => {
-            <Form.Group as={Col} controlId="State" >
-                <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
-                    <option>State</option>
-                    <option>MA</option>
-                    <option>...</option>
-                </Form.Select>
-            </Form.Group>
+
+            const stateAbbreviations = [
+                'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+                'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+                'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+                'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+                'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+            ];
+
+            return (
+                <Form.Group as={Col} controlId="State" >
+                    <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
+                        <option>State</option>
+                        {stateAbbreviations.map((state) => <option>{state}</option>)}
+                    </Form.Select>
+                </Form.Group>
+            );
         }
 
         const InputZip = () => {
@@ -162,15 +172,15 @@ const ReviseBilling = () => {
         return (
             <div id='address-div' className='form-div'>
                 <Form id='address-form' className='address'>
-                    <InputAddLine1/>
-                    <InputAddLine2/>
+                    <InputAddLine1 />
+                    <InputAddLine2 />
                     <Row className="mb-3">
-                        <InputCity/>
-                        <InputState/>
-                        <InputZip/>
+                        <InputCity />
+                        <InputState />
+                        <InputZip />
                     </Row>
                     <Row>
-                       <SaveBtn/>
+                        <SaveBtn />
                     </Row>
                 </Form>
             </div>

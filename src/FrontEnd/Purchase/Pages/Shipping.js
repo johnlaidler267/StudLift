@@ -130,7 +130,7 @@ export default function Shipping() {
     }
     //================================================================
 
-    context = {
+    const context = {
         email,
         shipping,
         bagItems,

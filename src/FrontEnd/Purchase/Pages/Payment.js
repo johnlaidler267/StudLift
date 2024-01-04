@@ -12,9 +12,6 @@ import PaymentProvider from '../Contexts/PaymentContext'
 //IMPORT MUI elements
 import Divider from '@mui/material/Divider';
 
-//IMPORT Icons
-import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io';
-
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../BackEnd/firebase/firebase';
@@ -181,7 +178,7 @@ export default function Payment() {
     };
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    context = {
+    const context = {
         billingForm,
         setBillingForm,
         handlePayNow

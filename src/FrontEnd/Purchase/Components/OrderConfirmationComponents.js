@@ -1,5 +1,5 @@
 //IMPORT React elements
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, ListGroup, Button } from 'react-bootstrap'
 
 //IMPORT Context
@@ -11,8 +11,8 @@ import { useOrderConfirmationContext } from '../Contexts/OrderConfirmationContex
 import { AiFillPrinter } from 'react-icons/ai'
 import { MdAttachEmail } from 'react-icons/md'
 
-const confirmationContext = useOrderConfirmationContext();
-const { orderNumber, items, email, shippingMethod } = confirmationContext;
+// const confirmationContext = useOrderConfirmationContext();
+// const { orderNumber, items, email, shippingMethod } = confirmationContext;
 
 // TODO: Implement context below:
 // const cartContext = useOrerConfirmationContext();
@@ -22,7 +22,7 @@ const { orderNumber, items, email, shippingMethod } = confirmationContext;
 // const { email, shippingMethod } = checkoutContext;
 
 //  Displays the heading
-export const OrderConfirmationHeading = () => {
+export const OrderConfirmationHeading = ({ orderNumber }) => {
     return (
         <div>
             <Card className="order-confirmation-title">
@@ -36,15 +36,22 @@ export const OrderConfirmationHeading = () => {
 }
 
 // Summary of user order
-export const OrderSummary = () => {
+export const OrderSummary = ({ items, email }) => {
+
+    const DisplayOrders = () => {
+        return (
+            <ListGroup variant="flush">
+                {items.map(item => (<ListGroup.Item><SummaryItem cartItem={item} /></ListGroup.Item>))}
+            </ListGroup>
+        )
+    }
+
     return (
-        <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <div className='w-100 d-flex justify-content-center'>
             <Card style={{ border: "none", borderRadius: "10px", padding: "15px", width: "90%" }}>
                 <h4>Order Summary</h4>
                 <p style={{ fontSize: "0.9em", color: "lightslategray" }}>An overview of your transaction was sent to {email}.</p>
-                <ListGroup variant="flush">
-                    {items.map(item => (<ListGroup.Item><SummaryItem cartItem={item} /></ListGroup.Item>))}
-                </ListGroup>
+                <DisplayOrders />
             </Card>
         </div >
     )
@@ -79,7 +86,7 @@ const SummaryItem = ({ cartItem }) => {
 }
 
 // Displays the subtotal w/ shipping
-export const SubtotalShipping = () => {
+export const SubtotalShipping = ({ cart, shippingMethod }) => {
     let shippingCost = shippingMethod === 'Standard' ? 'FREE' : '$15.00';
     return (
         <div style={{ width: "80%" }}>
@@ -104,7 +111,7 @@ export const SubtotalShipping = () => {
 }
 
 //Displays the total
-export const Total = () => {
+export const Total = ({ cart, shippingMethod }) => {
     let shippingCost = shippingMethod === 'Standard' ? 0 : 15;
     const total = parseFloat(parseFloat(cart.total) + shippingCost).toFixed(2);
 

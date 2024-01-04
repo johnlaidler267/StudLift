@@ -46,13 +46,72 @@ export const SearchResults = ({ products, query }) => {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const numProducts = filteredProducts.length;
 
+    // Displays the number of returned search items
     const NumResults = () => {
         return (
             <h5>{numProducts} Products Found</h5>
         )
     }
 
+    // Displays the full list of returned search items
     const SearchResults = () => {
+
+        // Displays a single search item
+        const SearchItem = ({ product }) => {
+            const url = product._imageURL;
+            const price = product._price;
+            const name = product._name
+            const color = product._color;
+
+            // Displays the product image
+            const ProductImg = () => {
+                return (
+                    <Card.Img variant="right" src={url} id='search-item-img' />
+                )
+            }
+
+            // Displays the price, name, color of the product
+            const ProductDetails = () => {
+
+                const Price = () => {
+                    return (
+                        <h6 id='search-item-price'><b>${price}</b></h6>
+                    )
+                }
+
+                const Name = () => {
+                    return (
+                        <h7>{name}</h7>
+                    )
+                }
+
+                const Color = () => {
+                    return (
+                        <h7 id='search-item-color'>{color}</h7>
+                    )
+                }
+
+                return (
+                    <Card.Footer>
+                        <Price />
+                        <Row>
+                            <Name />
+                            <Color />
+                        </Row>
+                    </Card.Footer>
+                )
+            }
+
+            return (
+                <Col>
+                    <Card id='search-item-card'>
+                        <ProductImg />
+                        <ProductDetails />
+                    </Card>
+                </Col>
+            )
+        }
+
         return (
             <Row style={{ gap: '1rem' }}>
                 {filteredProducts.map((product) => (<SearchItem product={product} />))}
@@ -70,53 +129,3 @@ export const SearchResults = ({ products, query }) => {
     )
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 };
-
-// Displays a single search item
-const SearchItem = ({ product }) => {
-    const url = product._imageURL;
-    const price = product._price;
-    const name = product._name
-    const color = product._color;
-
-    const ProductImg = () => {
-        return (
-            <Card.Img variant="right" src={url} id='search-item-img' />
-        )
-    }
-
-    const ProductDetails = () => {
-        const Price = () => {
-            return (
-                <h6 id='search-item-price'><b>${price}</b></h6>
-            )
-        }
-        const Name = () => {
-            return (
-                <h7>{name}</h7>
-            )
-        }
-        const Color = () => {
-            return (
-                <h7 id='search-item-color'>{color}</h7>
-            )
-        }
-        return (
-            <Card.Footer>
-                <Price/>
-                <Row>
-                    <Name />
-                    <Color/>
-                </Row>
-            </Card.Footer>
-        )
-    }
-
-    return (
-        <Col>
-            <Card id='search-item-card'>
-                <ProductImg/>
-                <ProductDetails/>
-            </Card>
-        </Col>
-    )
-}

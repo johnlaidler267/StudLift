@@ -7,7 +7,7 @@ import womensHomepage from '/Users/johnnylaidler/studentlifter/src/Resources/Pho
 import mensHomepage from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/mens-homepage.png'
 
 //IMPORT Custom Components
-import ProductWheel from './Components/ProductWheel.js';
+import ProductWheel from './ProductWheel.js';
 
 const ShopEssentials = () => {
 

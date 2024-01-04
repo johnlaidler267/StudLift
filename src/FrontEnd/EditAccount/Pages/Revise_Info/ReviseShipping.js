@@ -132,13 +132,23 @@ const ReviseShipping = () => {
         }
 
         const InputState = () => {
-            <Form.Group as={Col} controlId="State" >
-                <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
-                    <option>State</option>
-                    <option>MA</option>
-                    <option>...</option>
-                </Form.Select>
-            </Form.Group>
+
+            const stateAbbreviations = [
+                'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+                'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+                'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+                'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+                'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
+            ];
+
+            return (
+                <Form.Group as={Col} controlId="State" >
+                    <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
+                        <option>State</option>
+                        {stateAbbreviations.map((state) => <option>{state}</option>)}
+                    </Form.Select>
+                </Form.Group>
+            );
         }
 
         const InputZip = () => {

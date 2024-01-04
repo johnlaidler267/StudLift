@@ -3,21 +3,26 @@ import '../Styling/Payment.css'
 
 //IMPORT React elements
 import React from 'react';
-import { Row, Col, Form } from 'react-bootstrap'
+import { Row, Col, Form, Button, Card } from 'react-bootstrap'
+import { Divider } from '@mui/material'
 
 //IMPORT Context
 import { useInformationContext } from '../Contexts/InformationContext';
+
+//IMPORT Icons
+import { FaCcStripe, FaGooglePay } from 'react-icons/fa'
+import { IoIosArrowDroprightCircle, IoIosArrowDropleft } from 'react-icons/io'
 
 import GooglePayButton from '@google-pay/button-react';
 import { loadStripe } from "@stripe/stripe-js";
 
 // Receive variables from context
-const infoContext = useInformationContext();
-const { user, form, setForm, handleProceedtoShipping } = infoContext;
+// const infoContext = useInformationContext();
+// const { user, form, setForm, handleProceedtoShipping } = infoContext;
 
 // const [user, loading] = useAuthState(auth);
 
-export const CheckoutForm = () => {
+export const CheckoutForm = ({ user, form, setForm }) => {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     const handleFormChange = (value, field) => {
         setForm(form => ({
@@ -26,23 +31,9 @@ export const CheckoutForm = () => {
         }));
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    return (
-        <div style={{ padding: "12px" }}>
-            <Row>
-                <Col xs={7}>
-                    <h5>Contact information</h5>
-                </Col>
-                <Col xs={5}>
-                    {!user && <p style={{ fontSize: "12px" }}>Already have an account? <b>Sign in.</b></p>}
-                </Col>
-            </Row>
-            <Form style={{ padding: "10px" }}>
-                <Form.Group className="mb-3" controlId="formGridAddress1">
-                    <Form.Control type="email" placeholder="Email" value={form.Email} onChange={(event) => handleFormChange(event.target.value, 'Email')} />
-                </Form.Group>
-            </Form>
-            <br />
-            <h5>Shipping address</h5>
+
+    const ShippingAddForm = () => {
+        return (
             <Form style={{ padding: "10px" }}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="Country" >
@@ -88,22 +79,61 @@ export const CheckoutForm = () => {
                     </Form.Group>
                 </Row>
             </Form>
+        )
+    }
+
+    const EmailForm = () => {
+        return (
+            <Form style={{ padding: "10px" }}>
+                <Form.Group className="mb-3" controlId="formGridAddress1">
+                    <Form.Control type="email" placeholder="Email" value={form.Email} onChange={(event) => handleFormChange(event.target.value, 'Email')} />
+                </Form.Group>
+            </Form>
+        )
+    }
+
+    return (
+        <div style={{ padding: "12px" }}>
+            <Row>
+                <Col xs={7}>
+                    <h5>Contact information</h5>
+                </Col>
+                <Col xs={5}>
+                    {!user && <p style={{ fontSize: "12px" }}>Already have an account? <b>Sign in.</b></p>}
+                </Col>
+            </Row>
+            <EmailForm />
+            <br />
+            <h5>Shipping address</h5>
+            <ShippingAddForm />
         </div >
     )
 }
 
 export const Navigate = ({ navigate, handleProceedtoShipping }) => {
 
-    return (
-        <div className="button-row">
+    const ReturnBtn = () => {
+        return (
             <Button className="direction-btn" onClick={() => navigate("/cart")} type="submit">
                 <IoIosArrowDropleft className="arrow" /> Return to cart
             </Button>
+        )
+    }
+
+    const ContinueBtn = () => {
+        return (
             <Button className="direction-btn" onClick={(event) => handleProceedtoShipping(event)} variant="dark" type="submit">
                 <b>
                     CONTINUE TO SHIPPING <IoIosArrowDroprightCircle className="arrow" />
                 </b>
             </Button>
+        )
+    }
+
+    return (
+        <div className="button-row">
+            <ReturnBtn />
+            <ContinueBtn />
         </div>
     )
 }
@@ -160,7 +190,7 @@ export const ExpressCheckout = () => {
 
     const StripeBtn = () => {
         return (
-            <Button onClick={() => stripe()} className="express-checkout-button" as={Col}>
+            <Button onClick={() => console.log("stripe")} className="express-checkout-button" as={Col}>
                 <FaCcStripe className="express-checkout-icon" />
             </Button>
         )
@@ -168,7 +198,7 @@ export const ExpressCheckout = () => {
 
     const GooglePayBtn = () => {
         return (
-            <Button onClick={() => googlePay()} className="express-checkout-button" as={Col}>
+            <Button onClick={() => console.log("googlepay")} className="express-checkout-button" as={Col}>
                 <FaGooglePay className="express-checkout-icon" />
             </Button>
         )
@@ -189,6 +219,7 @@ export const ExpressCheckout = () => {
     );
 };
 
+//Todo 
 // export const ExpressCheckoutGooglePay = () => {
 //     return (
 //         <div style={{ display: "flex", justifyContent: "center" }}>
