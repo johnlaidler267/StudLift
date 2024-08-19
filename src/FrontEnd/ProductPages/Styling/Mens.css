@@ -1,5 +1,5 @@
 /*=============================================
-=                 Shop Items                  =
+= Shop Items - Everything below Header vid                 =
 =============================================*/
 
 #shop-items-div {
@@ -14,7 +14,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: none;
 	background-color: transparent;
 }
 
@@ -34,7 +33,7 @@
 #essentials-card {
 	width: 100%;
 	height: 30rem;
-	background: linear-gradient(#293642, #203242);
+	background: linear-gradient(#334454, #16222c);
 	color: white;
 	padding-left: 10em;
 	display: flex;

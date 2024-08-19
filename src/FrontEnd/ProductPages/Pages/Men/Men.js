@@ -28,7 +28,7 @@ function Men() {
 
         const Video = () => {
             return (
-                <video src={MensHeader} id='header-video' autoplay="true" loop />
+                <video src={MensHeader} id='header-video' autoPlay loop muted />
             )
         }
 

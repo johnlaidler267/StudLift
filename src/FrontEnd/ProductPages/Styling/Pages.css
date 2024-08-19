@@ -51,7 +51,7 @@ product:hover + div {
 /* (4) */
 #header-video {
 	object-fit: contain;
-	aspect-ratio: 6/3;
+	aspect-ratio: 5/3;
 	width: 100%;
 }
 
@@ -59,14 +59,14 @@ product:hover + div {
 #header-btn {
 	/* styling */
 	position: absolute;
-	bottom: 5px;
+	bottom: 5%;
 	border-radius: 10rem;
 	white-space: nowrap;
-	border: 1px dashed white;
+	border: 2px dashed white;
 	background-color: transparent;
 	color: white;
 	font-family: 'Sunset Gothic', sans-serif, 'Courier New', Courier, monospace;
-	font-size: 1.3em;
+	font-size: 1.5em;
 	padding: 0.4em;
 }
 
@@ -107,7 +107,6 @@ p {
 	display: flex;
 	justify-content: center;
 	margin: 1.5em;
-
 	color: white;
 	background-color: lightslategray;
 	border: none;
@@ -115,7 +114,7 @@ p {
 }
 
 .tile .card-title {
-	font-size: 1.5em;
+	font-size: 1.6em;
 }
 
 .shop-btn {
