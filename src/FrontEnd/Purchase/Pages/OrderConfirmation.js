@@ -19,7 +19,7 @@ import { getUserDetails } from '../../../BackEnd/commonFunctions';
 import { fetchUserCart } from '../../ProductPages/Pages/ViewItem/ViewItemDB'
 
 //IMPORT Custom components
-import { OrderSummary, SubtotalShipping, Total, ExportOrderDetails, OrderConfirmationHeading } from '../Components/OrderConfirmationComponents'
+import { OrderSummary, SubtotalShipping, Total, ExportOrderDetails, OrderConfirmationHeading } from '../Components/OCComponents/OrderConfirmationComponents'
 
 //IMPORT Classes
 import UserOrder from '../Classes/Order.js'

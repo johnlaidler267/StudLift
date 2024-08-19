@@ -3,10 +3,20 @@ const UserInfoContext = createContext();
 
 // Provides data to it's children 
 export function UserInfoProvider({ children }) {
-    const [userInfoContext, setUserInfoContext] = useState([])
+    const [userInfo, setUserInfo] = useState({})
+
+    const updateUserInfo = (field, value) => {
+        setUserInfo(userInfo => ({
+            ...userInfo,
+            [field]: value
+        }));
+    }
+
     return (
-        <UserInfoContext.Provider value={[userInfoContext, setUserInfoContext]}>{children}</UserInfoContext.Provider>
+        <UserInfoContext.Provider value={[userInfo, updateUserInfo]}>
+            {children}
+        </UserInfoContext.Provider>
     )
 }
 
-export default UserInfoProvider;
+export default UserInfoContext;

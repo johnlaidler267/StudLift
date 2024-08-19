@@ -16,7 +16,10 @@ import { auth, firebasedb } from '../../../../BackEnd/firebase/firebase';
 // Custom Components
 import { OrderGrid, NoOrdersCard } from '../../Components/EditPFComponents';
 import { signOut } from 'firebase/auth';
-import { LoginContext } from '../../../../App';
+
+// Context
+import LoginContext from '../../../../Contexts/LoginContext';
+import UserInfoContext from '../../../../Contexts/UserInfoContext';
 
 //Helper functions
 import { getUserDetails } from '../../../../BackEnd/commonFunctions';
@@ -29,13 +32,13 @@ function Main() {
 
     //=================================================================
     // -> store the user logged in in the user variable
-
     const [user, loading] = useAuthState(auth);
+
     const [userDetails, setUserDetails] = useState({});
     const [defaultCard, setDefaultCard] = useState({});
     const [orders, setOrders] = useState([]);
 
-    // const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext);
+    const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext);
     // const {Orders, Cards, DefaultCardIdx} = userInfoContext;
 
     // =================================================================

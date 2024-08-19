@@ -2,12 +2,18 @@
 import '../../Styling/EditAccount.css'
 
 //IMPORT React elements
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Button, Row, Col, Form } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+
+//IMPORT Custom Components
+import AddressForm from '../../Components/AddressForm';
 
 //IMPORT Helper Functions
 import { getUserDetails, updateBillingAddress } from '../../../../BackEnd/commonFunctions';
+
+//IMPORT Context
+import UserInfoContext from '../../../../Contexts/UserInfoContext'
 
 //IMPORT Firebase
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -24,6 +30,7 @@ const ReviseBilling = () => {
     //================================================================
     //-> Pull user details from MongoDB
 
+    const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext)
     const [userDetails, setUserDetails] = useState({}); //Stores user data
     const [existingAddress, setExistingAddress] = useState({}); //stores existing address
     const [form, setForm] = useState({}); //Sets the form values
@@ -54,18 +61,6 @@ const ReviseBilling = () => {
     }, []);
 
     // =================================================================
-    /**
-     * Handle form field changes and update the form state accordingly.
-     * @param {string} value - The new value of the field.
-     * @param {string} field - The field name to update.
-     */
-    const handleFormChange = (value, field) => {
-        setForm(form => ({
-            ...form,
-            [field]: value
-        }));
-    }
-    //================================================================
     // -> Save the form changes to MongoDB
 
     const handleSave = async (event) => {
@@ -85,6 +80,7 @@ const ReviseBilling = () => {
 
             //Make a PATCH request to update MongoDB
             updateBillingAddress(updatedAddress, userDetails, user.uid)
+            setUserInfoContext("BillingAddress", updatedAddress)
             // ...............................................................
             // -> Redirect to the account edit page
             navigate("/edit-profile");
@@ -98,91 +94,9 @@ const ReviseBilling = () => {
 
     const BillingHeader = () => {
         return (
-            <div id='header' className='header'>
+            <div className='header'>
                 <h3>REVISE BILLING DETAILS</h3>
                 <p className='sub-header'>Edit your billing address details below.</p>
-            </div>
-        )
-    }
-
-    const BillingForm = () => {
-
-        const InputAddLine1 = () => {
-            return (
-                <Form.Group className="mb-3" controlId="AddLine1">
-                    <Form.Control placeholder="Address Line 1" value={form.AddLine1} onChange={(event) => handleFormChange(event.target.value, 'AddLine1')} />
-                </Form.Group>
-            )
-        }
-
-        const InputAddLine2 = () => {
-            return (
-                <Form.Group className="mb-3" controlId="AddLine2">
-                    <Form.Control placeholder="Apartment, studio, or floor" value={form.AddLine2} onChange={(event) => handleFormChange(event.target.value, 'AddLine2')} />
-                </Form.Group>
-            )
-        }
-
-        const InputCity = () => {
-            return (
-                <Form.Group as={Col} controlId="City">
-                    <Form.Control placeholder="City" value={form.City} onChange={(event) => handleFormChange(event.target.value, 'City')} />
-                </Form.Group>
-            )
-        }
-
-        const InputState = () => {
-
-            const stateAbbreviations = [
-                'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
-                'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
-                'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
-                'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
-                'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
-            ];
-
-            return (
-                <Form.Group as={Col} controlId="State" >
-                    <Form.Select defaultValue="State" value={form.State} onChange={(event) => handleFormChange(event.target.value, 'State')}>
-                        <option>State</option>
-                        {stateAbbreviations.map((state) => <option>{state}</option>)}
-                    </Form.Select>
-                </Form.Group>
-            );
-        }
-
-        const InputZip = () => {
-            return (
-                <Form.Group as={Col} controlId="Zip" >
-                    <Form.Control placeholder="Zip" value={form.Zip} onChange={(event) => handleFormChange(event.target.value, 'Zip')} />
-                </Form.Group>
-            )
-        }
-
-        const SaveBtn = () => {
-            return (
-                <div className='save-button-div'>
-                    <Button onClick={handleSave} variant="dark" type="submit" className='save-button'>
-                        <b>SAVE DETAILS</b>
-                    </Button>
-                </div>
-            )
-        }
-
-        return (
-            <div id='address-div' className='form-div'>
-                <Form id='address-form' className='address'>
-                    <InputAddLine1 />
-                    <InputAddLine2 />
-                    <Row className="mb-3">
-                        <InputCity />
-                        <InputState />
-                        <InputZip />
-                    </Row>
-                    <Row>
-                        <SaveBtn />
-                    </Row>
-                </Form>
             </div>
         )
     }
@@ -191,7 +105,11 @@ const ReviseBilling = () => {
         <Card id='background' className='background-card'>
             <div id='page-content' className='content'>
                 <BillingHeader />
-                <BillingForm />
+                <AddressForm
+                    form={form}
+                    setForm={setForm}
+                    handleSave={handleSave}
+                />
             </div>
         </Card >
     )

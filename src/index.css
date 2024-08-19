@@ -8,6 +8,12 @@
 	font-family: 'Sunset Gothic', sans-serif, 'Courier New', Courier, monospace;
 }
 
+/* Sets the color for title subtext */
+.subtext {
+	font-size: 0.9em;
+	color: lightslategray
+}
+
 h1,
 h3,
 h4,

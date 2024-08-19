@@ -4,7 +4,6 @@
 
 #bg-div {
 	color: #32393f;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -23,15 +22,12 @@
 
 .intro-bg-card {
 	width: 90%;
-	height: 100%;
 	background-color: #5a6873;
 	border: none;
-	border-radius: 0px;
 }
 
 .intro-card {
 	border: none;
-	padding: 5px;
 	margin: 5px;
 	background-color: transparent;
 	color: white;
@@ -56,7 +52,8 @@
 /*----------  Featured products  ----------*/
 
 .featured-products {
-	height: 100%;
+	display: flex;
+	flex-direction: column;
 	width: fit-content;
 	margin: 2vw;
 }
@@ -64,11 +61,13 @@
 #featured-prod-car {
 	background-color: black;
 	border: 1px solid darkgray;
+	width: 80%;
 }
 
 .featured-products img {
 	opacity: 0.5;
 }
+
 #featured-prods-caption {
 	color: black;
 }
@@ -82,7 +81,6 @@
 
 #intro-img {
 	width: 100%;
-	height: 100%;
 	overflow: visible;
 }
 
@@ -91,8 +89,6 @@
 =============================================*/
 #essentials-bg {
 	width: 90%;
-}
-.essentials {
 }
 
 #essentials-card {

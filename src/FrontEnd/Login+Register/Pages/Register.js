@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../BackEnd/firebase/firebase';
 
 //IMPORT React components
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card, Container, Button, Form, FloatingLabel, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +18,165 @@ import validateRegister from '../HelperFunctions/validateRegister';
 import UserInfoContext from '../../../Contexts/UserInfoContext';
 import CartContext from '../../../Contexts/CartContext'
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+const RegisterForm = ({ form, handleRegister, handleFormChange, errors }) => {
+
+    const Gender = () => {
+        return (
+            <>
+                <h9>GENDER* </h9>
+                <FloatingLabel
+                    label="Gender"
+                    className="mb-3"
+                >
+                    <Form.Select value={form.gender} onChange={(event) => handleFormChange(event.target.value, 'gender')}>
+                        <option>Choose Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Prefer Not To Say</option>
+                    </Form.Select>
+
+                </FloatingLabel>
+                {errors.gender ? (
+                    <p className="error">
+                        {errors.gender}
+                    </p>
+                ) : null}
+            </>
+        )
+    }
+
+    const EmailMarketing = () => {
+        return (
+            <>
+                <Form.Check
+                    type="switch"
+                    id="custom-switch"
+                    label="I wish to receive email marketing from StudentLifter."
+                    style={{ fontSize: "12px" }}
+                    value={form.emailMarketing}
+                    onChange={(event) => handleFormChange(event.target.value, 'emailMarketing')}
+                />
+                <br />
+            </>
+        )
+    }
+
+    const Terms = () => {
+        return (
+            <>
+                <p>By creating your account, you agree to our Terms and Conditions. For full details of how and why Gymshark uses your personal information, please see our Privacy Notice.</p>
+                <br />
+            </>
+        )
+    }
+
+    const RegisterBtn = () => {
+        return (
+            <>
+                <Button onClick={handleRegister} variant="dark" className='create-account-btn'>CREATE ACCOUNT</Button>
+                <br></br>
+                <br></br>
+            </>
+        )
+    }
+
+    return (
+        <form onSubmit={handleRegister}>
+            <>
+                <h9> EMAIL * </h9>
+                <FloatingLabel
+                    label="Email address"
+                    className="mb-3"
+                >
+                    <Form.Control type="email" placeholder="Email" value={form.email} onChange={(event) => handleFormChange(event.target.value, 'email')} />
+                </FloatingLabel>
+                {
+                    errors.email ? (
+                        <p className="error">
+                            {errors.email}
+                        </p>
+                    ) : null
+                }
+            </>
+
+            <>
+                <h9>PASSWORD* </h9>
+                <FloatingLabel label="Password" className="mb-3">
+                    <Form.Control type="password" placeholder="Password" value={form.password} onChange={(event) => handleFormChange(event.target.value, 'password')} />
+                </FloatingLabel>
+                {errors.password ? (
+                    <p className="error">
+                        {errors.password}
+                    </p>
+                ) : null}
+            </>
+
+            <>
+                <h9>CONFIRM PASSWORD* </h9>
+                <FloatingLabel label="Password" className="mb-3">
+                    <Form.Control type="password" placeholder="Password" value={form.confirmPassword} onChange={(event) => handleFormChange(event.target.value, 'confirmPassword')} />
+                </FloatingLabel>
+                {errors.confirmPassword ? (
+                    <p className="error">
+                        {errors.confirmPassword}
+                    </p>
+                ) : null}
+            </>
+
+            <Gender />
+
+            <>
+                <h9>DATE OF BIRTH* </h9>
+                <FloatingLabel
+                    label="dob"
+                    className="mb-3"
+                >
+                    <Form.Control type="date" name='date_of_birth' value={form.dateOfBirth} onChange={(event) => handleFormChange(event.target.value, 'dateOfBirth')} />
+                </FloatingLabel>
+                {errors.dateOfBirth ? (
+                    <p className="error">
+                        {errors.dateOfBirth}
+                    </p>
+                ) : null}
+            </>
+
+            <>
+                <h9>FIRST NAME* </h9>
+                <FloatingLabel
+                    label="First name"
+                    className="mb-3"
+                >
+                    <Form.Control placeholder="E.g. John" value={form.firstName} onChange={(event) => handleFormChange(event.target.value.replace(/\b\w/g, match => match.toUpperCase()), 'firstName')} />
+                </FloatingLabel>
+                {errors.firstName ? (
+                    <p className="error">
+                        {errors.firstName}
+                    </p>
+                ) : null}
+            </>
+
+            <>
+                <h9>LAST NAME* </h9>
+                <FloatingLabel
+                    label="Last name"
+                    className="mb-3"
+                >
+                    <Form.Control placeholder="E.g. Smith" value={form.lastName} onChange={(event) => handleFormChange(event.target.value.replace(/\b\w/g, match => match.toUpperCase()), 'lastName')} />
+                </FloatingLabel>
+                {errors.lastName ? (
+                    <p className="error">
+                        {errors.lastName}
+                    </p>
+                ) : null}
+            </>
+
+            <EmailMarketing />
+            <Terms />
+            <RegisterBtn />
+        </form>
+    )
+}
 
 /**
  * This component represents the registration form for creating a new user account.
@@ -131,194 +290,8 @@ export default function Register() {
         return (
             <>
                 <h5><b>CREATE AN ACCOUNT</b></h5>
-                <p>Sign up and you’ll be able to manage your account, track orders, save products and access easier returns</p>
+                <p className='subtext'>Sign up and you’ll be able to manage your account, track orders, save products and access easier returns</p>
             </>
-        )
-    }
-
-    const RegisterForm = () => {
-        
-        const Email = () => {
-            return (
-                <>
-                    <h9>EMAIL* </h9>
-                    <FloatingLabel
-                        label="Email address"
-                        className="mb-3"
-                    >
-                        <Form.Control type="email" placeholder="name@example.com" value={form.email} onChange={(event) => handleFormChange(event.target.value, 'email')} />
-                    </FloatingLabel>
-                    {errors.email ? (
-                        <p className="error">
-                            {errors.email}
-                        </p>
-                    ) : null}
-                </>
-            )
-        }
-
-        const Password = () => {
-            return (
-                <>
-                    <h9>PASSWORD* </h9>
-                    <FloatingLabel label="Password" className="mb-3">
-                        <Form.Control type="password" placeholder="Password" value={form.password} onChange={(event) => handleFormChange(event.target.value, 'password')} />
-                    </FloatingLabel>
-                    {errors.password ? (
-                        <p className="error">
-                            {errors.password}
-                        </p>
-                    ) : null}
-                </>
-            )
-        }
-
-        const ConfirmPassword = () => {
-            return (
-                <>
-                    <h9>CONFIRM PASSWORD* </h9>
-                    <FloatingLabel label="Password" className="mb-3">
-                        <Form.Control type="password" placeholder="Password" value={form.confirmPassword} onChange={(event) => handleFormChange(event.target.value, 'confirmPassword')} />
-                    </FloatingLabel>
-                    {errors.confirmPassword ? (
-                        <p className="error">
-                            {errors.confirmPassword}
-                        </p>
-                    ) : null}
-                </>
-            )
-        }
-
-        const Gender = () => {
-            return (
-                <>
-                    <h9>GENDER* </h9>
-                    <FloatingLabel
-                        label="Gender"
-                        className="mb-3"
-                    >
-                        <Form.Select value={form.gender} onChange={(event) => handleFormChange(event.target.value, 'gender')}>
-                            <option>Choose Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Prefer Not To Say</option>
-                        </Form.Select>
-
-                    </FloatingLabel>
-                    {errors.gender ? (
-                        <p className="error">
-                            {errors.gender}
-                        </p>
-                    ) : null}
-                </>
-            )
-        }
-
-        const Birthday = () => {
-            return (
-                <>
-                    <h9>DATE OF BIRTH* </h9>
-                    <FloatingLabel
-                        label="dob"
-                        className="mb-3"
-                    >
-                        <Form.Control type="date" name='date_of_birth' value={form.dateOfBirth} onChange={(event) => handleFormChange(event.target.value, 'dateOfBirth')} />
-                    </FloatingLabel>
-                    {errors.dateOfBirth ? (
-                        <p className="error">
-                            {errors.dateOfBirth}
-                        </p>
-                    ) : null}
-                </>
-            )
-        }
-
-        const First = () => {
-            return (
-                <>
-                    <h9>FIRST NAME* </h9>
-                    <FloatingLabel
-                        label="First name"
-                        className="mb-3"
-                    >
-                        <Form.Control placeholder="E.g. John" value={form.firstName} onChange={(event) => handleFormChange(event.target.value.replace(/\b\w/g, match => match.toUpperCase()), 'firstName')} />
-                    </FloatingLabel>
-                    {errors.firstName ? (
-                        <p className="error">
-                            {errors.firstName}
-                        </p>
-                    ) : null}
-                </>
-            )
-        }
-
-        const Last = () => {
-            return (
-                <>
-                    <h9>LAST NAME* </h9>
-                    <FloatingLabel
-                        label="Last name"
-                        className="mb-3"
-                    >
-                        <Form.Control placeholder="E.g. Smith" value={form.lastName} onChange={(event) => handleFormChange(event.target.value.replace(/\b\w/g, match => match.toUpperCase()), 'lastName')} />
-                    </FloatingLabel>
-                    {errors.lastName ? (
-                        <p className="error">
-                            {errors.lastName}
-                        </p>
-                    ) : null}
-                </>
-            )
-        }
-
-        const EmailMarketing = () => {
-            return (
-                <>
-                    <Form.Check
-                        type="switch"
-                        id="custom-switch"
-                        label="I wish to receive email marketing from StudentLifter."
-                        style={{ fontSize: "12px" }}
-                        value={form.emailMarketing}
-                        onChange={(event) => handleFormChange(event.target.value, 'emailMarketing')}
-                    />
-                    <br />
-                </>
-            )
-        }
-
-        const Terms = () => {
-            return (
-                <>
-                    <p>By creating your account, you agree to our Terms and Conditions. For full details of how and why Gymshark uses your personal information, please see our Privacy Notice.</p>
-                    <br />
-                </>
-            )
-        }
-
-        const RegisterBtn = () => {
-            return (
-                <>
-                    <Button onClick={handleRegister} variant="dark" className='create-account-btn'>CREATE ACCOUNT</Button>
-                    <br></br>
-                    <br></br>
-                </>
-            )
-        }
-
-        return (
-            <form onSubmit={handleRegister}>
-                <Email />
-                <Password />
-                <ConfirmPassword />
-                <Gender />
-                <Birthday />
-                <First />
-                <Last />
-                <EmailMarketing />
-                <Terms/>
-                <RegisterBtn/>
-            </form>
         )
     }
 
@@ -327,7 +300,7 @@ export default function Register() {
             <Container className='register-background-div'>
                 <Card className='register-card'>
                     <Header />
-                    <RegisterForm />
+                    <RegisterForm form={form} handleRegister={handleRegister} handleFormChange={handleFormChange} errors={errors} />
                 </Card >
             </Container >
         </Card>

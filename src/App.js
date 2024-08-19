@@ -53,10 +53,10 @@ import Returns from './FrontEnd/EditAccount/Pages/Returns';
 import Cart from './FrontEnd/Cart/Pages/Cart'
 
 //Import Context
-import CartProvider from './Contexts/CartContext'
-import CheckoutProvider from './Contexts/CheckoutContext'
-import UserInfoProvider from './Contexts/UserInfoContext'
-import LoginProvider from './Contexts/LoginContext'
+import { CartProvider } from './Contexts/CartContext'
+import { CheckoutProvider } from './Contexts/CheckoutContext'
+import { UserInfoProvider } from './Contexts/UserInfoContext'
+import { LoginProvider } from './Contexts/LoginContext'
 
 // Import components from React Router
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

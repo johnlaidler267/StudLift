@@ -10,10 +10,10 @@ import { useNavigate } from 'react-router-dom'
 // IMPORT Firebase
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../BackEnd/firebase/firebase';
-import { LoginContext } from '../../../Contexts/LoginContext'
 
 // IMPORT Context
-import { UserInfoContext } from '../../../Contexts/UserInfoContext'
+import UserInfoContext from '../../../Contexts/UserInfoContext'
+import LoginContext from '../../../Contexts/LoginContext'
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -21,11 +21,9 @@ function LoginForm() {
     // initialize the navigate function to redirect to other pages
     const navigate = useNavigate();
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
     // Todo
-    // const [login, setLogin] = useContext(LoginContext);
-
-    const [userInfoContext, setUserInfoContext] = useContext(userInfoContext);
+    const [login, setLogin] = useContext(LoginContext);
+    const [userInfo, setUserInfo] = useContext(UserInfoContext);
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     const googleProvider = new GoogleAuthProvider();
     const GoogleLogin = async () => {
@@ -81,10 +79,7 @@ function LoginForm() {
         }
 
         //Todo
-        // setLogin(userData);
-
-        // Set the user info for children
-        setUserInfoContext(userData);
+        setLogin(userData);
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
