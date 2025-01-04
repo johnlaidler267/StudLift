@@ -5,7 +5,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap'
 import Typography from '@mui/material/Typography';
 
-import { TbCircle1, TbCircle2, TbCircle3, TbCircleCheck, TbCirclePlus } from 'react-icons/tb'
+import { TbCircle1Filled, TbCircle2Filled, TbCircle3Filled, TbCircleCheck, TbCirclePlus } from 'react-icons/tb'
 import { BsArrowRightSquareFill } from 'react-icons/bs'
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -63,7 +63,7 @@ const CheckoutTimeline = ({ url }) => {
                     alignItems: "center",
                     width: "100px",
                 }}>
-                    <TbCircle1 style={customStyles('/information')} />
+                    <TbCircle1Filled style={customStyles('/information')} />
                     <Typography style={{
                         width: "100%",
                         fontSize: "10px",
@@ -87,7 +87,7 @@ const CheckoutTimeline = ({ url }) => {
                     alignItems: "center",
                     width: "100px"
                 }}>
-                    <TbCircle2 style={customStyles('/shipping')} />
+                    <TbCircle2Filled style={customStyles('/shipping')} />
                     <Typography style={{
                         width: "100%",
                         fontSize: "10px",
@@ -111,7 +111,7 @@ const CheckoutTimeline = ({ url }) => {
                     alignItems: "center",
                     width: "100px"
                 }}>
-                    <TbCircle3 style={customStyles('/payment')} />
+                    <TbCircle3Filled style={customStyles('/payment')} />
                     <Typography style={{
                         width: "100%",
                         fontSize: "10px",
@@ -121,7 +121,7 @@ const CheckoutTimeline = ({ url }) => {
             </Link>
         )
     }
-    
+
     const CompletionLink = () => {
         return (
             <Link
@@ -149,11 +149,11 @@ const CheckoutTimeline = ({ url }) => {
     return (
         <div role="presentation" >
             <Breadcrumbs separator={<BsArrowRightSquareFill />} aria-label="breadcrumb" >
-                <CartLink/>
-                <InformationLink/>
+                <CartLink />
+                <InformationLink />
                 <ShippingLink />
                 <PaymentLink />
-                <CompletionLink/>
+                <CompletionLink />
             </Breadcrumbs>
         </div >
     )
