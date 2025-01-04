@@ -101,6 +101,7 @@
 
 .subsection-header {
 	font-size: 2em;
+	border: 2px solid blue;
 }
 
 #essentials-img {

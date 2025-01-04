@@ -5,6 +5,7 @@ import { Card, Button } from 'react-bootstrap'
 //IMPORT Photos
 import womensHomepage from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/womens-homepage.png'
 import mensHomepage from '/Users/johnnylaidler/studentlifter/src/Resources/Photos/mens-homepage.png'
+import { Border } from 'react-bootstrap-icons';
 
 
 /* View Men's Essentials Card */
