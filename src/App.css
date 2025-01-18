@@ -3,7 +3,3 @@ body {
 	padding: 0;
 	background-image: url('/src/Resources/Photos/equipment.png');
 }
-
-* {
-	border: 1px solid red;
-}
