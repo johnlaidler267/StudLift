@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/StudLift/precache-manifest.37f7f5b8affcf27cd1ef388005375773.js"
+  "/StudLift/precache-manifest.28618cfca71185dba9e8c0964e2e7dca.js"
 );
 
 workbox.clientsClaim();
