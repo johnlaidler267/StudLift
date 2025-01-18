@@ -2,10 +2,12 @@
 import { MongoClient } from "mongodb";
 
 // Define the MongoDB connection string, including your username, password, and cluster URL
-const connectionString = "mongodb+srv://adudenamedjohnny:CowZebra98@cluster0.eneuwak.mongodb.net/?retryWrites=true&w=majority" || "";
+const connectionString = "mongodb+srv://adudenamedjohnny:CowZebra98@cluster0.eneuwak.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" || "";
 
 // Create a new instance of the MongoClient using the connection string
 const client = new MongoClient(connectionString);
+
+console.log("CLIENT", client)
 
 let conn;
 try {

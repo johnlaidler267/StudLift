@@ -69,7 +69,7 @@ function ProductWheel({ gender }) {
             margin: "0 auto"
         }}>
             <Card style={{ backgroundColor: "white", width: "100%", height: "100%", border: 'none', color: 'black' }}>
-                <ProductCarousel/>
+                <ProductCarousel />
             </Card>
         </Container >
     );

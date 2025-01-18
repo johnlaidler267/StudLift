@@ -1,5 +1,5 @@
 {
-	"homepage": "https://johnlaidler267.github.io/StudLift/",
+	"homepage": "https://johnlaidler267.github.io/StudLift",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/johnlaidler267/StudLift.git"
@@ -51,7 +51,7 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "react-scripts --openssl-legacy-provider start",
+		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
