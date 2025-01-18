@@ -29,7 +29,7 @@ export const getProductCardsFiltered = async (dbName, products) => {
 
 //Returns a list of JSON products available
 export const getProducts = async (dbName, type) => {
-    const response = await fetch(`http://localhost:10000/record/${dbName}/${type}`);
+    const response = await fetch(`https://studentlifter-backend-server.onrender.com/record/${dbName}/${type}`);
 
     if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
