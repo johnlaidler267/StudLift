@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "d64b9599b1188eb6a553",
+    "revision": "1b9f506d558f78a0e135",
     "url": "/StudLift/static/css/main.0b83b45f.chunk.css"
   },
   {
-    "revision": "d64b9599b1188eb6a553",
-    "url": "/StudLift/static/js/main.f879dae5.chunk.js"
+    "revision": "1b9f506d558f78a0e135",
+    "url": "/StudLift/static/js/main.07144882.chunk.js"
   },
   {
     "revision": "b09bb38e86345282d65f",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/StudLift/static/media/SunsetGothic.4d9d2097.ttf"
   },
   {
-    "revision": "aaf8e1e10336fed200790f0d5859a4fa",
+    "revision": "f0be15acc3de0cf9047899a61382b7a8",
     "url": "/StudLift/index.html"
   }
 ];
