@@ -59,7 +59,7 @@ import { UserInfoProvider } from './Contexts/UserInfoContext'
 import { LoginProvider } from './Contexts/LoginContext'
 
 // Import components from React Router
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 //* App.js: The main component that serves as the entry point/central hub for rendering and managing other components.
 function wrapWithProvider(Component, Provider) {
